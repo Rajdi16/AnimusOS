@@ -1,0 +1,71 @@
+@component('components/layout/app', { title: 'Sync New Memory | book Creation' })
+
+<div class="auth-container" style="max-width: 600px;">
+    {{-- 1. GLITCH TITLE --}}
+    <h1 class="glitch" data-text="SYNC NEW MEMORY">SYNC NEW MEMORY</h1>
+    <p style="color: var(--text-muted); margin-bottom: 2rem;">
+        Input genetic data to forge a new book profile.
+    </p>
+
+    {{-- 2. THE FORM --}}
+    <form action="{{ route('books.store') }}" method="POST">
+        {{ csrfField() }}
+
+        <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required placeholder="e.g. Shao Jun">
+        </div>
+
+        <div class="form-group">
+            <label for="affiliation">Affiliation</label>
+            <select id="affiliation" name="affiliation"
+                style="width: 100%; padding: 0.75rem; background-color: var(--animus-darker); border: 1px solid #334155; color: white; border-radius: 4px;">
+                <option value="Assassin">Assassin Brotherhood</option>
+                <option value="Templar">Templar Order</option>
+                <option value="Unspecified">Unspecified / Civilian</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="imageUrl">Book Image URL</label>
+            <input type="url" id="imageUrl" name="imageUrl" placeholder="https://link-to-book-image.jpg"
+                value="{{ book?.imageUrl || '' }}">
+            <small style="color: var(--text-muted); font-size: 0.7rem;">
+                Link to a high-quality portrait (PNG or JPG).
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="gameId">Associated Memory (Game)</label>
+            <select id="gameId" name="gameId" required
+                style="width: 100%; padding: 0.75rem; background-color: var(--animus-darker); border: 1px solid #334155; color: white; border-radius: 4px;">
+                <option value="">Select a synchronization point...</option>
+                @each(game in games)
+                <option value="{{ game.id }}">{{ game.title }}</option>
+                @endeach
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="bio">Biographical Data</label>
+            <textarea id="bio" name="bio" rows="4"
+                style="width: 100%; padding: 0.75rem; background-color: var(--animus-darker); border: 1px solid #334155; color: white; border-radius: 4px; resize: vertical;"></textarea>
+        </div>
+
+        <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
+            <input type="checkbox" id="isPlayable" name="isPlayable" value="1" style="width: auto;">
+            <label for="isPlayable" style="margin-bottom: 0;">Main Playable Protagonist?</label>
+        </div>
+
+        <div class="form-actions" style="margin-top: 2rem;">
+            <button type="submit" class="btn-sync">INITIALIZE CREATION</button>
+        </div>
+    </form>
+
+    <p class="auth-footer" style="margin-top: 2rem; text-align: center;">
+        <a href="{{ route('books.index') }}"
+            style="color: var(--text-muted); text-decoration: none; font-size: 0.8rem;">
+            ← Abort and Return to Database
+        </a>
+    </p>
+</div>
+
+@end

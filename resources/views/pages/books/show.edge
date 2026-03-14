@@ -1,0 +1,83 @@
+@component('components/layout/app', { title: book.title + ' | Codex Entry' })
+
+{{-- 1. CINEMATIC HERO BANNER --}}
+<div class="banner-rect" style="margin-bottom: 3rem; height: 50vh; min-height: 350px;">
+  {{-- Book Cover Background with Cloaking --}}
+  <img src="{{ book.coverImageUrl || 'https://images.hdqwalls.com/download/assassins-creed-animus-12-1920x1080.jpg' }}"
+    alt="{{ book.title }}" referrerpolicy="no-referrer" style="opacity: 0.7; object-position: center top;">
+
+  {{-- Title Overlay --}}
+  <div
+    style="position: absolute; bottom: 0; left: 0; width: 100%; background: linear-gradient(to top, var(--animus-darker) 0%, transparent 100%); padding: 3rem 2rem 2rem 2rem; box-sizing: border-box; display: flex; justify-content: space-between; align-items: flex-end;">
+    <div>
+      <span
+        style="color: var(--assassin-red); font-size: 0.8rem; letter-spacing: 4px; font-weight: bold; text-transform: uppercase;">
+        Literary Fragment Identified
+      </span>
+      <h1 class="glitch" data-text="{{ book.title }}"
+        style="font-size: 3rem; margin: 0; text-shadow: 0 5px 15px rgba(0,0,0,0.8);">
+        {{ book.title }}
+      </h1>
+    </div>
+    <div style="text-align: right; text-shadow: 0 2px 10px rgba(0,0,0,0.8);">
+      <p style="color: var(--text-muted); margin: 0; font-size: 0.8rem; letter-spacing: 2px;">AUTHOR</p>
+      <p style="color: var(--abstergo-white); font-weight: bold; font-size: 1.5rem; margin: 0; letter-spacing: 1px;">
+        {{ book.author.toUpperCase() }}
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="dossier-container" style="max-width: 1000px; margin: 0 auto; padding-bottom: 2rem;">
+
+  <div style="display: flex; gap: 3rem; margin-bottom: 4rem; flex-wrap: wrap;">
+
+    {{-- Left: Summary --}}
+    <div style="flex: 2; min-width: 300px;">
+      <h3
+        style="color: var(--assassin-red); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; margin-top: 0; letter-spacing: 1px;">
+        CODEX SUMMARY
+      </h3>
+      <p style="font-size: 1.1rem; line-height: 1.8; color: #e2e8f0;">
+        {{ book.summary || 'Summary data not synchronized.' }}
+      </p>
+    </div>
+
+    {{-- Right: Publication Stats --}}
+    <div
+      style="flex: 1; min-width: 250px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 8px; height: fit-content; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+
+      <p style="color: var(--text-muted); margin: 0 0 5px 0; font-size: 0.75rem; letter-spacing: 1px;">RELEASE YEAR</p>
+      <p style="color: var(--abstergo-white); font-weight: bold; font-size: 1.1rem; margin: 0 0 1.5rem 0;">{{
+        book.publishedYear }}</p>
+
+      <p style="color: var(--text-muted); margin: 0 0 5px 0; font-size: 0.75rem; letter-spacing: 1px;">PUBLISHER</p>
+      <p style="color: var(--abstergo-white); font-size: 1rem; margin: 0 0 1.5rem 0;">{{ book.publisher }}</p>
+
+      <p style="color: var(--text-muted); margin: 0 0 5px 0; font-size: 0.75rem; letter-spacing: 1px;">PAGE COUNT</p>
+      <p style="color: var(--abstergo-white); font-size: 1rem; margin: 0 0 1.5rem 0;">{{ book.numberOfPages }} Pages</p>
+
+      <p style="color: var(--text-muted); margin: 0 0 5px 0; font-size: 0.75rem; letter-spacing: 1px;">ISBN</p>
+      <p style="color: var(--abstergo-white); font-family: monospace; font-size: 1rem; margin: 0;">{{ book.isbn }}</p>
+    </div>
+  </div>
+
+  {{-- 3. NAVIGATION --}}
+  <footer
+    style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between;">
+    <a href="/books" class="nav-btn" style="background: transparent; border-color: #64748b; color: #cbd5e1;">←
+      ARCHIVE</a>
+
+    @if(auth.isAuthenticated && auth.user.role === 'admin')
+    <div style="display: flex; gap: 1rem;">
+      <a href="/books/{{ book.id }}/edit" class="nav-btn">EDIT</a>
+      <form action="/books/{{ book.id }}?_method=DELETE" method="POST" onsubmit="return confirm('Erase record?')">
+        {{ csrfField() }}
+        <button type="submit" class="nav-btn nav-btn-danger">PURGE</button>
+      </form>
+    </div>
+    @endif
+  </footer>
+</div>
+
+@end

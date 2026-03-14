@@ -1,0 +1,62 @@
+@component('components/layout/app', { title: 'Edit Dossier: ' + book.name })
+
+<div class="auth-container" style="max-width: 600px;">
+    <h1 class="glitch" data-text="AMEND GENETIC DATA">AMEND GENETIC DATA</h1>
+    <p style="color: var(--text-muted); margin-bottom: 2rem;">
+        Updating profile for: <span style="color: var(--assassin-red);">{{ book.name }}</span>
+    </p>
+
+    {{-- 🛡️ Note the ?_method=PUT - This tells Adonis to perform an Update, not a Create --}}
+    <form action="{{ route('books.update', { id: book.id }) }}?_method=PUT" method="POST">
+        {{ csrfField() }}
+
+        <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required value="{{ book.name }}">
+        </div>
+
+        <div class="form-group">
+            <label for="affiliation">Affiliation</label>
+            <select id="affiliation" name="affiliation"
+                style="width: 100%; padding: 0.75rem; background-color: var(--animus-darker); border: 1px solid #334155; color: white; border-radius: 4px;">
+                <option value="Assassin" {{ book.affiliation==='Assassin' ? 'selected' : '' }}>Assassin Brotherhood
+                </option>
+                <option value="Templar" {{ book.affiliation==='Templar' ? 'selected' : '' }}>Templar Order</option>
+                <option value="Unspecified" {{ book.affiliation==='Unspecified' ? 'selected' : '' }}>Unspecified /
+                    Civilian</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="gameId">Associated Memory (Game)</label>
+            <select id="gameId" name="gameId" required
+                style="width: 100%; padding: 0.75rem; background-color: var(--animus-darker); border: 1px solid #334155; color: white; border-radius: 4px;">
+                @each(game in games)
+                <option value="{{ game.id }}" {{ book.gameId===game.id ? 'selected' : '' }}>
+                    {{ game.title }}
+                </option>
+                @endeach
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="bio">Biographical Data</label>
+            <textarea id="bio" name="bio" rows="4"
+                style="width: 100%; padding: 0.75rem; background-color: var(--animus-darker); border: 1px solid #334155; color: white; border-radius: 4px; resize: vertical;">{{ book.bio }}</textarea>
+        </div>
+
+        <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
+            <input type="checkbox" id="isPlayable" name="isPlayable" value="1" style="width: auto;" {{
+                book.isPlayable ? 'checked' : '' }}>
+            <label for="isPlayable" style="margin-bottom: 0;">Main Playable Protagonist?</label>
+        </div>
+
+        <div class="form-actions" style="margin-top: 2rem; display: flex; gap: 1rem;">
+            <button type="submit" class="btn-sync" style="flex: 2;">UPDATE DOSSIER</button>
+            <a href="{{ route('books.index') }}" class="nav-btn"
+                style="flex: 1; text-align: center; text-decoration: none; padding-top: 0.7rem;">CANCEL</a>
+        </div>
+    </form>
+</div>
+
+@end

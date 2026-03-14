@@ -3,61 +3,77 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    {{-- 1. Dynamic Title --}}
     <title>{{ title || 'Animus Database' }}</title>
-
-    {{-- 2. Link your CSS & JS --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
 
-    {{-- 3. The INVISIBLE TOP BAR --}}
     <nav>
         <div class="nav-links">
             <a href="{{ route('home') }}">Home</a>
+            <a href="{{ route('books.index') }}">Books</a>
             <a href="{{ route('characters.index') }}">Characters</a>
             <a href="{{ route('games.index') }}">Games</a>
+            <div class="search-container">
+                <input type="text" id="animus-search" class="animus-search" placeholder=" ⌕ Search Database...">
+            </div>
         </div>
 
         <div class="auth-links">
-            {{-- Check if authenticated AND if the user object exists --}}
             @if(auth.isAuthenticated && auth.user)
-
-            {{-- 🛡️ SAFETY SHIELD: Added '?.' to prevent the substring crash --}}
-            @!component('components/avatar', {
-            initials: auth.user?.username?.substring(0, 2).toUpperCase() || 'AC'
-            })
-
+            <a href="{{ route('profile.edit') }}" style="text-decoration: none;">
+                @!component('components/avatar', {
+                initials: auth.user?.username?.substring(0, 2).toUpperCase() || 'AC',
+                size: 32,
+                bgColor: '#334155',
+                })
+            </a>
             <form action="{{ route('session.destroy') }}" method="POST" style="display:inline">
                 {{ csrfField() }}
                 <button type="submit" class="nav-btn nav-btn-danger">Disconnect</button>
             </form>
-
             @else
-            {{-- Show Login and Sign Up for Guests --}}
             <a href="{{ route('session.create') }}" class="nav-btn">Login</a>
             <a href="{{ route('auth.register.view') }}" class="nav-btn">Sign Up</a>
             @endif
         </div>
     </nav>
 
-   
+    {{-- ABSTERGO SYSTEM ALERTS --}}
+    @if(flashMessages.has('success'))
+    <div class="abstergo-alert success">✓ {{ flashMessages.get('success') }}</div>
+    @endif
+    @if(flashMessages.has('error'))
+    <div class="abstergo-alert error">⚠️ {{ flashMessages.get('error') }}</div>
+    @endif
 
-    {{-- 5. The main content slot --}}
     <main>
         {{{ await $slots.main() }}}
     </main>
 
-    {{-- 6. Final Disclaimer --}}
-    <footer
-        style="text-align: center; margin-top: 4rem; padding: 2rem; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-muted); font-size: 0.8rem;">
-        Assassin's Creed is a trademark of Ubisoft Entertainment. This is a non-official fan project for educational
-        use.
+    <footer>
+        <p style="text-align: center; opacity: 0.5; font-size: 0.8rem; padding: 2rem 0;">
+            Assassin's Creed is a trademark of Ubisoft Entertainment. Non-official fan project.
+        </p>
     </footer>
 
+    {{-- EAGLE VISION LIVE SEARCH --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('animus-search');
+            if (!searchInput) return;
+
+            searchInput.addEventListener('keyup', (e) => {
+                const term = e.target.value.toLowerCase();
+                const cards = document.querySelectorAll('.game-poster-card');
+                cards.forEach(card => {
+                    const textContent = card.innerText.toLowerCase();
+                    card.style.display = textContent.includes(term) ? 'flex' : 'none';
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

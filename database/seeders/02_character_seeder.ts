@@ -4,8 +4,6 @@ import { BaseSeeder } from '@adonisjs/lucid/seeders'
 
 export default class extends BaseSeeder {
     async run() {
-        // 1. LOCATE ALL MEMORY SEQUENCES (GAMES)
-        // ⚠️ Note: Your games table MUST have these exact titles from your GameSeeder!
         const ac1 = await Game.findByOrFail('title', "Assassin's Creed")
         const ac2 = await Game.findByOrFail('title', "Assassin's Creed II")
         const ac3 = await Game.findByOrFail('title', "Assassin's Creed III")

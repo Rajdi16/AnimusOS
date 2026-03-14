@@ -7,6 +7,39 @@
 import { BaseModel, column } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 
+export class BookSchema extends BaseModel {
+  static $columns = ['author', 'coverImageUrl', 'createdAt', 'genre', 'id', 'isAvailable', 'isbn', 'language', 'numberOfPages', 'publishedYear', 'publisher', 'summary', 'title', 'updatedAt'] as const
+  $columns = BookSchema.$columns
+  @column()
+  declare author: string
+  @column()
+  declare coverImageUrl: string | null
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column()
+  declare genre: string
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare isAvailable: boolean
+  @column()
+  declare isbn: string | null
+  @column()
+  declare language: string
+  @column()
+  declare numberOfPages: number
+  @column()
+  declare publishedYear: number
+  @column()
+  declare publisher: string
+  @column()
+  declare summary: string
+  @column()
+  declare title: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
 export class CharacterSchema extends BaseModel {
   static $columns = ['affiliation', 'bio', 'createdAt', 'gameId', 'id', 'imageUrl', 'isPlayable', 'name', 'updatedAt'] as const
   $columns = CharacterSchema.$columns
@@ -31,18 +64,24 @@ export class CharacterSchema extends BaseModel {
 }
 
 export class GameSchema extends BaseModel {
-  static $columns = ['createdAt', 'description', 'era', 'id', 'imageUrl', 'releaseDate', 'title', 'updatedAt'] as const
+  static $columns = ['createdAt', 'description', 'developer', 'era', 'id', 'imageUrl', 'platforms', 'publisher', 'releaseDate', 'title', 'updatedAt'] as const
   $columns = GameSchema.$columns
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime | null
   @column()
   declare description: string | null
   @column()
+  declare developer: string | null
+  @column()
   declare era: string
   @column({ isPrimary: true })
   declare id: number
   @column()
   declare imageUrl: string | null
+  @column()
+  declare platforms: string | null
+  @column()
+  declare publisher: string | null
   @column.date()
   declare releaseDate: DateTime
   @column()

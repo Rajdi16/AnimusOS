@@ -15,6 +15,9 @@ export default class extends BaseSchema {
       table.timestamp('created_at')
       table.timestamp('updated_at')
       table.string('image_url').nullable()
+      table.string('platforms').nullable()
+      table.string('developer').nullable()
+      table.string('publisher').nullable()
 
     })
   }
