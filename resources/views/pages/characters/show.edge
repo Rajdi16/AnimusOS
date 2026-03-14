@@ -1,0 +1,107 @@
+@component('components/layout/app', { title: character.name + ' | Genetic Profile' })
+
+{{-- 1. CINEMATIC HERO BANNER --}}
+<div class="banner-rect" style="margin-bottom: 3rem; height: 50vh; min-height: 350px;">
+  {{-- Character Portrait Background --}}
+  <img src="{{ character.imageUrl || '/images/placeholders/animus-glitch.jpg' }}" alt="{{ character.name }}"
+    style="opacity: 0.7; object-position: center 15%;">
+
+  {{-- Title Overlay --}}
+  <div
+    style="position: absolute; bottom: 0; left: 0; width: 100%; background: linear-gradient(to top, var(--animus-darker) 0%, transparent 100%); padding: 3rem 2rem 2rem 2rem; box-sizing: border-box; display: flex; justify-content: space-between; align-items: flex-end;">
+    <div>
+      <span
+        style="color: var(--assassin-red); font-size: 0.8rem; letter-spacing: 4px; font-weight: bold; text-transform: uppercase;">
+        Genetic Profile Identified
+      </span>
+      <h1 class="glitch" data-text="{{ character.name }}"
+        style="font-size: 3.5rem; margin: 0; text-shadow: 0 5px 15px rgba(0,0,0,0.8);">
+        {{ character.name }}
+      </h1>
+    </div>
+    <div style="text-align: right; text-shadow: 0 2px 10px rgba(0,0,0,0.8);">
+      <p style="color: var(--text-muted); margin: 0; font-size: 0.8rem; letter-spacing: 2px;">AFFILIATION</p>
+      <p
+        style="color: {{ character.affiliation === 'Assassin' ? 'var(--assassin-red)' : 'var(--abstergo-white)' }}; font-weight: bold; font-size: 1.5rem; margin: 0; letter-spacing: 1px;">
+        {{ character.affiliation ? character.affiliation.toUpperCase() : 'UNKNOWN' }}
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="dossier-container" style="max-width: 1000px; margin: 0 auto; padding-bottom: 2rem;">
+
+  {{-- 2. VITAL STATS & BIO --}}
+  <div style="display: flex; gap: 3rem; margin-bottom: 4rem; flex-wrap: wrap;">
+
+    {{-- Left: Biography --}}
+    <div style="flex: 2; min-width: 300px;">
+      <h3
+        style="color: var(--assassin-red); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; margin-top: 0; letter-spacing: 1px;">
+        BIOGRAPHICAL DATA
+      </h3>
+      <p style="font-size: 1.15rem; line-height: 1.8; color: #e2e8f0; font-family: serif;">
+        {{ character.bio || 'No biographical data found in the Animus.' }}
+      </p>
+    </div>
+
+    {{-- Right: Quick Stats Sidebar --}}
+    <div
+      style="flex: 1; min-width: 250px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 8px; height: fit-content; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+
+      <p style="color: var(--text-muted); margin: 0 0 5px 0; font-size: 0.75rem; letter-spacing: 1px;">LINKED MEMORY
+        SEQUENCE</p>
+      @if(character.game)
+      <a href="/games/{{ character.game.id }}"
+        style="color: var(--abstergo-white); font-weight: bold; font-size: 1.1rem; margin: 0 0 1.5rem 0; text-decoration: none; display: block; transition: color 0.3s;"
+        onmouseover="this.style.color='var(--assassin-red)'" onmouseout="this.style.color='var(--abstergo-white)'">
+        {{ character.game.title }} ↗
+      </a>
+      @else
+      <p style="color: #64748b; font-style: italic; font-size: 1rem; margin: 0 0 1.5rem 0;">Orphaned Data Strand</p>
+      @end
+      <p style="color: var(--text-muted); margin: 0 0 5px 0; font-size: 0.75rem; letter-spacing: 1px;">ANIMUS STATUS</p>
+      <div style="margin-bottom: 1.5rem;">
+        @if(character.isPlayable)
+        <span
+          style="background: rgba(0, 212, 170, 0.1); color: var(--assassin-red); font-size: 0.75rem; border: 1px solid var(--assassin-red); padding: 4px 8px; border-radius: 4px; font-weight: bold; letter-spacing: 1px;">
+          PLAYABLE PROFILE
+        </span>
+        @else
+        <span
+          style="background: rgba(255, 255, 255, 0.05); color: #94a3b8; font-size: 0.75rem; border: 1px solid #64748b; padding: 4px 8px; border-radius: 4px; font-weight: bold; letter-spacing: 1px;">
+          NPC RECORD
+        </span>
+        @endif
+      </div>
+
+      <p style="color: var(--text-muted); margin: 0 0 5px 0; font-size: 0.75rem; letter-spacing: 1px;">DATABASE ID</p>
+      <p style="color: var(--abstergo-white); font-family: monospace; font-size: 1.1rem; margin: 0;">
+        CHR-{{ character.id.toString().padStart(4, '0') }}
+      </p>
+    </div>
+  </div>
+
+  {{-- 3. NAVIGATION & ADMIN ACTIONS --}}
+  <footer
+    style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+
+    <a href="/characters" class="nav-btn" style="background: transparent; border-color: #64748b; color: #cbd5e1;">
+      ← BACK TO DATABASE
+    </a>
+
+    @if(auth.isAuthenticated && auth.user.role === 'admin')
+    <div style="display: flex; gap: 1rem;">
+      <a href="/characters/{{ character.id }}/edit" class="nav-btn" style="min-width: 120px; text-align: center;">EDIT
+        PROFILE</a>
+      <form action="/characters/{{ character.id }}?_method=DELETE" method="POST" style="display:inline"
+        onsubmit="return confirm('⚠️ SYSTEM ALERT: Are you sure you want to permanently desynchronize this profile?');">
+        {{ csrfField() }}
+        <button type="submit" class="nav-btn nav-btn-danger" style="min-width: 120px;">PURGE RECORD</button>
+      </form>
+    </div>
+    @endif
+  </footer>
+</div>
+
+@end

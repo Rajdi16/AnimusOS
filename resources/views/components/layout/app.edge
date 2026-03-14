@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {{-- 1. Dynamic Title --}}
+    <title>{{ title || 'Animus Database' }}</title>
+
+    {{-- 2. Link your CSS & JS --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+
+<body>
+
+    {{-- 3. The INVISIBLE TOP BAR --}}
+    <nav>
+        <div class="nav-links">
+            <a href="{{ route('home') }}">Home</a>
+            <a href="{{ route('characters.index') }}">Characters</a>
+            <a href="{{ route('games.index') }}">Games</a>
+        </div>
+
+        <div class="auth-links">
+            {{-- Check if authenticated AND if the user object exists --}}
+            @if(auth.isAuthenticated && auth.user)
+
+            {{-- 🛡️ SAFETY SHIELD: Added '?.' to prevent the substring crash --}}
+            @!component('components/avatar', {
+            initials: auth.user?.username?.substring(0, 2).toUpperCase() || 'AC'
+            })
+
+            <form action="{{ route('session.destroy') }}" method="POST" style="display:inline">
+                {{ csrfField() }}
+                <button type="submit" class="nav-btn nav-btn-danger">Disconnect</button>
+            </form>
+
+            @else
+            {{-- Show Login and Sign Up for Guests --}}
+            <a href="{{ route('session.create') }}" class="nav-btn">Login</a>
+            <a href="{{ route('auth.register.view') }}" class="nav-btn">Sign Up</a>
+            @endif
+        </div>
+    </nav>
+
+   
+
+    {{-- 5. The main content slot --}}
+    <main>
+        {{{ await $slots.main() }}}
+    </main>
+
+    {{-- 6. Final Disclaimer --}}
+    <footer
+        style="text-align: center; margin-top: 4rem; padding: 2rem; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-muted); font-size: 0.8rem;">
+        Assassin's Creed is a trademark of Ubisoft Entertainment. This is a non-official fan project for educational
+        use.
+    </footer>
+
+</body>
+
+</html>

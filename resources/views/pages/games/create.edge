@@ -1,0 +1,50 @@
+@component('components/layout/app', { title: 'Sync New Game | Animus Database' })
+
+<div class="auth-container" style="max-width: 600px;">
+    {{-- 1. GLITCH TITLE --}}
+    <h1 class="glitch" data-text="SYNC NEW GAME">SYNC NEW GAME</h1>
+    <p style="color: var(--text-muted); margin-bottom: 2rem;">
+        Initialize a new genetic memory sequence for the database.
+    </p>
+
+    {{-- 2. THE FORM --}}
+    <form action="{{ route('games.store') }}" method="POST">
+        {{ csrfField() }}
+
+        <div class="form-group">
+            <label for="title">Game Title</label>
+            <input type="text" id="title" name="title" required placeholder="e.g. Assassin's Creed Valhalla">
+        </div>
+
+        <div class="form-group">
+            <label for="era">Historical Era</label>
+            <input type="text" id="era" name="era" required placeholder="e.g. Viking Age, 9th Century">
+        </div>
+
+        <div class="form-group">
+            <label for="releaseDate">Release Date</label>
+            <input type="date" id="releaseDate" name="releaseDate"
+                style="width: 100%; padding: 0.75rem; background-color: var(--animus-darker); border: 1px solid #334155; color: white; border-radius: 4px;">
+        </div>
+
+        <div class="form-group">
+            <label for="description">Sequence Description</label>
+            <textarea id="description" name="description" rows="4"
+                placeholder="Enter details about this memory sequence..."
+                style="width: 100%; padding: 0.75rem; background-color: var(--animus-darker); border: 1px solid #334155; color: white; border-radius: 4px; resize: vertical;"></textarea>
+        </div>
+
+        <div class="form-actions" style="margin-top: 2rem;">
+            <button type="submit" class="btn-sync">INITIALIZE SYNCHRONIZATION</button>
+        </div>
+    </form>
+
+    <p class="auth-footer" style="margin-top: 2rem; text-align: center;">
+        <a href="{{ route('games.index') }}"
+            style="color: var(--text-muted); text-decoration: none; font-size: 0.8rem;">
+            ← Abort and Return to Database
+        </a>
+    </p>
+</div>
+
+@end

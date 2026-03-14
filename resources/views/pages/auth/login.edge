@@ -1,34 +1,21 @@
-@layout()
-  <div class="form-container">
-    <div>
-      <h1> Login </h1>
-      <p>
-        Enter your email and password below to log in
-      </p>
+@component('components/layout/app', { title: 'Login | Animus Dashboard' })
+<div class="auth-container">
+  <h1>Access Animus Dashboard</h1>
+
+  <form action="{{ route('session.store') }}" method="POST">
+    {{ csrfField() }}
+
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" name="email" required placeholder="assassin@brotherhood.com">
     </div>
 
-    <div>
-      @form({ route: 'session.store', method: 'POST' })
-        <div>
-          @field.root({ name: 'email' })
-            @!field.label({ text: 'Email' })
-            @!input.control({ type: 'email' })
-            @!field.error()
-          @end
-        </div>
-
-        <div>
-          @field.root({ name: 'password' })
-            @!field.label({ text: 'Password' })
-            @!input.control({ type: 'password' })
-            @!field.error()
-          @end
-        </div>
-
-        <div>
-          @!button({ text: 'Login', type: 'submit' })
-        </div>
-      @end
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" name="password" required>
     </div>
-  </div>
+
+    <button type="submit" class="btn-sync">Authenticate</button>
+  </form>
+</div>
 @end

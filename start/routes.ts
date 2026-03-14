@@ -1,30 +1,23 @@
-/*
-|--------------------------------------------------------------------------
-| Routes file
-|--------------------------------------------------------------------------
-|
-| The routes file is used for defining the HTTP routes.
-|
-*/
-
-import { middleware } from '#start/kernel'
-import { controllers } from '#generated/controllers'
 import router from '@adonisjs/core/services/router'
+import AuthController from '#controllers/auth_controller'
+import SessionController from '#controllers/session_controller'
 
+const GamesController = () => import('#controllers/games_controller')
+const CharactersController = () => import('#controllers/characters_controller')
+
+// 1. The Real Index Page (Landing Page)
+// This renders the home.edge file we created
 router.on('/').render('pages/home').as('home')
 
-router
-  .group(() => {
-    router.get('signup', [controllers.NewAccount, 'create'])
-    router.post('signup', [controllers.NewAccount, 'store'])
+// 2. Resources (Games & Characters)
+router.resource('games', GamesController).as('games')
+router.resource('characters', CharactersController).as('characters')
 
-    router.get('login', [controllers.Session, 'create'])
-    router.post('login', [controllers.Session, 'store'])
-  })
-  .use(middleware.guest())
+// 3. Registration (Managed by AuthController)
+router.get('/register', [AuthController, 'registerView']).as('auth.register.view')
+router.post('/register', [AuthController, 'register']).as('auth.register')
 
-router
-  .group(() => {
-    router.post('logout', [controllers.Session, 'destroy'])
-  })
-  .use(middleware.auth())
+// 4. Sessions / Login (Managed by SessionController)
+router.get('/login', [SessionController, 'create']).as('session.create')
+router.post('/login', [SessionController, 'store']).as('session.store')
+router.post('/logout', [SessionController, 'destroy']).as('session.destroy')

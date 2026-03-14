@@ -1,0 +1,78 @@
+@component('components/layout/app', { title: 'Personnel Database | Profiles' })
+
+<div class="database-header"
+    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+    <h1 class="glitch" data-text="PERSONNEL DATABASE">PERSONNEL DATABASE</h1>
+
+    @if(auth.isAuthenticated && auth.user.role === 'admin')
+    <a href="{{ route('characters.create') }}" class="btn-sync"
+        style="width: auto; padding: 0.8rem 1.5rem; text-decoration: none;">
+        + ADD NEW PROFILE
+    </a>
+    @endif
+</div>
+
+{{-- POSTER GRID --}}
+<div class="characters-grid"
+    style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
+    @each(character in characters)
+    <div class="game-poster-card" style="
+        border-radius: 12px;
+        overflow: hidden;
+        background: #1a1a24;
+        display: flex;
+        flex-direction: column;
+        aspect-ratio: 2 / 3; 
+        position: relative;
+    ">
+        {{-- Make the entire card a clickable poster --}}
+        <a href="{{ route('characters.show', { id: character.id }) }}"
+            style="text-decoration: none; color: inherit; display: flex; flex-direction: column; height: 100%;">
+
+            {{-- IMAGE SECTION --}}
+            <div style="flex-grow: 1; width: 100%; overflow: hidden; position: relative;">
+                <img src="{{ character.imageUrl || '/images/placeholders/animus-glitch.jpg' }}"
+                    alt="{{ character.name }}" class="poster-img"
+                    style="width: 100%; height: 100%; object-fit: cover; object-position: center top;">
+
+                {{-- Playable Badge Overlay --}}
+                @if(character.isPlayable)
+                <div
+                    style="position: absolute; bottom: 10px; left: 10px; background: rgba(0, 212, 170, 0.9); color: #000; padding: 2px 6px; font-size: 0.6rem; font-weight: bold; border-radius: 3px; z-index: 5;">
+                    PLAYABLE
+                </div>
+                @endif
+            </div>
+
+            {{-- MINIMALIST TITLE BAR --}}
+            <div style="padding: 1.2rem 0.5rem; text-align: center; background: #1a1a24; z-index: 2;">
+                <h3 style="margin: 0; font-size: 0.95rem; font-weight: bold; color: #f8fafc; letter-spacing: 0.5px;">
+                    {{ character.name }}
+                </h3>
+                {{-- Displays Affiliation instead of Era, colored dynamically --}}
+                <p
+                    style="margin: 6px 0 0 0; font-size: 0.65rem; color: {{ character.affiliation === 'Assassin' ? 'var(--assassin-red)' : '#64748b' }}; letter-spacing: 1.5px; text-transform: uppercase;">
+                    {{ character.affiliation || 'UNKNOWN' }}
+                </p>
+            </div>
+        </a>
+
+        {{-- ADMIN OVERLAY --}}
+        @if(auth.isAuthenticated && auth.user.role === 'admin')
+        <div style="position: absolute; top: 10px; right: 10px; z-index: 10;">
+            <a href="{{ route('characters.edit', { id: character.id }) }}"
+                style="background: rgba(0,0,0,0.7); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 4px 8px; border-radius: 4px; text-decoration: none; font-size: 0.6rem; font-weight: bold; backdrop-filter: blur(4px);">
+                EDIT
+            </a>
+        </div>
+        @endif
+    </div>
+    @else
+    <div
+        style="grid-column: 1 / -1; text-align: center; padding: 5rem; background: rgba(15, 23, 42, 0.4); border: 1px dashed #334155; border-radius: 8px;">
+        <p style="color: var(--text-muted); font-style: italic;">No genetic profiles detected.</p>
+    </div>
+    @endeach
+</div>
+
+@end

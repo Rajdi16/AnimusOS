@@ -1,0 +1,18 @@
+@layout('components/layout/index') {{-- Using a layout for the header/footer --}}
+
+<h1>Assassin's Creed: Games List</h1>
+
+<div class="games-grid">
+
+    @each(game in games)
+
+    <div class="game-card">
+        <h2>{{ game.title }}</h2>
+        <p><strong>Era:</strong> {{ game.era }}</p>
+        <p>{{ game.description }}</p>
+        <span>Released: {{ game.releaseDate }}</span>
+
+    </div>
+
+    @end
+</div>

@@ -1,19 +1,9 @@
-<!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>
-      AdonisJS - A fully featured web framework for Node.js
-    </title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @stack('dumper')
-  </head>
-  <body>
-    @include('partials/header')
-    <main>
-      @include('partials/flash_alerts')
-      {{{ await $slots.main() }}}
-    </main>
-  </body>
-</html>
+<nav>
+  <div class="nav-left">
+    
+    <div class="nav-links">
+      <a href="{{ route('games.index') }}">Database</a>
+      <a href="{{ route('characters.index') }}">Personnel</a>
+    </div>
+  </div>
+</nav>

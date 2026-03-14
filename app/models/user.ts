@@ -1,24 +1,58 @@
-import { UserSchema } from '#database/schema'
+import { DateTime } from 'luxon'
 import hash from '@adonisjs/core/services/hash'
-import { compose } from '@adonisjs/core/helpers'
-import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
+import { BaseModel, column, beforeSave } from '@adonisjs/lucid/orm'
 
-/**
- * User model represents a user in the application.
- * It extends UserSchema and includes authentication capabilities
- * through the withAuthFinder mixin.
- */
-export default class User extends compose(UserSchema, withAuthFinder(hash)) {
+export default class User extends BaseModel {
+
   /**
-   * Get the user's initials from their full name or email.
-   * Returns the first letter of first and last name if available,
-   * otherwise returns the first two characters of the email username.
+   * THE VERIFICATION PROTOCOL:
+   * Finds the user by email, then securely compares the passwords.
    */
-  get initials() {
-    const [first, last] = this.fullName ? this.fullName.split(' ') : this.email.split('@')
-    if (first && last) {
-      return `${first.charAt(0)}${last.charAt(0)}`.toUpperCase()
+  static async verifyCredentials(email: string, passwordPlain: string) {
+    // 1. Find the user by their email
+    const user = await User.findBy('email', email)
+    if (!user) {
+      throw new Error('Invalid credentials') // User not found
     }
-    return `${first.slice(0, 2)}`.toUpperCase()
+
+    // 2. Verify the hashed password against the plain text one
+    const isPasswordValid = await hash.verify(user.password, passwordPlain)
+    if (!isPasswordValid) {
+      throw new Error('Invalid credentials') // Wrong password
+    }
+
+    // 3. Return the user if everything matches
+    return user
+  }
+
+  @column({ isPrimary: true })
+  declare id: number
+
+  @column()
+  declare email: string
+
+  @column()
+  declare username: string
+
+  @column({ serializeAs: null })
+  declare role: string
+
+  @column({ columnName: 'full_name' })
+  declare fullName: string | null
+
+  @column({ serializeAs: null })
+  declare password: string
+
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime
+
+  @beforeSave()
+  public static async hashPassword(user: User) {
+    if (user.$dirty.password) {
+      user.password = await hash.make(user.password)
+    }
   }
 }
