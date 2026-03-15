@@ -142,6 +142,145 @@ export default class extends BaseSeeder {
                 affiliation: 'Samurai',
                 isPlayable: true,
                 bio: 'A powerful African samurai serving under the legendary Oda Nobunaga.'
+            },// --- MODERN DAY (ABSTERGO) ---
+        ])
+
+        await Character.createMany([
+            {
+                name: 'Desmond Miles',
+                gameId: ac1.id, // Make sure this matches your AC1 variable
+                affiliation: 'Assassin',
+                isPlayable: true,
+                bio: 'Subject 17. A modern-day bartender who was kidnapped by Abstergo Industries to explore the genetic memories of his ancestors.'
+            },
+            {
+                name: 'Dr. Warren Vidic',
+                gameId: ac1.id,
+                affiliation: 'Templar',
+                isPlayable: false,
+                bio: 'Lead scientist of the Animus Project at Abstergo Industries and a high-ranking member of the Templar Order.'
+            },
+            {
+                name: 'Lucy Stillman',
+                gameId: ac1.id,
+                affiliation: 'Assassin',
+                isPlayable: false,
+                bio: 'An undercover Assassin working as Dr. Vidic\'s assistant at Abstergo to protect Desmond.'
+            },
+            // --- THE LEVANTINE BROTHERHOOD ---
+            {
+                name: "Altaïr Ibn-La'Ahad",
+                gameId: ac1.id,
+                affiliation: 'Assassin',
+                isPlayable: true,
+                bio: 'A disgraced Master Assassin seeking redemption by hunting the nine Templar leaders during the Third Crusade.'
+            },
+            {
+                name: 'Al Mualim',
+                gameId: ac1.id,
+                affiliation: 'Assassin / Templar',
+                isPlayable: false,
+                bio: 'The Mentor of the Levantine Brotherhood based in Masyaf. He secretly possesses a Piece of Eden.'
+            },
+            {
+                name: 'Malik Al-Sayf',
+                gameId: ac1.id,
+                affiliation: 'Assassin',
+                isPlayable: false,
+                bio: 'An Assassin who lost his brother and his left arm due to Altaïr\'s arrogance. He serves as the Rafiq of the Jerusalem Bureau.'
+            },
+            {
+                name: 'Kadar Al-Sayf',
+                gameId: ac1.id,
+                affiliation: 'Assassin',
+                isPlayable: false,
+                bio: 'Malik\'s younger brother who was tragically killed in Solomon\'s Temple.'
+            },
+            {
+                name: 'Abbas Sofian',
+                gameId: ac1.id,
+                affiliation: 'Assassin',
+                isPlayable: false,
+                bio: 'A bitter rival to Altaïr within the Brotherhood who holds a deep-seated grudge.'
+            },
+            // --- THE TEMPLAR ORDER (THE NINE TARGETS) ---
+            {
+                name: 'Tamir',
+                gameId: ac1.id,
+                affiliation: 'Templar',
+                isPlayable: false,
+                bio: 'A wealthy black market merchant in Damascus who supplies weapons to both the Saracens and Crusaders.'
+            },
+            {
+                name: 'Garnier de Naplouse',
+                gameId: ac1.id,
+                affiliation: 'Templar',
+                isPlayable: false,
+                bio: 'The Grand Master of the Knights Hospitalier in Acre, who performs twisted medical experiments on his patients.'
+            },
+            {
+                name: 'Talal',
+                gameId: ac1.id,
+                affiliation: 'Templar',
+                isPlayable: false,
+                bio: 'A cunning slave trader in Jerusalem who supplies test subjects for Templar experiments.'
+            },
+            {
+                name: "Abu'l Nuqoud",
+                gameId: ac1.id,
+                affiliation: 'Templar',
+                isPlayable: false,
+                bio: 'The wealthy Merchant King of Damascus who funds the Templar Order.'
+            },
+            {
+                name: 'William of Montferrat',
+                gameId: ac1.id,
+                affiliation: 'Templar',
+                isPlayable: false,
+                bio: 'The arrogant regent of Acre who plans to kill King Richard to seize control of the city.'
+            },
+            {
+                name: 'Majd Addin',
+                gameId: ac1.id,
+                affiliation: 'Templar',
+                isPlayable: false,
+                bio: 'A tyrant who seized power in Jerusalem, ruling through fear and public executions.'
+            },
+            {
+                name: 'Sibrand',
+                gameId: ac1.id,
+                affiliation: 'Templar',
+                isPlayable: false,
+                bio: 'The paranoid Grand Master of the Teutonic Order, tasked with blockading the ports of Acre.'
+            },
+            {
+                name: 'Jubair al Hakim',
+                gameId: ac1.id,
+                affiliation: 'Templar',
+                isPlayable: false,
+                bio: 'Saladin\'s chief scholar in Damascus, who burns the city\'s books to erase history and control the populace.'
+            },
+            {
+                name: 'Robert de Sablé',
+                gameId: ac1.id,
+                affiliation: 'Templar',
+                isPlayable: false,
+                bio: 'The Grand Master of the Templar Order and Altaïr\'s ultimate target.'
+            },
+            // --- HISTORICAL FIGURES ---
+            {
+                name: 'King Richard the Lionheart',
+                gameId: ac1.id,
+                affiliation: 'Crusader',
+                isPlayable: false,
+                bio: 'The King of England and leader of the Crusader army in the Holy Land.'
+            },
+            {
+                name: 'Maria Thorpe',
+                gameId: ac1.id,
+                affiliation: 'Templar',
+                isPlayable: false,
+                bio: 'A fiercely loyal Templar and Robert de Sablé\'s body double. She later becomes Altaïr\'s wife.'
             }
         ])
     }

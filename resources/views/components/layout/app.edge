@@ -5,73 +5,256 @@
     <meta charset="UTF-8">
     <title>{{ title || 'Animus Database' }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    {{-- 🧬 SIDEBAR & LAYOUT ANIMATION STYLES --}}
+    <style>
+        /* Base Sidebar styling */
+        .animus-sidebar {
+            width: 260px;
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-x: hidden;
+            flex-shrink: 0;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            background: #161b22;
+            border-right: 1px solid #30363d;
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+        }
+
+        /* The "Small" Default State */
+        .animus-sidebar.is-small {
+            width: 70px;
+        }
+
+        /* Hide text elements when small */
+        .animus-sidebar.is-small .nav-text,
+        .animus-sidebar.is-small .sidebar-widget,
+        .animus-sidebar.is-small .search-container,
+        .animus-sidebar.is-small .sidebar-logo-text {
+            display: none;
+            opacity: 0;
+        }
+
+        /* The Logo Icon (Only shows when small) */
+        .sidebar-logo-icon {
+            display: none;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--assassin-red);
+            text-shadow: 0 0 10px rgba(248, 81, 73, 0.5);
+            text-align: center;
+            width: 100%;
+        }
+
+        .animus-sidebar.is-small .sidebar-logo-icon {
+            display: block;
+        }
+
+        /* Ensure links look good in both states */
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            white-space: nowrap;
+            overflow: hidden;
+            color: #c9d1d9;
+            text-decoration: none;
+            padding: 12px 10px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .sidebar-link:hover {
+            background: #21262d;
+        }
+
+        .nav-icon {
+            font-size: 1.3rem;
+            min-width: 30px;
+            text-align: center;
+        }
+    </style>
 </head>
 
-<body>
+<body style="margin: 0; background: #0d1117; color: #e6edf3; font-family: 'Segoe UI', sans-serif;">
 
-    <nav>
-        <div class="nav-links">
-            <a href="{{ route('home') }}">Home</a>
-            <a href="{{ route('books.index') }}">Books</a>
-            <a href="{{ route('characters.index') }}">Characters</a>
-            <a href="{{ route('games.index') }}">Games</a>
-            <div class="search-container">
-                <input type="text" id="animus-search" class="animus-search" placeholder=" ⌕ Search Database...">
+    {{-- 🌐 MASTER WRAPPER (Flexbox to place Sidebar next to everything else) --}}
+    <div style="display: flex; min-height: 100vh;">
+
+        {{-- 1. THE SIDEBAR (Full Height on the Left, Default Small) --}}
+        <aside class="animus-sidebar is-small">
+
+            {{-- LOGO AREA (Moves inside the sidebar) --}}
+            <div
+                style="height: 70px; display: flex; align-items: center; padding: 0 1rem; border-bottom: 1px solid #30363d; margin-bottom: 1rem;">
+
+
+
+
+
+                {{-- 🎛️ THE TOGGLE BUTTON --}}
+                <button id="sidebar-toggle"
+                    style="background: #161b22; border: 1px solid #30363d; color: #8b949e; cursor: pointer; padding: 6px 12px; border-radius: 6px; font-size: 1.2rem; transition: 0.2s;"
+                    onmouseover="this.style.color='white'" onmouseout="this.style.color='#8b949e'">
+                    ☰
+                </button>
             </div>
-        </div>
 
-        <div class="auth-links">
-            @if(auth.isAuthenticated && auth.user)
-            <a href="{{ route('profile.edit') }}" style="text-decoration: none;">
-                @!component('components/avatar', {
-                initials: auth.user?.username?.substring(0, 2).toUpperCase() || 'AC',
-                size: 32,
-                bgColor: '#334155',
-                })
-            </a>
-            <form action="{{ route('session.destroy') }}" method="POST" style="display:inline">
-                {{ csrfField() }}
-                <button type="submit" class="nav-btn nav-btn-danger">Disconnect</button>
-            </form>
-            @else
-            <a href="{{ route('session.create') }}" class="nav-btn">Login</a>
-            <a href="{{ route('auth.register.view') }}" class="nav-btn">Sign Up</a>
+            {{-- Search Tool --}}
+            <div class="search-container" style="padding: 0 1rem; margin-bottom: 1.5rem;">
+                <input type="text" id="animus-search"
+                    style="width: 100%; padding: 0.8rem; background: #0d1117; border: 1px solid #30363d; color: white; border-radius: 6px; outline: none;"
+                    placeholder="⌕ Search...">
+            </div>
+
+            {{-- NAVIGATION LINKS --}}
+            <div class="sidebar-nav"
+                style="display: flex; flex-direction: column; gap: 0.2rem; padding: 0 0.8rem; flex-grow: 1;">
+
+                <a href="{{ route('home') }}" class="sidebar-link" title="Hub Overview">
+                    <span class="nav-icon">⌂</span> <span class="nav-text">Hub Overview</span>
+                </a>
+
+                @if(auth.isAuthenticated)
+                <a href="{{ route('profile.show') }}" class="sidebar-link" title="My Dossier">
+                    <span class="nav-icon">👤</span> <span class="nav-text">My Dossier</span>
+                </a>
+                @endif
+
+                <a href="{{ route('characters.index') }}" class="sidebar-link" title="Genetic Profiles">
+                    <span class="nav-icon">🧬</span> <span class="nav-text">Genetic Profiles</span>
+                </a>
+
+                <a href="{{ route('games.index') }}" class="sidebar-link" title="Memory Blocks">
+                    <span class="nav-icon">🎮</span> <span class="nav-text">Memory Blocks</span>
+                </a>
+
+                <a href="{{ route('books.index') }}" class="sidebar-link" title="The Archives">
+                    <span class="nav-icon">📖</span> <span class="nav-text">The Archives</span>
+                </a>
+
+                <a href="{{ route('forum.index') }}" class="sidebar-link" title="Global Network">
+                    <span class="nav-icon">📡</span> <span class="nav-text">Global Network</span>
+                </a>
+
+                @if(auth.user?.role === 'admin')
+                <div style="border-top: 1px solid #30363d; margin: 10px 0;"></div>
+                <a href="{{ route('admin.dashboard') }}" class="sidebar-link"
+                    style="color: var(--assassin-red); font-weight: bold;" title="System Hub [Admin]">
+                    <span class="nav-icon">🛡️</span> <span class="nav-text">SYSTEM HUB</span>
+                </a>
+                @endif
+            </div>
+
+            {{-- Extra Widget: System Status (Pushed to bottom) --}}
+            <div class="sidebar-widget" style="padding: 1.5rem 1rem; border-top: 1px solid #30363d;">
+                <h4 style="color: white; margin-bottom: 1rem; font-size: 0.9rem; text-transform: uppercase;">System Link
+                </h4>
+                <div
+                    style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.75rem; color: #8b949e;">
+                    <span>Encryption:</span><span style="color: #3fb950;">Active</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: #8b949e;">
+                    <span>Status:</span><span style="color: #3fb950;">Stable</span>
+                </div>
+            </div>
+        </aside>
+
+        {{-- 2. THE RIGHT COLUMN (Takes up remaining space) --}}
+        <div style="flex-grow: 1; display: flex; flex-direction: column; max-width: 100%; overflow: hidden;">
+
+            {{-- TOP NAVBAR (Banner) --}}
+            <nav
+                style="height: 70px; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; border-bottom: 1px solid #30363d; background: #0d1117;">
+
+                <div class="sidebar-logo-text"
+                    style="color: var(--assassin-red); font-size: 1.2rem; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; text-shadow: 0 0 10px rgba(0, 212, 170, 0.5);">
+                    <span style="color: white;">ANIMUS</span> OS
+                </div>
+                {{-- Shown only when collapsed --}}
+                <div class="sidebar-logo-icon">A</div>
+
+                {{-- AUTH LINKS --}}
+                <div class="auth-links" style="display: flex; gap: 1rem; align-items: center;">
+                    @if(auth.isAuthenticated && auth.user)
+                    <a href="{{ route('profile.show') }}" style="text-decoration: none;" title="My Dossier">
+                        @!component('components/avatar', {
+                        initials: auth.user?.username?.substring(0, 2).toUpperCase() || 'AC',
+                        size: 32,
+                        bgColor: '#334155',
+                        })
+                    </a>
+                    <form action="{{ route('session.destroy') }}" method="POST" style="margin: 0;">
+                        {{ csrfField() }}
+                        <button type="submit"
+                            style="background: transparent; border: 1px solid #f85149; color: #f85149; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 0.8rem;">Disconnect</button>
+                    </form>
+                    @else
+                    <a href="{{ route('session.create') }}"
+                        style="color: white; text-decoration: none; font-size: 0.9rem; font-weight: bold;">Login</a>
+                    <a href="{{ route('auth.register.view') }}"
+                        style="background: #238636; color: white; padding: 6px 16px; border-radius: 6px; text-decoration: none; font-size: 0.9rem; font-weight: bold;">Sign
+                        Up</a>
+                    @endif
+                </div>
+            </nav>
+
+            {{-- ALERTS --}}
+            @if(flashMessages.has('success'))
+            <div
+                style="padding: 1rem; background: rgba(46, 160, 67, 0.1); color: #3fb950; text-align: center; border-bottom: 1px solid #2ea043; font-weight: bold;">
+                ✓ {{ flashMessages.get('success') }}</div>
             @endif
+            @if(flashMessages.has('error'))
+            <div
+                style="padding: 1rem; background: rgba(248, 81, 73, 0.1); color: #f85149; text-align: center; border-bottom: 1px solid #f85149; font-weight: bold;">
+                ⚠️ {{ flashMessages.get('error') }}</div>
+            @endif
+
+            {{-- THE MAIN CONTENT --}}
+            <main class="content-area" style="flex-grow: 1; overflow-y: auto;">
+                {{{ await $slots.main() }}}
+
+                <footer>
+                    <p
+                        style="text-align: center; color: #8b949e; font-size: 0.8rem; padding: 4rem 0 2rem 0; border-top: 1px solid #30363d; margin-top: 4rem;">
+                        Assassin's Creed is a trademark of Ubisoft Entertainment. Non-official fan project.
+                    </p>
+                </footer>
+            </main>
+
         </div>
-    </nav>
+    </div>
 
-    {{-- ABSTERGO SYSTEM ALERTS --}}
-    @if(flashMessages.has('success'))
-    <div class="abstergo-alert success">✓ {{ flashMessages.get('success') }}</div>
-    @endif
-    @if(flashMessages.has('error'))
-    <div class="abstergo-alert error">⚠️ {{ flashMessages.get('error') }}</div>
-    @endif
-
-    <main>
-        {{{ await $slots.main() }}}
-    </main>
-
-    <footer>
-        <p style="text-align: center; opacity: 0.5; font-size: 0.8rem; padding: 2rem 0;">
-            Assassin's Creed is a trademark of Ubisoft Entertainment. Non-official fan project.
-        </p>
-    </footer>
-
-    {{-- EAGLE VISION LIVE SEARCH --}}
+    {{-- 🧠 THE LOGIC SCRIPTS --}}
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const searchInput = document.getElementById('animus-search');
-            if (!searchInput) return;
 
-            searchInput.addEventListener('keyup', (e) => {
-                const term = e.target.value.toLowerCase();
-                const cards = document.querySelectorAll('.game-poster-card');
-                cards.forEach(card => {
-                    const textContent = card.innerText.toLowerCase();
-                    card.style.display = textContent.includes(term) ? 'flex' : 'none';
+            // 1. SIDEBAR TOGGLE LOGIC
+            const toggleBtn = document.getElementById('sidebar-toggle');
+            const sidebar = document.querySelector('.animus-sidebar');
+
+            if (toggleBtn && sidebar) {
+                toggleBtn.addEventListener('click', () => {
+                    sidebar.classList.toggle('is-small');
                 });
-            });
+            }
+
+            // 2. LIVE SEARCH LOGIC
+            const searchInput = document.getElementById('animus-search');
+            if (searchInput) {
+                searchInput.addEventListener('keyup', (e) => {
+                    const term = e.target.value.toLowerCase();
+                    const cards = document.querySelectorAll('.game-poster-card');
+                    cards.forEach(card => {
+                        const textContent = card.innerText.toLowerCase();
+                        card.style.display = textContent.includes(term) ? 'flex' : 'none';
+                    });
+                });
+            }
         });
     </script>
 </body>

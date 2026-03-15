@@ -1,6 +1,10 @@
+import Thread from '#models/thread'
+import Post from '#models/post'
+import type { HasMany } from '@adonisjs/lucid/types/relations'
+import { hasMany } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
-import hash from '@adonisjs/core/services/hash'
 import { BaseModel, column, beforeSave } from '@adonisjs/lucid/orm'
+import hash from '@adonisjs/core/services/hash'
 
 export default class User extends BaseModel {
 
@@ -42,6 +46,12 @@ export default class User extends BaseModel {
 
   @column({ serializeAs: null })
   declare password: string
+
+  @hasMany(() => Thread)
+  declare threads: HasMany<typeof Thread>
+
+  @hasMany(() => Post)
+  declare posts: HasMany<typeof Post>
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

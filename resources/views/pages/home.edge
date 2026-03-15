@@ -1,7 +1,165 @@
 @component('components/layout/app', { title: 'Animus Central Hub' })
 
-{{-- 4. Banner Rectangle --}}
-<section class="banner-rect">
+{{-- 1. HERO BANNER WITH OVERLAY TEXT --}}
+<section class="banner-rect" style="position: relative;">
     <img src="/images/ac-banner.jpg" alt="Banner" />
 </section>
+
+<div style="max-width: 1200px; margin: 0 auto; padding: 2rem 1rem;">
+
+    {{-- 2. THE MAXIM (QUOTE BLOCK) --}}
+    <div
+        style="text-align: center; padding: 4rem 2rem; margin-bottom: 4rem; background: linear-gradient(180deg, transparent, rgba(0,212,170,0.05), transparent);">
+        <h2
+            style="font-size: 2rem; color: var(--abstergo-white); font-weight: 300; font-style: italic; margin-bottom: 1rem;">
+            "Where other men blindly follow the truth, Remember..."
+        </h2>
+        <h3
+            style="font-size: 2.5rem; color: var(--assassin-red); margin: 0; letter-spacing: 2px; text-transform: uppercase;">
+            Nothing is true.
+        </h3>
+        <h2
+            style="font-size: 2rem; color: var(--abstergo-white); font-weight: 300; font-style: italic; margin-top: 1rem; margin-bottom: 1rem;">
+            "Where other men are limited by morality or law, Remember..."
+        </h2>
+        <h3
+            style="font-size: 2.5rem; color: var(--assassin-red); margin: 0; letter-spacing: 2px; text-transform: uppercase;">
+            Everything is permitted.
+        </h3>
+        <div style="width: 50px; height: 2px; background: var(--assassin-red); margin: 2rem auto 0 auto;"></div>
+    </div>
+
+    {{-- 3. QUICK ACCESS GRID --}}
+    <h2
+        style="color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem;">
+        Database Access Modules</h2>
+
+    <div
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 5rem;">
+        <a href="{{ route('characters.index') }}" class="info-card"
+            style="text-decoration: none; padding: 2rem; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; text-align: center;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🧬</div>
+            <h3 style="color: var(--abstergo-white); margin: 0 0 0.5rem 0;">Genetic Profiles</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0;">Explore the Assassins and Templars of
+                the past.</p>
+        </a>
+        <a href="{{ route('games.index') }}" class="info-card"
+            style="text-decoration: none; padding: 2rem; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; text-align: center;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🎮</div>
+            <h3 style="color: var(--abstergo-white); margin: 0 0 0.5rem 0;">Memory Blocks</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0;">Relive the canonical gaming experiences.
+            </p>
+        </a>
+        <a href="{{ route('books.index') }}" class="info-card"
+            style="text-decoration: none; padding: 2rem; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; text-align: center;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">📖</div>
+            <h3 style="color: var(--abstergo-white); margin: 0 0 0.5rem 0;">The Archives</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0;">Discover the expanded lore through
+                official novels.</p>
+        </a>
+        <a href="{{ route('forum.index') }}" class="info-card"
+            style="text-decoration: none; padding: 2rem; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; text-align: center;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">📡</div>
+            <h3 style="color: var(--abstergo-white); margin: 0 0 0.5rem 0;">Global Network</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0;">Connect with other Initiates and share
+                intel.</p>
+        </a>
+    </div>
+
+    {{-- 4. FACTION DOSSIERS --}}
+    <h2
+        style="color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem;">
+        Faction Intelligence</h2>
+
+    <div
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem; margin-bottom: 5rem;">
+
+        {{-- Brotherhood Card --}}
+        <div class="info-card"
+            style="background: rgba(0, 212, 170, 0.05); border: 1px solid var(--assassin-red); border-radius: 8px; padding: 2rem; position: relative; overflow: hidden;">
+            <h3 style="font-size: 1.8rem; margin: 0 0 1rem 0; color: white;">The Assassin Brotherhood</h3>
+            <p style="color: #cbd5e1; line-height: 1.8; margin-bottom: 2rem; position: relative; z-index: 2;">
+                Operating in the shadows to serve the light. The Brotherhood fights to preserve free will against those
+                who would subjugate humanity. Their methods are absolute, their loyalty unquestionable.
+            </p>
+            <a href="{{ route('characters.index') }}"
+                style="color: var(--assassin-red); font-weight: bold; text-decoration: none; letter-spacing: 1px;">VIEW
+                ASSASSINS &rarr;</a>
+            <div style="position: absolute; right: -20px; bottom: -40px; font-size: 10rem; opacity: 0.05; z-index: 1;">
+                🦅</div>
+        </div>
+
+        {{-- Templar Card --}}
+        <div class="info-card"
+            style="background: rgba(59, 130, 246, 0.05); border: 1px solid #3b82f6; border-radius: 8px; padding: 2rem; position: relative; overflow: hidden;">
+            <h3 style="font-size: 1.8rem; margin: 0 0 1rem 0; color: white;">The Templar Order</h3>
+            <p style="color: #cbd5e1; line-height: 1.8; margin-bottom: 2rem; position: relative; z-index: 2;">
+                May the Father of Understanding guide us. The Order believes that true peace can only be achieved
+                through order, control, and the guidance of humanity by a capable few.
+            </p>
+            <a href="{{ route('characters.index') }}"
+                style="color: #3b82f6; font-weight: bold; text-decoration: none; letter-spacing: 1px;">VIEW TEMPLARS
+                &rarr;</a>
+            <div style="position: absolute; right: -20px; bottom: -40px; font-size: 10rem; opacity: 0.05; z-index: 1;">✠
+            </div>
+        </div>
+
+    </div>
+
+    {{-- 5. FEATURED CONTENT & LORE --}}
+    <div
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 5rem;">
+
+        {{-- LATEST MEMORY (Featured Game) --}}
+        <div
+            style="background: rgba(0,0,0,0.6); border: 1px solid #334155; border-radius: 8px; padding: 2rem; display: flex; flex-direction: column; justify-content: center;">
+            <span
+                style="color: var(--assassin-red); font-weight: bold; letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 1rem;">Featured
+                Memory Simulation</span>
+            <h2 style="margin: 0 0 1rem 0; font-size: 2.2rem; color: white;">Assassin's Creed Shadows</h2>
+            <p style="color: #cbd5e1; line-height: 1.8; margin-bottom: 2rem;">
+                Step into Sengoku-era Japan. Experience the intertwined destinies of Naoe, an adept shinobi Assassin
+                from Iga Province, and Yasuke, the powerful African samurai of historical legend.
+            </p>
+            <a href="{{ route('games.index') }}" class="btn-sync"
+                style="text-decoration: none; display: inline-block; width: fit-content; padding: 0.75rem 2rem;">INITIALIZE
+                SIMULATION &rarr;</a>
+        </div>
+
+        {{-- ISU LORE --}}
+        <div
+            style="background: radial-gradient(circle at center, rgba(234, 179, 8, 0.1) 0%, rgba(0,0,0,0.8) 100%); border: 1px solid #eab308; border-radius: 8px; padding: 2rem;">
+            <span
+                style="color: #eab308; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 1rem; display: block;">Restricted
+                Intel: Class 1</span>
+            <h3 style="margin: 0 0 1.5rem 0; color: var(--abstergo-white); font-size: 2rem;">The First Civilization</h3>
+            <p style="color: #cbd5e1; line-height: 1.8; margin-bottom: 1.5rem;">
+                Known as the Isu, They Who Came Before engineered humanity and forged the Pieces of Eden. Their ancient
+                artifacts still shape the course of modern history.
+            </p>
+            <p style="color: #eab308; font-size: 0.9rem; font-style: italic;">"We built you in our image. We built you
+                to survive." - Minerva</p>
+        </div>
+
+    </div>
+
+    {{-- 6. CALL TO ACTION (Recruitment) --}}
+    @if(!auth.isAuthenticated)
+    <div
+        style="text-align: center; padding: 4rem 2rem; background: var(--animus-dark); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; margin-bottom: 2rem;">
+        <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">JOIN THE NETWORK</h2>
+        <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 2rem auto; line-height: 1.8;">
+            Gain clearance to post in the Global Network, sync your favorite games, and unlock classified Abstergo
+            documents.
+        </p>
+        <div style="display: flex; gap: 1rem; justify-content: center;">
+            <a href="{{ route('auth.register.view') }}" class="btn-sync"
+                style="text-decoration: none; width: auto; padding: 1rem 3rem;">INITIATE REGISTRATION</a>
+            <a href="{{ route('session.create') }}" class="nav-btn" style="padding: 1rem 3rem;">LOGIN</a>
+        </div>
+    </div>
+    @endif
+
+</div>
+
 @end

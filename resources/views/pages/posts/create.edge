@@ -1,0 +1,46 @@
+@component('components/layout/app', { title: 'Open Channel | Animus' })
+
+<div style="max-width: 800px; margin: 2rem auto; padding: 0 1rem;">
+
+    <div style="margin-bottom: 2rem;">
+        <h1 style="font-size: 2rem; margin: 0;">ESTABLISH NEW THREAD</h1>
+        <p style="color: var(--text-muted);">Encrypt your message for the Brotherhood.</p>
+    </div>
+
+    <form action="{{ route('forum.store') }}" method="POST" class="info-card"
+        style="padding: 2rem; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; display: flex; flex-direction: column; gap: 1.5rem;">
+        {{ csrfField() }}
+
+        <div>
+            <label
+                style="display: block; color: var(--text-muted); font-size: 0.75rem; letter-spacing: 2px; margin-bottom: 0.5rem; text-transform: uppercase;">Subject
+                / Title</label>
+            <input type="text" name="title" required placeholder="Enter thread subject..."
+                style="width: 100%; padding: 1rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; color: white;">
+
+            {{-- THIS WILL SHOW THE ERROR IF THE TITLE IS TOO SHORT --}}
+            @inputError('title')
+            <p style="color: var(--assassin-red); font-size: 0.8rem; margin-top: 0.5rem; font-weight: bold;">⚠️ {{
+                $messages.join(', ') }}</p>
+            @end
+        </div>
+
+        <div>
+            <label
+                style="display: block; color: var(--text-muted); font-size: 0.75rem; letter-spacing: 2px; margin-bottom: 0.5rem; text-transform: uppercase;">Message
+                Body</label>
+            <textarea name="body" rows="6" required placeholder="Type your message here..."
+                style="width: 100%; padding: 1rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; color: white; resize: vertical;"></textarea>
+
+            {{-- THIS WILL SHOW THE ERROR IF THE BODY IS TOO SHORT --}}
+            @inputError('body')
+            <p style="color: var(--assassin-red); font-size: 0.8rem; margin-top: 0.5rem; font-weight: bold;">⚠️ {{
+                $messages.join(', ') }}</p>
+            @end
+        </div>
+
+        <button type="submit" class="btn-sync" style="padding: 1rem; font-size: 1rem;">TRANSMIT DATA</button>
+    </form>
+</div>
+
+@end

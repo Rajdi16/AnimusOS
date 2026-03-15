@@ -26,6 +26,7 @@ export type ScannedRoutes = {
     'books.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'books.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'books.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'profile.show': { paramsTuple?: []; params?: {} }
     'profile.edit': { paramsTuple?: []; params?: {} }
     'profile.update': { paramsTuple?: []; params?: {} }
     'profile.destroy': { paramsTuple?: []; params?: {} }
@@ -34,6 +35,17 @@ export type ScannedRoutes = {
     'session.create': { paramsTuple?: []; params?: {} }
     'session.store': { paramsTuple?: []; params?: {} }
     'session.destroy': { paramsTuple?: []; params?: {} }
+    'forum.index': { paramsTuple?: []; params?: {} }
+    'forum.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'forum.create': { paramsTuple?: []; params?: {} }
+    'forum.store': { paramsTuple?: []; params?: {} }
+    'forum.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'forum.reply': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'forum.destroyPost': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'admin.dashboard': { paramsTuple?: []; params?: {} }
+    'admin.user.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'admin.game.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'admin.character.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   GET: {
     'home': { paramsTuple?: []; params?: {} }
@@ -49,9 +61,14 @@ export type ScannedRoutes = {
     'books.create': { paramsTuple?: []; params?: {} }
     'books.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'books.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'profile.show': { paramsTuple?: []; params?: {} }
     'profile.edit': { paramsTuple?: []; params?: {} }
     'auth.register.view': { paramsTuple?: []; params?: {} }
     'session.create': { paramsTuple?: []; params?: {} }
+    'forum.index': { paramsTuple?: []; params?: {} }
+    'forum.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'forum.create': { paramsTuple?: []; params?: {} }
+    'admin.dashboard': { paramsTuple?: []; params?: {} }
   }
   HEAD: {
     'home': { paramsTuple?: []; params?: {} }
@@ -67,9 +84,14 @@ export type ScannedRoutes = {
     'books.create': { paramsTuple?: []; params?: {} }
     'books.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'books.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'profile.show': { paramsTuple?: []; params?: {} }
     'profile.edit': { paramsTuple?: []; params?: {} }
     'auth.register.view': { paramsTuple?: []; params?: {} }
     'session.create': { paramsTuple?: []; params?: {} }
+    'forum.index': { paramsTuple?: []; params?: {} }
+    'forum.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'forum.create': { paramsTuple?: []; params?: {} }
+    'admin.dashboard': { paramsTuple?: []; params?: {} }
   }
   POST: {
     'games.store': { paramsTuple?: []; params?: {} }
@@ -78,6 +100,8 @@ export type ScannedRoutes = {
     'auth.register': { paramsTuple?: []; params?: {} }
     'session.store': { paramsTuple?: []; params?: {} }
     'session.destroy': { paramsTuple?: []; params?: {} }
+    'forum.store': { paramsTuple?: []; params?: {} }
+    'forum.reply': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   PUT: {
     'games.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -95,6 +119,11 @@ export type ScannedRoutes = {
     'characters.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'books.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'profile.destroy': { paramsTuple?: []; params?: {} }
+    'forum.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'forum.destroyPost': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'admin.user.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'admin.game.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'admin.character.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
 }
 declare module '@adonisjs/core/types/http' {

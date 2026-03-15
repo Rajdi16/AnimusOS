@@ -1,0 +1,136 @@
+@component('components/layout/app', { title: 'Initiate Dossier | Abstergo OS' })
+
+<div
+    style="background: #0d1117; min-height: 100vh; padding: 4rem 1rem; color: #e6edf3; font-family: 'Segoe UI', sans-serif;">
+
+    <div style="max-width: 800px; margin: 0 auto;">
+
+        {{-- 1. PROFILE HEADER CARD --}}
+        <div
+            style="background: #161b22; border: 1px solid #30363d; border-radius: 12px; padding: 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
+                {{-- User Avatar (Circle with first letter) --}}
+                <div
+                    style="width: 80px; height: 80px; background: #21262d; border: 2px solid #388bfd; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: bold; color: #58a6ff;">
+                    {{ user.username[0].toUpperCase() }}
+                </div>
+
+                {{-- User Info --}}
+                <div>
+                    <h1 style="margin: 0; font-size: 2rem; color: white;">{{ user.username }}</h1>
+                    <div style="color: #8b949e; font-size: 0.9rem; font-family: monospace; margin-top: 5px;">
+                        CLEARANCE:
+                        <span style="color: {{ user.role === 'admin' ? '#f85149' : '#388bfd' }}; font-weight: bold;">
+                            {{ user.role.toUpperCase() }}
+                        </span>
+                    </div>
+                    <div style="color: #8b949e; font-size: 0.8rem; margin-top: 5px;">
+                        Initiated: {{ user.createdAt.toFormat('dd LLL yyyy') }}
+                    </div>
+                </div>
+            </div>
+
+            {{-- THE EDIT BUTTON --}}
+            <div>
+                <a href="{{ route('profile.edit') }}"
+                    style="background: #21262d; border: 1px solid #30363d; color: #c9d1d9; text-decoration: none; padding: 10px 20px; border-radius: 6px; font-size: 0.85rem; font-weight: bold; transition: 0.2s;"
+                    onmouseover="this.style.borderColor='#8b949e'" onmouseout="this.style.borderColor='#30363d'">
+                    ⚙️ EDIT DOSSIER
+                </a>
+            </div>
+        </div>
+
+        {{-- 2. RECENT ACTIVITY GRID --}}
+        <div style="margin-top: 3rem;">
+            <h3
+                style="color: white; font-size: 1.2rem; margin-bottom: 1.5rem; border-bottom: 1px solid #30363d; padding-bottom: 0.5rem;">
+                <span style="color: #3fb950;">●</span> RECENT NETWORK ACTIVITY
+            </h3>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+
+                {{-- Threads Started --}}
+                <div style="background: #161b22; border: 1px solid #30363d; border-radius: 12px; overflow: hidden;">
+                    <div
+                        style="padding: 1rem; background: #21262d; border-bottom: 1px solid #30363d; font-weight: bold; font-size: 0.85rem; color: #58a6ff;">
+                        CHANNELS INITIATED
+                    </div>
+                    <div style="padding: 1rem;">
+                        @if(user.threads.length === 0)
+                        <div style="color: #8b949e; font-size: 0.85rem; text-align: center; padding: 1rem 0;">
+                            No active channels.
+                        </div>
+                        @else
+                        <ul
+                            style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1rem;">
+                            @each(thread in user.threads)
+                            <li style="border-bottom: 1px solid #30363d; padding-bottom: 0.8rem; transition: background 0.2s;"
+                                onmouseover="this.style.background='rgba(255,255,255,0.02)'"
+                                onmouseout="this.style.background='transparent'">
+
+                                <a href="{{ route('forum.show', { id: thread.id }) }}"
+                                    style="display: block; padding: 0.5rem; text-decoration: none;">
+                                    <div style="color: #e6edf3; font-weight: 500; font-size: 0.95rem;">
+                                        {{ thread.title }}
+                                    </div>
+                                    <div style="color: #8b949e; font-size: 0.75rem; margin-top: 5px;">
+                                        {{ thread.createdAt.toRelative() }}
+                                    </div>
+                                </a>
+                            </li>
+                            @end
+                        </ul>
+                        @endif
+                    </div>
+                </div>
+
+                {{-- Posts/Replies Made (Now fully clickable) --}}
+                <div style="background: #161b22; border: 1px solid #30363d; border-radius: 12px; overflow: hidden;">
+                    <div
+                        style="padding: 1rem; background: #21262d; border-bottom: 1px solid #30363d; font-weight: bold; font-size: 0.85rem; color: #ab7df8;">
+                        TRANSMISSIONS (REPLIES)
+                    </div>
+                    <div style="padding: 1rem;">
+                        @if(user.posts.length === 0)
+                        <div style="color: #8b949e; font-size: 0.85rem; text-align: center; padding: 1rem 0;">
+                            No recent transmissions.
+                        </div>
+                        @else
+                        <ul
+                            style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1rem;">
+                            @each(post in user.posts)
+                            <li style="border-bottom: 1px solid #30363d; padding-bottom: 0.8rem; transition: background 0.2s;"
+                                onmouseover="this.style.background='rgba(255,255,255,0.02)'"
+                                onmouseout="this.style.background='transparent'">
+
+                                {{-- THE CLICKABLE TELEPORT LINK --}}
+                                <a href="{{ route('forum.show', { id: post.threadId }) }}"
+                                    style="text-decoration: none; display: block; padding: 0.5rem;">
+
+                                    <div style="color: #e6edf3; font-size: 0.9rem; line-height: 1.4;">
+                                        <span style="color: #ab7df8; margin-right: 5px;">↳</span>
+                                        "{{ post.body ? post.body.substring(0, 50) + (post.body.length > 50 ? '...' :
+                                        '') : 'Transmission corrupted or empty...' }}"
+                                    </div>
+
+                                    <div
+                                        style="color: #8b949e; font-size: 0.75rem; margin-top: 5px; margin-left: 18px;">
+                                        {{ post.createdAt.toRelative() }}
+                                    </div>
+
+                                </a>
+                            </li>
+                            @end
+                        </ul>
+                        @endif
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@end

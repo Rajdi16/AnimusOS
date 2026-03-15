@@ -90,6 +90,40 @@ export class GameSchema extends BaseModel {
   declare updatedAt: DateTime | null
 }
 
+export class PostSchema extends BaseModel {
+  static $columns = ['body', 'createdAt', 'id', 'threadId', 'updatedAt', 'userId'] as const
+  $columns = PostSchema.$columns
+  @column()
+  declare body: string
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare threadId: number | null
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+  @column()
+  declare userId: number | null
+}
+
+export class ThreadSchema extends BaseModel {
+  static $columns = ['body', 'createdAt', 'id', 'title', 'updatedAt', 'userId'] as const
+  $columns = ThreadSchema.$columns
+  @column()
+  declare body: string
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare title: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+  @column()
+  declare userId: number | null
+}
+
 export class UserSchema extends BaseModel {
   static $columns = ['createdAt', 'email', 'fullName', 'id', 'password', 'role', 'updatedAt', 'username'] as const
   $columns = UserSchema.$columns

@@ -1,12 +1,22 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import vine from '@vinejs/vine'
 import hash from '@adonisjs/core/services/hash' // 🛡️ Needed to verify passwords securely
-
+import User from '#models/user'
 export default class ProfilesController {
+
     public async edit({ view }: HttpContext) {
         return view.render('pages/profile/edit')
     }
+    public async show({ view, auth }: HttpContext) {
+        // Fetch the user and preload their most recent activities
+        const user = await User.query()
+            .where('id', auth.user!.id)
+            .preload('threads', (query) => query.orderBy('createdAt', 'desc').limit(5))
+            .preload('posts', (query) => query.orderBy('createdAt', 'desc').limit(5))
+            .firstOrFail()
 
+        return view.render('pages/profile/show', { user })
+    }
     public async update({ request, response, auth, session }: HttpContext) {
         const user = auth.user!
 

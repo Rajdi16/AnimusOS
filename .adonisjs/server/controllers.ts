@@ -4,9 +4,11 @@
  */
 
 export const controllers = {
+  Admin: () => import('#controllers/admin_controller'),
   Auth: () => import('#controllers/auth_controller'),
   Books: () => import('#controllers/books_controller'),
   Characters: () => import('#controllers/characters_controller'),
+  Forum: () => import('#controllers/forum_controller'),
   Games: () => import('#controllers/games_controller'),
   NewAccount: () => import('#controllers/new_account_controller'),
   Profiles: () => import('#controllers/profiles_controller'),
