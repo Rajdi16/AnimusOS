@@ -1,25 +1,22 @@
 @component('components/layout/app', { title: character.name + ' | Genetic Profile' })
 
 {{-- 1. CINEMATIC HERO BANNER --}}
-<div class="banner-rect" style="margin-bottom: 3rem; height: 50vh; min-height: 350px;">
+<div class="pages-books-show-div-109 banner-rect">
   {{-- Character Portrait Background --}}
-  <img src="{{ character.bannerImageUrl || character.imageUrl || '/images/placeholders/animus-glitch.jpg' }}" alt="{{ character.name }}"
-    style="opacity: 0.7; object-position: center 15%;">
+  <img class="pages-characters-show-img-133" src="{{ character.bannerImageUrl || character.imageUrl || '/images/placeholders/animus-glitch.jpg' }}" alt="{{ character.name }}">
 
   {{-- Title Overlay --}}
-  <div
-    style="position: absolute; bottom: 0; left: 0; width: 100%; background: linear-gradient(to top, var(--animus-darker) 0%, transparent 100%); padding: 3rem 2rem 2rem 2rem; box-sizing: border-box; display: flex; justify-content: space-between; align-items: flex-end;">
+  <div class="pages-books-show-div-flex-111">
     <div>
-      <span
-        style="color: var(--assassin-red); font-size: 0.8rem; letter-spacing: 4px; font-weight: bold; text-transform: uppercase;">
+      <span class="pages-books-show-span-text-112">
         Genetic Profile Identified
       </span>
-      <h1 style="font-size: 3.5rem; margin: 0;">
+      <h1 class="pages-characters-show-h1-134">
         {{ character.name }}
       </h1>
     </div>
-    <div style="text-align: right; text-shadow: 0 2px 10px rgba(0,0,0,0.8);">
-      <p style="color: var(--text-muted); margin: 0; font-size: 0.8rem; letter-spacing: 2px;">AFFILIATION</p>
+    <div class="pages-books-show-div-114">
+      <p class="pages-books-show-p-text-115">AFFILIATION</p>
       <p
         style="color: {{ character.affiliation === 'Assassin' ? 'var(--assassin-red)' : 'var(--abstergo-white)' }}; font-weight: bold; font-size: 1.5rem; margin: 0; letter-spacing: 1px;">
         {{ character.affiliation ? character.affiliation.toUpperCase() : 'UNKNOWN' }}
@@ -28,75 +25,70 @@
   </div>
 </div>
 
-<div class="dossier-container" style="max-width: 1000px; margin: 0 auto; padding-bottom: 2rem;">
+<div class="pages-books-show-div-117 dossier-container">
 
   {{-- 2. VITAL STATS & BIO --}}
-  <div style="display: flex; gap: 3rem; margin-bottom: 4rem; flex-wrap: wrap;">
+  <div class="pages-books-show-div-flex-118">
 
     {{-- Left: Biography --}}
-    <div style="flex: 2; min-width: 300px;">
-      <h3
-        style="color: var(--assassin-red); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; margin-top: 0; letter-spacing: 1px;">
+    <div class="pages-books-show-div-119">
+      <h3 class="pages-books-show-h3-text-120">
         BIOGRAPHICAL DATA
       </h3>
-      <p style="font-size: 1.15rem; line-height: 1.8; color: #e2e8f0; font-family: serif;">
+      <p class="pages-characters-show-p-text-135">
         {{ character.bio || 'No biographical data found in the Animus.' }}
       </p>
     </div>
 
     {{-- Right: Quick Stats Sidebar --}}
-    <div
-      style="flex: 1; min-width: 250px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 8px; height: fit-content; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+    <div class="pages-books-show-div-122">
 
-      <p style="color: var(--text-muted); margin: 0 0 5px 0; font-size: 0.75rem; letter-spacing: 1px;">LINKED MEMORY
+      <p class="pages-books-show-p-text-123">LINKED MEMORY
         SEQUENCE</p>
       @if(character.game)
-      <a href="/games/{{ character.game.id }}"
-        style="color: var(--abstergo-white); font-weight: bold; font-size: 1.1rem; margin: 0 0 1.5rem 0; text-decoration: none; display: block; transition: color 0.3s;"
+      <a class="pages-characters-show-a-text-136" href="/games/{{ character.game.id }}"
+        
         onmouseover="this.style.color='var(--assassin-red)'" onmouseout="this.style.color='var(--abstergo-white)'">
         {{ character.game.title }} ↗
       </a>
       @else
-      <p style="color: #64748b; font-style: italic; font-size: 1rem; margin: 0 0 1.5rem 0;">Orphaned Data Strand</p>
+      <p class="pages-characters-show-p-text-137">Orphaned Data Strand</p>
       @end
-      <p style="color: var(--text-muted); margin: 0 0 5px 0; font-size: 0.75rem; letter-spacing: 1px;">ANIMUS STATUS</p>
-      <div style="margin-bottom: 1.5rem;">
+      <p class="pages-books-show-p-text-123">ANIMUS STATUS</p>
+      <div class="pages-characters-show-div-138">
         @if(character.isPlayable)
-        <span
-          style="background: rgba(0, 212, 170, 0.1); color: var(--assassin-red); font-size: 0.75rem; border: 1px solid var(--assassin-red); padding: 4px 8px; border-radius: 4px; font-weight: bold; letter-spacing: 1px;">
+        <span class="pages-characters-show-span-139">
           PLAYABLE PROFILE
         </span>
         @else
-        <span
-          style="background: rgba(255, 255, 255, 0.05); color: #94a3b8; font-size: 0.75rem; border: 1px solid #64748b; padding: 4px 8px; border-radius: 4px; font-weight: bold; letter-spacing: 1px;">
+        <span class="pages-characters-show-span-140">
           NPC RECORD
         </span>
         @endif
       </div>
 
-      <p style="color: var(--text-muted); margin: 0 0 5px 0; font-size: 0.75rem; letter-spacing: 1px;">DATABASE ID</p>
-      <p style="color: var(--abstergo-white); font-family: monospace; font-size: 1.1rem; margin: 0;">
+      <p class="pages-books-show-p-text-123">DATABASE ID</p>
+      <p class="pages-characters-show-p-text-141">
         CHR-{{ character.id.toString().padStart(4, '0') }}
       </p>
     </div>
   </div>
 
   {{-- 3. NAVIGATION & ADMIN ACTIONS --}}
-  <footer
-    style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+  <footer class="pages-characters-show-footer-flex-142">
 
-    <a href="/characters" class="nav-btn" style="background: transparent; border-color: #64748b; color: #cbd5e1;">
+    <a href="/characters" class="pages-books-show-a-128 nav-btn">
       ← BACK TO DATABASE
     </a>
 
     @if(auth.isAuthenticated && auth.user.role === 'admin')
-    <div style="display: flex; gap: 1rem;">
-      <a href="/characters/{{ character.id }}/edit" class="nav-btn" style="min-width: 120px; text-align: center;">EDIT
+    <div class="pages-admin-dashboard-div-flex-33">
+      <a href="/characters/{{ character.id }}/edit" class="pages-characters-show-a-143 nav-btn">EDIT
         PROFILE</a>
-      <form action="/characters/{{ character.id }}?_method=DELETE" method="POST" style="display:inline"
+      <form class="pages-characters-show-form-144" action="/characters/{{ character.id }}?_method=DELETE" method="POST" 
         onsubmit="return confirm('⚠️ SYSTEM ALERT: Are you sure you want to permanently desynchronize this profile?');">
         {{ csrfField() }}
-        <button type="submit" class="nav-btn nav-btn-danger" style="min-width: 120px;">PURGE RECORD</button>
+        <button type="submit" class="pages-characters-show-button-145 nav-btn nav-btn-danger">PURGE RECORD</button>
       </form>
     </div>
     @endif

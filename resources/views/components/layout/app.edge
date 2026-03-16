@@ -7,112 +7,41 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     {{-- 🧬 SIDEBAR & LAYOUT ANIMATION STYLES --}}
-    <style>
-        /* Base Sidebar styling */
-        .animus-sidebar {
-            width: 260px;
-            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow-x: hidden;
-            flex-shrink: 0;
-            height: 100vh;
-            position: sticky;
-            top: 0;
-            background: #161b22;
-            border-right: 1px solid #30363d;
-            display: flex;
-            flex-direction: column;
-            z-index: 100;
-        }
-
-        /* The "Small" Default State */
-        .animus-sidebar.is-small {
-            width: 70px;
-        }
-
-        /* Hide text elements when small */
-        .animus-sidebar.is-small .nav-text,
-        .animus-sidebar.is-small .sidebar-widget,
-        .animus-sidebar.is-small .search-container,
-        .animus-sidebar.is-small .sidebar-logo-text {
-            display: none;
-            opacity: 0;
-        }
-
-        /* The Logo Icon (Only shows when small) */
-        .sidebar-logo-icon {
-            display: none;
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--assassin-red);
-            text-shadow: 0 0 10px rgba(248, 81, 73, 0.5);
-            text-align: center;
-            width: 100%;
-        }
-
-        .animus-sidebar.is-small .sidebar-logo-icon {
-            display: block;
-        }
-
-        /* Ensure links look good in both states */
-        .sidebar-link {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            white-space: nowrap;
-            overflow: hidden;
-            color: #c9d1d9;
-            text-decoration: none;
-            padding: 12px 10px;
-            border-radius: 6px;
-            transition: background 0.2s;
-        }
-
-        .sidebar-link:hover {
-            background: #21262d;
-        }
-
-        .nav-icon {
-            font-size: 1.3rem;
-            min-width: 30px;
-            text-align: center;
-        }
-    </style>
+    
 </head>
 
-<body style="margin: 0; background: #0d1117; color: #e6edf3; font-family: 'Segoe UI', sans-serif;">
+<body class="components-layout-app-body-1">
 
     {{-- 🌐 MASTER WRAPPER (Flexbox to place Sidebar next to everything else) --}}
-    <div style="display: flex; min-height: 100vh;">
+    <div class="components-layout-app-div-flex-2">
 
         {{-- 1. THE SIDEBAR (Full Height on the Left, Default Small) --}}
         <aside class="animus-sidebar is-small">
 
             {{-- LOGO AREA (Moves inside the sidebar) --}}
-            <div
-                style="height: 70px; display: flex; align-items: center; padding: 0 1rem; border-bottom: 1px solid #30363d; margin-bottom: 1rem;">
+            <div class="components-layout-app-div-flex-3">
 
 
 
 
 
                 {{-- 🎛️ THE TOGGLE BUTTON --}}
-                <button id="sidebar-toggle"
-                    style="background: #161b22; border: 1px solid #30363d; color: #8b949e; cursor: pointer; padding: 6px 12px; border-radius: 6px; font-size: 1.2rem; transition: 0.2s;"
+                <button class="components-layout-app-button-4" id="sidebar-toggle"
+                    
                     onmouseover="this.style.color='white'" onmouseout="this.style.color='#8b949e'">
                     ☰
                 </button>
             </div>
 
             {{-- Search Tool --}}
-            <div class="search-container" style="padding: 0 1rem; margin-bottom: 1.5rem;">
-                <input type="text" id="animus-search"
-                    style="width: 100%; padding: 0.8rem; background: #0d1117; border: 1px solid #30363d; color: white; border-radius: 6px; outline: none;"
+            <div class="components-layout-app-div-5 search-container">
+                <input class="components-layout-app-input-6" type="text" id="animus-search"
+                    
                     placeholder="⌕ Search...">
             </div>
 
             {{-- NAVIGATION LINKS --}}
-            <div class="sidebar-nav"
-                style="display: flex; flex-direction: column; gap: 0.2rem; padding: 0 0.8rem; flex-grow: 1;">
+            <div class="components-layout-app-div-flex-7 sidebar-nav">
 
                 <a href="{{ route('home') }}" class="sidebar-link" title="Hub Overview">
                     <span class="nav-icon">⌂</span> <span class="nav-text">Hub Overview</span>
@@ -141,62 +70,56 @@
                 </a>
 
                 @if(auth.user?.role === 'admin')
-                <div style="border-top: 1px solid #30363d; margin: 10px 0;"></div>
-                <a href="{{ route('admin.dashboard') }}" class="sidebar-link"
-                    style="color: var(--assassin-red); font-weight: bold;" title="System Hub [Admin]">
+                <div class="components-layout-app-div-8"></div>
+                <a href="{{ route('admin.dashboard') }}" class="components-layout-app-a-text-9 sidebar-link"
+                     title="System Hub [Admin]">
                     <span class="nav-icon">🛡️</span> <span class="nav-text">SYSTEM HUB</span>
                 </a>
                 @endif
             </div>
 
             {{-- Extra Widget: System Status (Pushed to bottom) --}}
-            <div class="sidebar-widget" style="padding: 1.5rem 1rem; border-top: 1px solid #30363d;">
-                <h4 style="color: white; margin-bottom: 1rem; font-size: 0.9rem; text-transform: uppercase;">System Link
+            <div class="components-layout-app-div-10 sidebar-widget">
+                <h4 class="components-layout-app-h4-text-11">System Link
                 </h4>
-                <div
-                    style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.75rem; color: #8b949e;">
-                    <span>Encryption:</span><span style="color: #3fb950;">Active</span>
+                <div class="components-layout-app-div-flex-12">
+                    <span>Encryption:</span><span class="components-layout-app-span-text-13">Active</span>
                 </div>
-                <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: #8b949e;">
-                    <span>Status:</span><span style="color: #3fb950;">Stable</span>
+                <div class="components-layout-app-div-flex-14">
+                    <span>Status:</span><span class="components-layout-app-span-text-13">Stable</span>
                 </div>
             </div>
         </aside>
 
         {{-- 2. THE RIGHT COLUMN (Takes up remaining space) --}}
-        <div style="flex-grow: 1; display: flex; flex-direction: column; max-width: 100%; overflow: hidden;">
+        <div class="components-layout-app-div-flex-15">
 
             {{-- TOP NAVBAR (Banner) --}}
-            <nav
-                style="height: 70px; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; border-bottom: 1px solid #30363d; background: #0d1117;">
+            <nav class="components-layout-app-nav-flex-16">
 
-                <div class="sidebar-logo-text"
-                    style="color: var(--assassin-red); font-size: 1.2rem; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; text-shadow: 0 0 10px rgba(0, 212, 170, 0.5);">
-                    <span style="color: white;">ANIMUS</span> OS
+                <div class="components-layout-app-div-text-17 sidebar-logo-text">
+                    <span class="components-layout-app-span-text-18">ANIMUS</span> OS
                 </div>
                 {{-- Shown only when collapsed --}}
                 <div class="sidebar-logo-icon">A</div>
 
                 {{-- AUTH LINKS --}}
-                <div class="auth-links" style="display: flex; gap: 1rem; align-items: center;">
+                <div class="components-layout-app-div-flex-19 auth-links">
                     @if(auth.isAuthenticated && auth.user)
-                    <a href="{{ route('profile.show') }}" style="text-decoration: none;" title="My Dossier">
+                    <a class="components-layout-app-a-20" href="{{ route('profile.show') }}"  title="My Dossier">
                         @!component('components/avatar', {
                         initials: auth.user?.username?.substring(0, 2).toUpperCase() || 'AC',
                         size: 32,
                         bgColor: '#334155',
                         })
                     </a>
-                    <form action="{{ route('session.destroy') }}" method="POST" style="margin: 0;">
+                    <form class="components-layout-app-form-21" action="{{ route('session.destroy') }}" method="POST">
                         {{ csrfField() }}
-                        <button type="submit"
-                            style="background: transparent; border: 1px solid #f85149; color: #f85149; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 0.8rem;">Disconnect</button>
+                        <button class="components-layout-app-button-22" type="submit">Disconnect</button>
                     </form>
                     @else
-                    <a href="{{ route('session.create') }}"
-                        style="color: white; text-decoration: none; font-size: 0.9rem; font-weight: bold;">Login</a>
-                    <a href="{{ route('auth.register.view') }}"
-                        style="background: #238636; color: white; padding: 6px 16px; border-radius: 6px; text-decoration: none; font-size: 0.9rem; font-weight: bold;">Sign
+                    <a class="components-layout-app-a-text-23" href="{{ route('session.create') }}">Login</a>
+                    <a class="components-layout-app-a-24" href="{{ route('auth.register.view') }}">Sign
                         Up</a>
                     @endif
                 </div>
@@ -204,23 +127,20 @@
 
             {{-- ALERTS --}}
             @if(flashMessages.has('success'))
-            <div
-                style="padding: 1rem; background: rgba(46, 160, 67, 0.1); color: #3fb950; text-align: center; border-bottom: 1px solid #2ea043; font-weight: bold;">
+            <div class="components-layout-app-div-25">
                 ✓ {{ flashMessages.get('success') }}</div>
             @endif
             @if(flashMessages.has('error'))
-            <div
-                style="padding: 1rem; background: rgba(248, 81, 73, 0.1); color: #f85149; text-align: center; border-bottom: 1px solid #f85149; font-weight: bold;">
+            <div class="components-layout-app-div-26">
                 ⚠️ {{ flashMessages.get('error') }}</div>
             @endif
 
             {{-- THE MAIN CONTENT --}}
-            <main class="content-area" style="flex-grow: 1; overflow-y: auto; padding: 2rem;">
+            <main class="components-layout-app-main-27 content-area">
                 {{{ await $slots.main() }}}
 
                 <footer>
-                    <p
-                        style="text-align: center; color: #8b949e; font-size: 0.8rem; padding: 4rem 0 2rem 0; border-top: 1px solid #30363d; margin-top: 4rem;">
+                    <p class="components-layout-app-p-text-28">
                         Assassin's Creed is a trademark of Ubisoft Entertainment. Non-official fan project.
                     </p>
                 </footer>

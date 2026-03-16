@@ -1,91 +1,80 @@
 @component('components/layout/app', { title: 'Abstergo OS | Command Matrix' })
 
-<div
-    style="background: #0d1117; min-height: 100vh; padding: 2rem; color: #e6edf3; font-family: 'Segoe UI', sans-serif;">
+<div class="pages-admin-dashboard-div-29">
 
     {{-- 1. HEADER --}}
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+    <div class="pages-admin-dashboard-div-flex-30">
         <div>
-            <h1 style="margin: 0; font-size: 1.8rem; font-weight: 600; color: white;">Abstergo Command Matrix</h1>
-            <span style="color: #8b949e; font-size: 0.8rem; font-family: monospace;">ACCESS LEVEL: GRAND MASTER //
+            <h1 class="pages-admin-dashboard-h1-text-31">Abstergo Command Matrix</h1>
+            <span class="pages-admin-dashboard-span-text-32">ACCESS LEVEL: GRAND MASTER //
                 DATABASE: STABLE</span>
         </div>
-        <div style="display: flex; gap: 1rem;">
-            <a href="{{ route('games.create') }}"
-                style="background: #238636; color: white; text-decoration: none; padding: 8px 16px; border-radius: 6px; font-size: 0.8rem; font-weight: bold;">+
+        <div class="pages-admin-dashboard-div-flex-33">
+            <a class="pages-admin-dashboard-a-34" href="{{ route('games.create') }}">+
                 NEW GAME</a>
-            <a href="{{ route('characters.create') }}"
-                style="background: #238636; color: white; text-decoration: none; padding: 8px 16px; border-radius: 6px; font-size: 0.8rem; font-weight: bold;">+
+            <a class="pages-admin-dashboard-a-34" href="{{ route('characters.create') }}">+
                 NEW CHAR</a>
         </div>
     </div>
 
     {{-- 2. KPI METRICS --}}
-    <div
-        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem;">
-        <div
-            style="background: #161b22; border: 1px solid #30363d; border-radius: 12px; padding: 1.5rem; border-right: 4px solid #388bfd;">
-            <div style="color: #8b949e; font-size: 0.7rem; text-transform: uppercase;">Total Initiates</div>
-            <div style="font-size: 2rem; font-weight: 700; margin-top: 0.5rem;">{{ users.length }}</div>
+    <div class="pages-admin-dashboard-div-grid-35">
+        <div class="pages-admin-dashboard-div-36">
+            <div class="pages-admin-dashboard-div-text-37">Total Initiates</div>
+            <div class="pages-admin-dashboard-div-38">{{ users.length }}</div>
         </div>
-        <div
-            style="background: #161b22; border: 1px solid #30363d; border-radius: 12px; padding: 1.5rem; border-right: 4px solid #39d353;">
-            <div style="color: #8b949e; font-size: 0.7rem; text-transform: uppercase;">Live Channels</div>
-            <div style="font-size: 2rem; font-weight: 700; margin-top: 0.5rem;">{{ threads.length }}</div>
+        <div class="pages-admin-dashboard-div-39">
+            <div class="pages-admin-dashboard-div-text-37">Live Channels</div>
+            <div class="pages-admin-dashboard-div-38">{{ threads.length }}</div>
         </div>
-        <div
-            style="background: #161b22; border: 1px solid #30363d; border-radius: 12px; padding: 1.5rem; border-right: 4px solid #f85149;">
-            <div style="color: #8b949e; font-size: 0.7rem; text-transform: uppercase;">Transmissions</div>
-            <div style="font-size: 2rem; font-weight: 700; margin-top: 0.5rem;">{{ posts.length }}</div>
+        <div class="pages-admin-dashboard-div-40">
+            <div class="pages-admin-dashboard-div-text-37">Transmissions</div>
+            <div class="pages-admin-dashboard-div-38">{{ posts.length }}</div>
         </div>
     </div>
 
     {{-- 3. THE CRUD MATRIX --}}
-    <div style="display: flex; flex-direction: column; gap: 2rem;">
+    <div class="pages-admin-dashboard-div-flex-41">
 
         {{-- USERS & ROLES ACCORDION --}}
-        <details open
-            style="background: #161b22; border: 1px solid #30363d; border-radius: 12px; overflow: hidden; cursor: default;">
+        <details class="pages-admin-dashboard-details-42" open>
             {{-- The "Bar to Open" --}}
-            <summary
-                style="padding: 1rem 1.5rem; background: #21262d; border-bottom: 1px solid #30363d; font-weight: bold; font-size: 0.9rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; outline: none;">
-                <span><span style="color: #388bfd; margin-right: 10px;">▶</span> IDENTITIES & PERMISSIONS</span>
-                <span style="color: #8b949e; font-size: 0.7rem;">CLICK TO TOGGLE</span>
+            <summary class="pages-admin-dashboard-summary-flex-43">
+                <span><span class="pages-admin-dashboard-span-text-44">▶</span> IDENTITIES & PERMISSIONS</span>
+                <span class="pages-admin-dashboard-span-text-45">CLICK TO TOGGLE</span>
             </summary>
 
             {{-- Live Search Bar --}}
-            <div style="padding: 1rem; background: #0d1117; border-bottom: 1px solid #30363d;">
-                <input type="text" onkeyup="filterTable('usersTable', this.value)"
-                    placeholder="Search initiates by name, email, or role..."
-                    style="width: 100%; padding: 0.8rem; background: #161b22; border: 1px solid #30363d; border-radius: 6px; color: white; outline: none;">
+            <div class="pages-admin-dashboard-div-46">
+                <input class="pages-admin-dashboard-input-47" type="text" onkeyup="filterTable('usersTable', this.value)"
+                    placeholder="Search initiates by name, email, or role...">
             </div>
 
-            <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+            <table class="pages-admin-dashboard-table-48">
                 <thead>
-                    <tr style="text-align: left; color: #8b949e; border-bottom: 1px solid #30363d;">
-                        <th style="padding: 1rem;">Initiate</th>
+                    <tr class="pages-admin-dashboard-tr-text-49">
+                        <th class="pages-admin-dashboard-th-50">Initiate</th>
                         <th>Email</th>
                         <th>Clearance</th>
-                        <th style="text-align: right; padding-right: 1.5rem;">Actions</th>
+                        <th class="pages-admin-dashboard-th-51">Actions</th>
                     </tr>
                 </thead>
                 <tbody id="usersTable">
                     @each(user in users)
-                    <tr style="border-bottom: 1px solid #21262d;">
-                        <td style="padding: 1rem; color: white; font-weight: bold;">{{ user.username }}</td>
-                        <td style="color: #8b949e;">{{ user.email }}</td>
+                    <tr class="pages-admin-dashboard-tr-52">
+                        <td class="pages-admin-dashboard-td-text-53">{{ user.username }}</td>
+                        <td class="pages-admin-dashboard-td-text-54">{{ user.email }}</td>
                         <td>
                             <span
                                 style="padding: 2px 8px; border-radius: 10px; font-size: 0.7rem; font-weight: bold; background: {{ user.role === 'admin' ? 'rgba(248, 81, 73, 0.1)' : 'rgba(56, 139, 253, 0.1)' }}; color: {{ user.role === 'admin' ? '#f85149' : '#388bfd' }}; border: 1px solid currentColor;">
                                 {{ user.role.toUpperCase() }}
                             </span>
                         </td>
-                        <td style="text-align: right; padding-right: 1.5rem;">
-                            <form action="{{ route('admin.user.destroy', { id: user.id }) }}?_method=DELETE"
-                                method="POST" style="margin: 0; display: inline-block;">
+                        <td class="pages-admin-dashboard-th-51">
+                            <form class="pages-admin-dashboard-form-55" action="{{ route('admin.user.destroy', { id: user.id }) }}?_method=DELETE"
+                                method="POST">
                                 {{ csrfField() }}
-                                <button type="submit" onclick="return confirm('PERMANENTLY DEACTIVATE THIS INITIATE?')"
-                                    style="background: none; border: none; color: #f85149; cursor: pointer; font-size: 0.8rem; font-weight: bold;">
+                                <button class="pages-admin-dashboard-button-56" type="submit" onclick="return confirm('PERMANENTLY DEACTIVATE THIS INITIATE?')">
                                     [DEACTIVATE]
                                 </button>
                             </form>
@@ -97,37 +86,31 @@
         </details>
 
         {{-- DUAL GRID: GAMES & CHARACTERS --}}
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+        <div class="pages-admin-dashboard-div-grid-57">
 
             {{-- GAMES ACCORDION --}}
-            <details
-                style="background: #161b22; border: 1px solid #30363d; border-radius: 12px; overflow: hidden; height: fit-content;">
+            <details class="pages-admin-dashboard-details-58">
                 {{-- The "Bar to Open" --}}
-                <summary
-                    style="padding: 1rem; background: #21262d; border-bottom: 1px solid #30363d; font-weight: bold; font-size: 0.8rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; outline: none;">
-                    <span><span style="color: #39d353; margin-right: 10px;">▶</span> DATABASE: HISTORICAL GAMES</span>
+                <summary class="pages-admin-dashboard-summary-flex-59">
+                    <span><span class="pages-admin-dashboard-span-text-60">▶</span> DATABASE: HISTORICAL GAMES</span>
                 </summary>
 
                 {{-- Live Search Bar --}}
-                <div style="padding: 0.8rem; background: #0d1117; border-bottom: 1px solid #30363d;">
-                    <input type="text" onkeyup="filterTable('gamesTable', this.value)" placeholder="Search games..."
-                        style="width: 100%; padding: 0.6rem; background: #161b22; border: 1px solid #30363d; border-radius: 6px; color: white; outline: none; font-size: 0.8rem;">
+                <div class="pages-admin-dashboard-div-61">
+                    <input class="pages-admin-dashboard-input-62" type="text" onkeyup="filterTable('gamesTable', this.value)" placeholder="Search games...">
                 </div>
 
-                <table style="width: 100%; border-collapse: collapse; font-size: 0.8rem;">
+                <table class="pages-admin-dashboard-table-63">
                     <tbody id="gamesTable">
                         @each(game in games)
-                        <tr style="border-bottom: 1px solid #21262d;">
-                            <td style="padding: 1rem; color: white;">{{ game.title }}</td>
-                            <td
-                                style="text-align: right; padding-right: 1rem; display: flex; gap: 10px; justify-content: flex-end; align-items: center; height: 50px;">
-                                <a href="{{ route('games.edit', { id: game.id }) }}"
-                                    style="color: #388bfd; text-decoration: none;">Edit</a>
-                                <form action="{{ route('admin.game.destroy', { id: game.id }) }}?_method=DELETE"
-                                    method="POST" style="margin: 0;">
+                        <tr class="pages-admin-dashboard-tr-52">
+                            <td class="pages-admin-dashboard-td-text-64">{{ game.title }}</td>
+                            <td class="pages-admin-dashboard-td-flex-65">
+                                <a class="pages-admin-dashboard-a-text-66" href="{{ route('games.edit', { id: game.id }) }}">Edit</a>
+                                <form class="components-layout-app-form-21" action="{{ route('admin.game.destroy', { id: game.id }) }}?_method=DELETE"
+                                    method="POST">
                                     {{ csrfField() }}
-                                    <button type="submit" onclick="return confirm('Purge Game Archive?')"
-                                        style="color: #f85149; background: none; border: none; font-size: 0.75rem; cursor: pointer;">Delete</button>
+                                    <button class="pages-admin-dashboard-button-67" type="submit" onclick="return confirm('Purge Game Archive?')">Delete</button>
                                 </form>
                             </td>
                         </tr>
@@ -137,35 +120,29 @@
             </details>
 
             {{-- CHARACTERS ACCORDION --}}
-            <details
-                style="background: #161b22; border: 1px solid #30363d; border-radius: 12px; overflow: hidden; height: fit-content;">
+            <details class="pages-admin-dashboard-details-58">
                 {{-- The "Bar to Open" --}}
-                <summary
-                    style="padding: 1rem; background: #21262d; border-bottom: 1px solid #30363d; font-weight: bold; font-size: 0.8rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; outline: none;">
-                    <span><span style="color: #ab7df8; margin-right: 10px;">▶</span> DATABASE: KEY PERSONAS</span>
+                <summary class="pages-admin-dashboard-summary-flex-59">
+                    <span><span class="pages-admin-dashboard-span-text-68">▶</span> DATABASE: KEY PERSONAS</span>
                 </summary>
 
                 {{-- Live Search Bar --}}
-                <div style="padding: 0.8rem; background: #0d1117; border-bottom: 1px solid #30363d;">
-                    <input type="text" onkeyup="filterTable('charsTable', this.value)"
-                        placeholder="Search characters..."
-                        style="width: 100%; padding: 0.6rem; background: #161b22; border: 1px solid #30363d; border-radius: 6px; color: white; outline: none; font-size: 0.8rem;">
+                <div class="pages-admin-dashboard-div-61">
+                    <input class="pages-admin-dashboard-input-62" type="text" onkeyup="filterTable('charsTable', this.value)"
+                        placeholder="Search characters...">
                 </div>
 
-                <table style="width: 100%; border-collapse: collapse; font-size: 0.8rem;">
+                <table class="pages-admin-dashboard-table-63">
                     <tbody id="charsTable">
                         @each(char in characters)
-                        <tr style="border-bottom: 1px solid #21262d;">
-                            <td style="padding: 1rem; color: white;">{{ char.name }}</td>
-                            <td
-                                style="text-align: right; padding-right: 1rem; display: flex; gap: 10px; justify-content: flex-end; align-items: center; height: 50px;">
-                                <a href="{{ route('characters.edit', { id: char.id }) }}"
-                                    style="color: #388bfd; text-decoration: none;">Edit</a>
-                                <form action="{{ route('admin.character.destroy', { id: char.id }) }}?_method=DELETE"
-                                    method="POST" style="margin: 0;">
+                        <tr class="pages-admin-dashboard-tr-52">
+                            <td class="pages-admin-dashboard-td-text-64">{{ char.name }}</td>
+                            <td class="pages-admin-dashboard-td-flex-65">
+                                <a class="pages-admin-dashboard-a-text-66" href="{{ route('characters.edit', { id: char.id }) }}">Edit</a>
+                                <form class="components-layout-app-form-21" action="{{ route('admin.character.destroy', { id: char.id }) }}?_method=DELETE"
+                                    method="POST">
                                     {{ csrfField() }}
-                                    <button type="submit" onclick="return confirm('Purge Persona Archive?')"
-                                        style="color: #f85149; background: none; border: none; font-size: 0.75rem; cursor: pointer;">Delete</button>
+                                    <button class="pages-admin-dashboard-button-67" type="submit" onclick="return confirm('Purge Persona Archive?')">Delete</button>
                                 </form>
                             </td>
                         </tr>
@@ -201,14 +178,6 @@
 </script>
 
 {{-- Fix for Safari/Chrome standard detail markers --}}
-<style>
-    details>summary {
-        list-style: none;
-    }
 
-    details>summary::-webkit-details-marker {
-        display: none;
-    }
-</style>
 
 @end

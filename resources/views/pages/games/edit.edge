@@ -1,9 +1,9 @@
 @component('components/layout/app', { title: 'Edit Sequence: ' + game.title })
 
-<div class="auth-container" style="max-width: 600px;">
+<div class="pages-books-create-div-76 auth-container">
     <h1 class="glitch" data-text="AMEND MEMORY SEQUENCE">AMEND MEMORY SEQUENCE</h1>
-    <p style="color: var(--text-muted); margin-bottom: 2rem;">
-        Updating record for: <span style="color: var(--assassin-red);">{{ game.title }}</span>
+    <p class="pages-books-create-p-text-77">
+        Updating record for: <span class="pages-auth-register-strong-text-71">{{ game.title }}</span>
     </p>
 
     {{-- 🛡️ PUT Method for Updates --}}
@@ -23,9 +23,8 @@
         <div class="form-group">
             <label for="releaseDate">Release Date</label>
             {{-- Format the date to YYYY-MM-DD for the HTML input --}}
-            <input type="date" id="releaseDate" name="releaseDate"
-                value="{{ game.releaseDate ? game.releaseDate.toFormat('yyyy-MM-dd') : '' }}"
-                style="width: 100%; padding: 0.75rem; background-color: var(--animus-darker); border: 1px solid #334155; color: white; border-radius: 4px;">
+            <input class="pages-books-create-select-78" type="date" id="releaseDate" name="releaseDate"
+                value="{{ game.releaseDate ? game.releaseDate.toFormat('yyyy-MM-dd') : '' }}">
         </div>
         
         <div class="form-group">
@@ -35,14 +34,12 @@
 
         <div class="form-group">
             <label for="description">Sequence Description</label>
-            <textarea id="description" name="description" rows="6"
-                style="width: 100%; padding: 0.75rem; background-color: var(--animus-darker); border: 1px solid #334155; color: white; border-radius: 4px; resize: vertical;">{{ game.description }}</textarea>
+            <textarea class="pages-books-create-textarea-80" id="description" name="description" rows="6">{{ game.description }}</textarea>
         </div>
 
-        <div class="form-actions" style="margin-top: 2rem; display: flex; gap: 1rem;">
-            <button type="submit" class="btn-sync" style="flex: 2;">COMMIT CHANGES</button>
-            <a href="{{ route('games.index') }}" class="nav-btn"
-                style="flex: 1; text-align: center; text-decoration: none; padding-top: 0.7rem;">CANCEL</a>
+        <div class="pages-books-edit-div-flex-86 form-actions">
+            <button type="submit" class="pages-books-edit-button-87 btn-sync">COMMIT CHANGES</button>
+            <a href="{{ route('games.index') }}" class="pages-books-edit-a-88 nav-btn">CANCEL</a>
         </div>
     </form>
 </div>

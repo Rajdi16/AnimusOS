@@ -1,66 +1,64 @@
 @component('components/layout/app', { title: 'Genetic Memory Log | Games' })
 
-<div style="font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; padding-top: 1rem;">
-    <div class="database-header"
-        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem;">
+<div class="pages-books-index-div-89">
+    <div class="pages-books-index-div-flex-90 database-header">
         <div>
-            <span style="color: var(--assassin-red); font-size: 0.75rem; letter-spacing: 4px; font-weight: 700; text-transform: uppercase; margin-bottom: 0.5rem; display: block;">
+            <span class="pages-books-index-span-text-91">
                 Global Network Archive
             </span>
-            <h1 style="font-size: 2.2rem; margin: 0; color: #fff; letter-spacing: 1px;">GENETIC MEMORY LOG</h1>
+            <h1 class="pages-books-index-h1-text-92">GENETIC MEMORY LOG</h1>
         </div>
 
         {{-- 🛡️ ADMIN SHIELD: Only authorized personnel can add new sequences --}}
         @if(auth.isAuthenticated && auth.user.role === 'admin')
-        <a href="{{ route('games.create') }}" class="btn-sync"
-            style="width: auto; padding: 0.7rem 1.2rem; text-decoration: none; font-size: 0.8rem; letter-spacing: 1px; border-radius: 4px;">
+        <a href="{{ route('games.create') }}" class="pages-books-index-a-93 btn-sync">
             + INITIALIZE NEW SEQUENCE
         </a>
         @endif
     </div>
 
-    <div class="games-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2.5rem;">
+    <div class="pages-games-index-div-grid-221 games-grid">
         @each(game in games)
 
         {{-- 🦅 THE CARD CONTAINER --}}
-        <div class="info-card game-poster-card"
-            style="padding: 0; display: flex; flex-direction: column; overflow: hidden; background: rgba(13, 17, 23, 0.8); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; height: 100%; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.5);"
+        <div class="pages-games-index-div-flex-222 info-card game-poster-card"
+            
             onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='rgba(255,255,255,0.3)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.7), 0 0 20px rgba(0, 212, 170, 0.1)'"
             onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255,255,255,0.08)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.5)'">
             
-            <a href="{{ route('games.show', { id: game.id }) }}" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; height: 100%;">
+            <a class="pages-books-index-a-flex-96" href="{{ route('games.show', { id: game.id }) }}">
                 {{-- 📸 FULL TALL POSTER IMAGE --}}
-                <div style="position: relative; height: 380px; overflow: hidden; background: #000; border-bottom: 1px solid rgba(255,255,255,0.05);">
-                    <img src="{{ game.imageUrl || 'https://images.hdqwalls.com/download/assassins-creed-animus-12-1920x1080.jpg' }}"
+                <div class="pages-games-index-div-223">
+                    <img class="pages-games-index-img-224" src="{{ game.imageUrl || 'https://images.hdqwalls.com/download/assassins-creed-animus-12-1920x1080.jpg' }}"
                         alt="{{ game.title }}" referrerpolicy="no-referrer"
-                        style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;"
+                        
                         onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
                     
                     {{-- Status/Year overlay --}}
-                    <div style="box-sizing: border-box; position: absolute; top: 0; left: 0; width: 100%; padding: 1rem; display: flex; justify-content: space-between; align-items: flex-start; z-index: 5; background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);">
-                        <span style="background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(4px); color: var(--abstergo-white); padding: 4px 8px; font-size: 0.7rem; font-weight: bold; border-radius: 4px; border: 1px solid rgba(255,255,255,0.2);">
+                    <div class="pages-games-index-div-flex-225">
+                        <span class="pages-books-index-div-100">
                             {{ game.releaseDate.toFormat('yyyy') }}
                         </span>
                     </div>
                 </div>
 
                 {{-- 📝 GAME INFO --}}
-                <div style="padding: 1.5rem; display: flex; flex-direction: column; gap: 0.8rem; flex-grow: 1; position: relative;">
+                <div class="pages-games-index-div-flex-226">
                     
-                    <h3 style="margin: 0; font-size: 1.25rem; font-weight: 700; color: #fff; letter-spacing: 0.5px; line-height: 1.3;">
+                    <h3 class="pages-games-index-h3-text-227">
                         {{ game.title }}
                     </h3>
                     
-                    <div style="color: #8b949e; font-size: 0.85rem; display: flex; align-items: center; gap: 8px;">
+                    <div class="pages-games-index-div-flex-228">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-                        <span style="opacity: 0.8;">{{ game.platforms }}</span>
+                        <span class="pages-games-index-span-229">{{ game.platforms }}</span>
                     </div>
                 </div>
 
                 {{-- 🔗 ACCESS BUTTON --}}
-                <div style="padding: 1.2rem 1.5rem; background: rgba(255,255,255,0.02); border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center;">
-                    <span style="color: var(--abstergo-white); font-size: 0.75rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; display: flex; align-items: center; gap: 6px;">
-                        <span style="display: inline-block; width: 6px; height: 6px; background: #00d4aa; border-radius: 50%;"></span>
+                <div class="pages-games-index-div-flex-230">
+                    <span class="pages-games-index-span-flex-231">
+                        <span class="pages-games-index-span-232"></span>
                         Access Data Stream
                     </span>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--assassin-red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
@@ -70,15 +68,15 @@
         @else
 
         {{-- EMPTY STATE --}}
-        <div style="grid-column: 1 / -1; text-align: center; padding: 5rem; background: rgba(13, 17, 23, 0.6); border: 1px dashed rgba(255,255,255,0.15); border-radius: 12px;">
-            <div style="display: inline-flex; align-items: center; justify-content: center; width: 60px; height: 60px; background: rgba(255,255,255,0.05); border-radius: 50%; margin-bottom: 1.5rem;">
+        <div class="pages-books-index-div-106">
+            <div class="pages-books-index-div-107">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8b949e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
             </div>
-            <p style="color: #8b949e; font-size: 1.1rem; margin: 0 0 1rem 0;">No memory sequences detected.</p>
-            <p style="color: #6e7681; font-size: 0.9rem; margin: 0 0 2rem 0;">Initialize the first synchronization to begin populating the archive.</p>
+            <p class="pages-books-index-p-text-108">No memory sequences detected.</p>
+            <p class="pages-games-index-p-text-233">Initialize the first synchronization to begin populating the archive.</p>
             
             @if(auth.isAuthenticated && auth.user.role === 'admin')
-            <a href="{{ route('games.create') }}" class="btn-sync" style="text-decoration: none; padding: 0.8rem 1.5rem; display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(90deg, #00d4aa 0%, #00a884 100%); color: #000; font-weight: bold; border-radius: 6px; box-shadow: 0 4px 15px rgba(0, 212, 170, 0.4); border: none; letter-spacing: 1px;">
+            <a href="{{ route('games.create') }}" class="pages-games-index-a-234 btn-sync">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                 INITIALIZE FIRST ENTRY
             </a>

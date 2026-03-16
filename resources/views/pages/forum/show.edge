@@ -1,85 +1,77 @@
 @component('components/layout/app', { title: thread.title + ' | Animus Network' })
 
-<div style="max-width: 1000px; margin: 0 auto; padding: 2rem;">
+<div class="pages-forum-show-div-184">
 
   {{-- 1. NAVIGATION --}}
-  <div style="margin-bottom: 2rem;">
-    <a href="{{ route('forum.index') }}"
-      style="color: var(--assassin-red); text-decoration: none; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; display: flex; align-items: center; gap: 8px;">
-      <span style="font-size: 1.2rem;">&larr;</span> Return to Network Index
+  <div class="pages-forum-create-div-147">
+    <a class="pages-forum-show-a-flex-185" href="{{ route('forum.index') }}">
+      <span class="pages-forum-show-span-186">&larr;</span> Return to Network Index
     </a>
   </div>
 
   {{-- 2. MAIN THREAD HEADER --}}
-  <article
-    style="background: rgba(0, 212, 170, 0.03); border: 1px solid rgba(0, 212, 170, 0.2); border-left: 5px solid var(--assassin-red); border-radius: 4px; padding: 2.5rem; margin-bottom: 3rem; position: relative;">
+  <article class="pages-forum-show-article-187">
 
     {{-- 👇 NEW: ADMIN/OWNER THREAD TERMINATION BUTTON 👇 --}}
     @if(auth.user?.id === thread.userId || auth.user?.role === 'admin')
-    <div style="position: absolute; top: 1rem; right: 1rem;">
-      <button type="button" onclick="openScrubModal('{{ route('forum.destroy', { id: thread.id }) }}')"
-        style="background: #ef4444; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase;">
+    <div class="pages-forum-show-div-absolute-188">
+      <button class="pages-forum-show-button-189" type="button" onclick="openScrubModal('{{ route('forum.destroy', { id: thread.id }) }}')">
         Terminate Channel
       </button>
     </div>
     @endif
 
     <header>
-      <span
-        style="color: var(--assassin-red); font-size: 0.7rem; letter-spacing: 3px; font-weight: bold; text-transform: uppercase;">
+      <span class="pages-forum-show-span-text-190">
         Originating Source: {{ thread.user.username }}
       </span>
-      <h1 style="font-size: 2.5rem; margin: 0.5rem 0 1.5rem 0; color: white;">
+      <h1 class="pages-forum-show-h1-text-191">
         {{ thread.title }}
       </h1>
     </header>
 
-    <div
-      style="color: #e2e8f0; line-height: 1.8; font-size: 1.1rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1.5rem;">
+    <div class="pages-forum-show-div-text-192">
       {{ thread.body }}
     </div>
 
-    <footer
-      style="margin-top: 2rem; font-size: 0.8rem; color: var(--text-muted); display: flex; gap: 20px; font-family: monospace;">
+    <footer class="pages-forum-show-footer-flex-193">
       <span>ESTABLISHED: {{ thread.createdAt.toFormat('dd LLL yyyy') }}</span>
-      <span>STATUS: <span style="color: #00ff88;">ENCRYPTED</span></span>
+      <span>STATUS: <span class="pages-forum-show-span-text-194">ENCRYPTED</span></span>
     </footer>
   </article>
 
   {{-- 3. TRANSMISSIONS (REPLIES) --}}
   <section>
-    <h3
-      style="text-transform: uppercase; letter-spacing: 4px; color: var(--text-muted); margin-bottom: 2rem; font-size: 0.9rem; display: flex; align-items: center; gap: 15px;">
+    <h3 class="pages-forum-show-h3-flex-195">
       Incoming Transmissions
-      <hr style="flex: 1; border: none; border-top: 1px solid rgba(255,255,255,0.1);">
-      <span style="color: var(--assassin-red);">({{ thread.posts.length }})</span>
+      <hr class="pages-forum-show-hr-196">
+      <span class="pages-auth-register-strong-text-71">({{ thread.posts.length }})</span>
     </h3>
 
-    <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 4rem;">
+    <div class="pages-forum-show-div-flex-197">
       @each(post in thread.posts)
       <div style="padding: 1.5rem; 
           background: {{ auth.user?.id === post.userId ? 'rgba(0, 212, 170, 0.05)' : 'rgba(0,0,0,0.3)' }}; 
           border-left: 3px solid {{ auth.user?.id === post.userId ? 'var(--assassin-red)' : '#334155' }}; 
           border-radius: 4px;">
 
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-          <div style="display: flex; align-items: center; gap: 12px;">
-            <strong style="color: var(--abstergo-white); letter-spacing: 1px;">{{ post.user.username }}</strong>
+        <div class="pages-forum-show-div-flex-198">
+          <div class="pages-forum-show-div-flex-199">
+            <strong class="pages-forum-show-strong-text-200">{{ post.user.username }}</strong>
             @if(auth.user?.id === post.userId)
-            <span
-              style="font-size: 0.6rem; background: var(--assassin-red); color: white; padding: 2px 6px; border-radius: 2px; text-transform: uppercase;">Owner</span>
+            <span class="pages-forum-show-span-201">Owner</span>
             @endif
           </div>
 
-          <div style="display: flex; align-items: center; gap: 1.5rem;">
-            <span style="color: var(--text-muted); font-size: 0.75rem; font-family: monospace;">
+          <div class="pages-forum-show-div-flex-202">
+            <span class="pages-forum-show-span-text-203">
               {{ post.createdAt.toFormat('HH:mm:ss') }} // {{ post.createdAt.toFormat('dd.LL.yy') }}
             </span>
 
             {{-- 👇 UPDATED: SCRUB BUTTON NOW VISIBLE TO ADMINS TOO 👇 --}}
             @if(auth.user?.id === post.userId || auth.user?.role === 'admin')
-            <button type="button" onclick="openScrubModal('{{ route('forum.destroyPost', { id: post.id }) }}')"
-              style="background: none; border: 1px solid rgba(239, 68, 68, 0.3); color: #ef4444; font-size: 0.65rem; font-weight: bold; cursor: pointer; padding: 4px 8px; border-radius: 3px; text-transform: uppercase; transition: all 0.3s;"
+            <button class="pages-forum-show-button-204" type="button" onclick="openScrubModal('{{ route('forum.destroyPost', { id: post.id }) }}')"
+              
               onmouseover="this.style.background='#ef4444'; this.style.color='white'"
               onmouseout="this.style.background='none'; this.style.color='#ef4444'">
               Scrub Data {{ auth.user?.role === 'admin' && auth.user?.id !== post.userId ? '(Admin)' : '' }}
@@ -88,7 +80,7 @@
           </div>
         </div>
 
-        <div style="color: #cbd5e1; line-height: 1.6; font-size: 0.95rem;">
+        <div class="pages-forum-show-div-text-205">
           {{ post.body }}
         </div>
       </div>
@@ -98,57 +90,49 @@
 
   {{-- 4. REPLY FORM --}}
   @if(auth.isAuthenticated)
-  <div
-    style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 2rem; border-radius: 8px;">
-    <h4
-      style="margin-top: 0; color: var(--abstergo-white); letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 1.5rem;">
+  <div class="pages-forum-show-div-206">
+    <h4 class="pages-forum-show-h4-text-207">
       Inject New Transmission
     </h4>
 
     <form action="{{ route('forum.reply', { id: thread.id }) }}" method="POST">
       {{ csrfField() }}
-      <textarea name="body" rows="4" required placeholder="Type your message into the network..."
-        style="width: 100%; padding: 1.2rem; background: rgba(0,0,0,0.5); border: 1px solid rgba(0, 212, 170, 0.2); border-radius: 4px; color: white; margin-bottom: 1.5rem; resize: vertical; font-family: inherit; outline: none; transition: border 0.3s;"
+      <textarea class="pages-forum-show-textarea-208" name="body" rows="4" required placeholder="Type your message into the network..."
+        
         onfocus="this.style.borderColor='var(--assassin-red)'"></textarea>
 
-      <div style="display: flex; justify-content: flex-end;">
-        <button type="submit" class="btn-sync" style="width: auto; padding: 0.8rem 2.5rem;">
+      <div class="pages-forum-show-div-flex-209">
+        <button type="submit" class="pages-forum-show-button-210 btn-sync">
           SYNCHRONIZE REPLY
         </button>
       </div>
     </form>
   </div>
   @else
-  <div
-    style="text-align: center; padding: 3rem; background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 8px;">
-    <p style="color: var(--abstergo-white); margin-bottom: 1rem;">Authentication required to inject transmissions.</p>
-    <a href="{{ route('session.create') }}" class="btn-sync"
-      style="text-decoration: none; display: inline-block; width: auto; padding: 0.6rem 1.5rem;">Initialize Login</a>
+  <div class="pages-forum-show-div-211">
+    <p class="pages-forum-show-p-text-212">Authentication required to inject transmissions.</p>
+    <a href="{{ route('session.create') }}" class="pages-forum-show-a-213 btn-sync">Initialize Login</a>
   </div>
   @endif
 
 </div>
 
 {{-- 5. STYLED SECURITY MODAL --}}
-<div id="scrubModal"
-  style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px); display: none; align-items: center; justify-content: center; z-index: 9999;">
-  <div
-    style="background: #0a0a0a; border: 2px solid var(--assassin-red); padding: 2.5rem; max-width: 450px; width: 90%; text-align: center; border-radius: 4px; box-shadow: 0 0 30px rgba(239, 68, 68, 0.3);">
-    <div style="font-size: 2.5rem; color: var(--assassin-red); margin-bottom: 1rem;">⚠️</div>
-    <h2 style="color: var(--assassin-red); text-transform: uppercase; letter-spacing: 4px; margin: 0 0 1rem 0;">Security
+<div class="pages-forum-show-div-214" id="scrubModal">
+  <div class="pages-forum-show-div-215">
+    <div class="pages-forum-show-div-text-216">⚠️</div>
+    <h2 class="pages-forum-show-h2-text-217">Security
       Alert</h2>
-    <p style="color: #cbd5e1; margin-bottom: 2rem;">Confirm permanent data purge? This action cannot be undone within
+    <p class="pages-forum-show-p-text-218">Confirm permanent data purge? This action cannot be undone within
       the current simulation.</p>
 
-    <div style="display: flex; gap: 1rem; justify-content: center;">
-      <button onclick="closeScrubModal()"
-        style="background: #1e293b; color: white; border: 1px solid #334155; padding: 0.8rem 1.5rem; cursor: pointer; text-transform: uppercase; font-size: 0.8rem;">Abort</button>
+    <div class="pages-forum-index-div-flex-181">
+      <button class="pages-forum-show-button-219" onclick="closeScrubModal()">Abort</button>
 
       <form id="modalDeleteForm" action="" method="POST">
         {{ csrfField() }}
         <input type="hidden" name="_method" value="DELETE">
-        <button type="submit"
-          style="background: var(--assassin-red); color: white; border: none; padding: 0.8rem 1.5rem; cursor: pointer; text-transform: uppercase; font-weight: bold; font-size: 0.8rem;">
+        <button class="pages-forum-show-button-220" type="submit">
           Confirm Scrub
         </button>
       </form>

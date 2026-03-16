@@ -1,22 +1,21 @@
 @component('components/layout/app', { title: 'Comms Network | Animus' })
 
-<div style="font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; padding-top: 1rem; max-width: 900px; margin: 0 auto;">
+<div class="pages-forum-index-div-156">
     
-    <div class="database-header"
-        style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem;">
+    <div class="pages-forum-index-div-flex-157 database-header">
         <div>
-            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem;">
-                <span class="pulse-dot" style="display: inline-block; width: 8px; height: 8px; background: #00d4aa; border-radius: 50%; box-shadow: 0 0 10px #00d4aa;"></span>
-                <span style="color: #00d4aa; font-size: 0.75rem; letter-spacing: 4px; font-weight: 700; text-transform: uppercase;">
+            <div class="pages-forum-index-div-flex-158">
+                <span class="pages-forum-index-span-159 pulse-dot"></span>
+                <span class="pages-forum-index-span-text-160">
                     Global Network Active
                 </span>
             </div>
-            <h1 style="font-size: 2.5rem; margin: 0; color: #fff; letter-spacing: 1px; text-transform: uppercase;">COMMUNICATIONS</h1>
+            <h1 class="pages-forum-index-h1-text-161">COMMUNICATIONS</h1>
         </div>
 
         @if(auth.isAuthenticated)
-        <a href="{{ route('forum.create') }}" class="btn-sync"
-            style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; width: auto; padding: 0.8rem 1.5rem; border-radius: 4px; font-size: 0.85rem; letter-spacing: 1px; background: rgba(0, 212, 170, 0.1); border: 1px solid rgba(0, 212, 170, 0.4); color: #00d4aa; transition: all 0.3s ease;"
+        <a href="{{ route('forum.create') }}" class="pages-forum-index-a-162 btn-sync"
+            
             onmouseover="this.style.background='rgba(0, 212, 170, 0.2)'; this.style.boxShadow='0 0 15px rgba(0, 212, 170, 0.3)'"
             onmouseout="this.style.background='rgba(0, 212, 170, 0.1)'; this.style.boxShadow='none'">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
@@ -26,26 +25,25 @@
     </div>
 
     {{-- THREAD LIST --}}
-    <div style="display: flex; flex-direction: column; gap: 1.2rem;">
+    <div class="pages-forum-index-div-flex-163">
         @each(thread in threads)
-        <div style="position: relative; background: rgba(13, 17, 23, 0.7); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.3);"
+        <div class="pages-forum-index-div-164" 
             onmouseover="this.style.borderColor='rgba(0, 212, 170, 0.4)'; this.style.transform='translateX(5px)'; this.style.boxShadow='-5px 5px 20px rgba(0,0,0,0.4), inset 2px 0 0 #00d4aa'"
             onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'; this.style.transform='translateX(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.3)'">
 
             {{-- THE MAIN LINK --}}
-            <a href="{{ route('forum.show', { id: thread.id }) }}" class="info-card"
-                style="display: flex; flex-direction: column; justify-content: center; text-decoration: none; padding: 1.8rem 2rem; border-radius: 12px; height: 100%;">
+            <a href="{{ route('forum.show', { id: thread.id }) }}" class="pages-forum-index-a-flex-165 info-card">
                 
-                <h2 style="margin: 0 0 1rem 0; color: #f8fafc; font-size: 1.3rem; padding-right: 120px; font-weight: 600; line-height: 1.4; transition: color 0.2s ease;">
+                <h2 class="pages-forum-index-h2-text-166">
                     {{ thread.title }}
                 </h2>
                 
-                <div style="display: flex; align-items: center; color: #8b949e; font-size: 0.85rem; gap: 1.5rem;">
-                    <span style="display: flex; align-items: center; gap: 6px;">
+                <div class="pages-forum-index-div-flex-167">
+                    <span class="pages-forum-index-span-flex-168">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                        Initiator: <strong style="color: #c9d1d9;">{{ thread.user.username }}</strong>
+                        Initiator: <strong class="pages-forum-index-strong-text-169">{{ thread.user.username }}</strong>
                     </span>
-                    <span style="display: flex; align-items: center; gap: 6px;">
+                    <span class="pages-forum-index-span-flex-168">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
                         {{ thread.createdAt.toFormat('dd LLL yyyy') }}
                     </span>
@@ -54,9 +52,9 @@
 
             {{-- ADMIN/OWNER TERMINATE BUTTON --}}
             @if(auth.user?.id === thread.userId || auth.user?.role === 'admin')
-            <div style="position: absolute; top: 50%; right: 1.5rem; transform: translateY(-50%);">
-                <button type="button" onclick="openScrubModal('{{ route('forum.destroy', { id: thread.id }) }}')"
-                    style="background: rgba(248, 81, 73, 0.1); border: 1px solid rgba(248, 81, 73, 0.3); color: #f85149; font-size: 0.7rem; font-weight: 700; cursor: pointer; padding: 6px 12px; border-radius: 4px; text-transform: uppercase; letter-spacing: 1px; transition: all 0.2s ease; display: flex; align-items: center; gap: 6px;"
+            <div class="pages-forum-index-div-absolute-170">
+                <button class="pages-forum-index-button-flex-171" type="button" onclick="openScrubModal('{{ route('forum.destroy', { id: thread.id }) }}')"
+                    
                     onmouseover="this.style.background='#f85149'; this.style.color='#fff'; this.style.boxShadow='0 0 10px rgba(248,81,73,0.4)'"
                     onmouseout="this.style.background='rgba(248, 81, 73, 0.1)'; this.style.color='#f85149'; this.style.boxShadow='none'">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
@@ -66,15 +64,15 @@
             @endif
         </div>
         @else
-        <div style="padding: 4rem 2rem; text-align: center; background: rgba(13, 17, 23, 0.6); border: 1px dashed rgba(255,255,255,0.15); border-radius: 12px;">
-             <div style="display: inline-flex; align-items: center; justify-content: center; width: 60px; height: 60px; background: rgba(255,255,255,0.05); border-radius: 50%; margin-bottom: 1.5rem;">
+        <div class="pages-forum-index-div-172">
+             <div class="pages-books-index-div-107">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8b949e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="12" x2="22" y2="12"></line><line x1="12" y1="2" x2="12" y2="22"></line><circle cx="12" cy="12" r="5"></circle></svg>
             </div>
-            <p style="color: #8b949e; font-size: 1.1rem; margin: 0;">Silence on the network.</p>
-            <p style="color: #6e7681; font-size: 0.9rem; margin-top: 0.5rem;">No communication channels established yet.</p>
+            <p class="pages-forum-index-p-text-173">Silence on the network.</p>
+            <p class="pages-forum-index-p-text-174">No communication channels established yet.</p>
             
             @if(auth.isAuthenticated)
-            <a href="{{ route('forum.create') }}" class="btn-sync" style="text-decoration: none; padding: 0.8rem 1.5rem; display: inline-block; width: auto; margin-top: 1.5rem; background: rgba(0, 212, 170, 0.1); border: 1px solid rgba(0, 212, 170, 0.4); color: #00d4aa;">
+            <a href="{{ route('forum.create') }}" class="pages-forum-index-a-175 btn-sync">
                 OPEN FIRST CHANNEL
             </a>
             @endif
@@ -85,36 +83,34 @@
 </div>
 
 {{-- --- STYLED SECURITY MODAL (SAME AS SHOW PAGE) --- --}}
-<div id="scrubModal"
-    style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(13, 17, 23, 0.85); backdrop-filter: blur(10px); display: none; align-items: center; justify-content: center; z-index: 9999; font-family: 'Segoe UI', sans-serif;">
-    <div
-        style="background: #0d1117; border: 1px solid #f85149; padding: 3rem; max-width: 500px; width: 90%; text-align: center; border-radius: 12px; box-shadow: 0 0 50px rgba(248, 81, 73, 0.15), inset 0 0 20px rgba(248, 81, 73, 0.05);">
+<div class="pages-forum-index-div-176" id="scrubModal">
+    <div class="pages-forum-index-div-177">
         
-        <div style="display: inline-flex; align-items: center; justify-content: center; width: 64px; height: 64px; background: rgba(248, 81, 73, 0.1); border-radius: 50%; border: 1px solid rgba(248, 81, 73, 0.3); margin-bottom: 1.5rem;">
+        <div class="pages-forum-index-div-178">
              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#f85149" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
         </div>
         
-        <h2 style="color: #f85149; text-transform: uppercase; letter-spacing: 3px; margin: 0 0 1rem 0; font-size: 1.25rem;">
+        <h2 class="pages-forum-index-h2-text-179">
             Channel Termination
         </h2>
         
-        <p style="color: #8b949e; margin-bottom: 2.5rem; line-height: 1.6; font-size: 0.95rem;">
+        <p class="pages-forum-index-p-text-180">
             You are about to terminate this entire communication channel and
             all its data. Confirm override?
         </p>
 
-        <div style="display: flex; gap: 1rem; justify-content: center;">
-            <button type="button" onclick="closeScrubModal()"
-                style="background: transparent; color: #c9d1d9; border: 1px solid #30363d; border-radius: 6px; padding: 0.8rem 1.5rem; cursor: pointer; text-transform: uppercase; font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; transition: all 0.2s ease;"
+        <div class="pages-forum-index-div-flex-181">
+            <button class="pages-forum-index-button-182" type="button" onclick="closeScrubModal()"
+                
                 onmouseover="this.style.background='rgba(255,255,255,0.05)'" onmouseout="this.style.background='transparent'">
                 Abort
             </button>
 
-            <form id="modalDeleteForm" action="" method="POST" style="margin: 0;">
+            <form class="components-layout-app-form-21" id="modalDeleteForm" action="" method="POST">
                 {{ csrfField() }}
                 <input type="hidden" name="_method" value="DELETE">
-                <button type="submit"
-                    style="background: rgba(248, 81, 73, 0.1); color: #f85149; border: 1px solid #f85149; border-radius: 6px; padding: 0.8rem 1.5rem; cursor: pointer; text-transform: uppercase; font-weight: bold; font-size: 0.8rem; letter-spacing: 1px; transition: all 0.2s ease;"
+                <button class="pages-forum-index-button-183" type="submit"
+                    
                     onmouseover="this.style.background='#f85149'; this.style.color='#fff'; this.style.boxShadow='0 0 15px rgba(248,81,73,0.4)'"
                     onmouseout="this.style.background='rgba(248, 81, 73, 0.1)'; this.style.color='#f85149'; this.style.boxShadow='none'">
                     Confirm Purge

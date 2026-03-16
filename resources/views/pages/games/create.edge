@@ -1,9 +1,9 @@
 @component('components/layout/app', { title: 'Sync New Game | Animus Database' })
 
-<div class="auth-container" style="max-width: 600px;">
+<div class="pages-books-create-div-76 auth-container">
     {{-- 1. GLITCH TITLE --}}
     <h1 class="glitch" data-text="SYNC NEW GAME">SYNC NEW GAME</h1>
-    <p style="color: var(--text-muted); margin-bottom: 2rem;">
+    <p class="pages-books-create-p-text-77">
         Initialize a new genetic memory sequence for the database.
     </p>
 
@@ -23,8 +23,7 @@
 
         <div class="form-group">
             <label for="releaseDate">Release Date</label>
-            <input type="date" id="releaseDate" name="releaseDate"
-                style="width: 100%; padding: 0.75rem; background-color: var(--animus-darker); border: 1px solid #334155; color: white; border-radius: 4px;">
+            <input class="pages-books-create-select-78" type="date" id="releaseDate" name="releaseDate">
         </div>
         
         <div class="form-group">
@@ -39,19 +38,17 @@
 
         <div class="form-group">
             <label for="description">Sequence Description</label>
-            <textarea id="description" name="description" rows="4"
-                placeholder="Enter details about this memory sequence..."
-                style="width: 100%; padding: 0.75rem; background-color: var(--animus-darker); border: 1px solid #334155; color: white; border-radius: 4px; resize: vertical;"></textarea>
+            <textarea class="pages-books-create-textarea-80" id="description" name="description" rows="4"
+                placeholder="Enter details about this memory sequence..."></textarea>
         </div>
 
-        <div class="form-actions" style="margin-top: 2rem;">
+        <div class="pages-auth-register-div-73 form-actions">
             <button type="submit" class="btn-sync">INITIALIZE SYNCHRONIZATION</button>
         </div>
     </form>
 
-    <p class="auth-footer" style="margin-top: 2rem; text-align: center;">
-        <a href="{{ route('games.index') }}"
-            style="color: var(--text-muted); text-decoration: none; font-size: 0.8rem;">
+    <p class="pages-books-create-p-84 auth-footer">
+        <a class="pages-books-create-a-text-85" href="{{ route('games.index') }}">
             ← Abort and Return to Database
         </a>
     </p>

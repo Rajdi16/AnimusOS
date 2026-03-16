@@ -1,9 +1,9 @@
 @component('components/layout/app', { title: 'Edit Dossier: ' + character.name })
 
-<div class="auth-container" style="max-width: 600px;">
+<div class="pages-books-create-div-76 auth-container">
     <h1 class="glitch" data-text="AMEND GENETIC DATA">AMEND GENETIC DATA</h1>
-    <p style="color: var(--text-muted); margin-bottom: 2rem;">
-        Updating profile for: <span style="color: var(--assassin-red);">{{ character.name }}</span>
+    <p class="pages-books-create-p-text-77">
+        Updating profile for: <span class="pages-auth-register-strong-text-71">{{ character.name }}</span>
     </p>
 
     {{-- 🛡️ Note the ?_method=PUT - This tells Adonis to perform an Update, not a Create --}}
@@ -17,8 +17,7 @@
 
         <div class="form-group">
             <label for="affiliation">Affiliation</label>
-            <select id="affiliation" name="affiliation"
-                style="width: 100%; padding: 0.75rem; background-color: var(--animus-darker); border: 1px solid #334155; color: white; border-radius: 4px;">
+            <select class="pages-books-create-select-78" id="affiliation" name="affiliation">
                 <option value="Assassin" {{ character.affiliation==='Assassin' ? 'selected' : '' }}>Assassin Brotherhood
                 </option>
                 <option value="Templar" {{ character.affiliation==='Templar' ? 'selected' : '' }}>Templar Order</option>
@@ -29,8 +28,7 @@
 
         <div class="form-group">
             <label for="gameId">Associated Memory (Game)</label>
-            <select id="gameId" name="gameId" required
-                style="width: 100%; padding: 0.75rem; background-color: var(--animus-darker); border: 1px solid #334155; color: white; border-radius: 4px;">
+            <select class="pages-books-create-select-78" id="gameId" name="gameId" required>
                 @each(game in games)
                 <option value="{{ game.id }}" {{ character.gameId===game.id ? 'selected' : '' }}>
                     {{ game.title }}
@@ -41,20 +39,18 @@
 
         <div class="form-group">
             <label for="bio">Biographical Data</label>
-            <textarea id="bio" name="bio" rows="4"
-                style="width: 100%; padding: 0.75rem; background-color: var(--animus-darker); border: 1px solid #334155; color: white; border-radius: 4px; resize: vertical;">{{ character.bio }}</textarea>
+            <textarea class="pages-books-create-textarea-80" id="bio" name="bio" rows="4">{{ character.bio }}</textarea>
         </div>
 
-        <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
-            <input type="checkbox" id="isPlayable" name="isPlayable" value="1" style="width: auto;" {{
+        <div class="pages-books-create-div-flex-81 form-group">
+            <input class="pages-books-create-input-82" type="checkbox" id="isPlayable" name="isPlayable" value="1"  {{
                 character.isPlayable ? 'checked' : '' }}>
-            <label for="isPlayable" style="margin-bottom: 0;">Main Playable Protagonist?</label>
+            <label class="pages-books-create-label-83" for="isPlayable">Main Playable Protagonist?</label>
         </div>
 
-        <div class="form-actions" style="margin-top: 2rem; display: flex; gap: 1rem;">
-            <button type="submit" class="btn-sync" style="flex: 2;">UPDATE DOSSIER</button>
-            <a href="{{ route('characters.index') }}" class="nav-btn"
-                style="flex: 1; text-align: center; text-decoration: none; padding-top: 0.7rem;">CANCEL</a>
+        <div class="pages-books-edit-div-flex-86 form-actions">
+            <button type="submit" class="pages-books-edit-button-87 btn-sync">UPDATE DOSSIER</button>
+            <a href="{{ route('characters.index') }}" class="pages-books-edit-a-88 nav-btn">CANCEL</a>
         </div>
     </form>
 </div>

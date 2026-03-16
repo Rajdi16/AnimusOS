@@ -1,56 +1,56 @@
 @component('components/layout/app', { title: 'User Synchronization | Abstergo OS' })
 
-<div style="background: #0d1117; min-height: 100vh; padding: 4rem 1rem; color: #e6edf3; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; position: relative; overflow: hidden;">
+<div class="pages-profile-edit-div-312">
     
     {{-- Decorative Background Elements --}}
-    <div style="position: absolute; top: -100px; left: -100px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(248,81,73,0.1) 0%, rgba(13,17,23,0) 70%); border-radius: 50%; pointer-events: none;"></div>
-    <div style="position: absolute; bottom: -150px; right: -50px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(56,139,253,0.05) 0%, rgba(13,17,23,0) 70%); border-radius: 50%; pointer-events: none;"></div>
+    <div class="pages-profile-edit-div-absolute-313"></div>
+    <div class="pages-profile-edit-div-absolute-314"></div>
 
-    <div style="max-width: 650px; margin: 0 auto; position: relative; z-index: 10;">
+    <div class="pages-profile-edit-div-315">
 
         {{-- HEADER --}}
-        <div style="text-align: center; margin-bottom: 3.5rem;">
-            <div style="display: inline-block; padding: 0.3rem 1rem; background: rgba(248, 81, 73, 0.1); border: 1px solid rgba(248, 81, 73, 0.3); border-radius: 20px; margin-bottom: 1.5rem;">
-                <span style="color: #f85149; font-size: 0.7rem; letter-spacing: 4px; font-weight: 700; text-transform: uppercase;">
+        <div class="pages-profile-edit-div-316">
+            <div class="pages-profile-edit-div-317">
+                <span class="pages-profile-edit-span-text-318">
                     Genetic Link Protocol 2.0
                 </span>
             </div>
-            <h1 style="font-size: 2.75rem; font-weight: 800; color: #ffffff; margin: 0; letter-spacing: -0.5px; text-shadow: 0 0 20px rgba(255,255,255,0.1);">USER SETTINGS</h1>
-            <p style="color: #8b949e; font-size: 1rem; margin-top: 12px; font-weight: 400;">Modify your identity within the Global Network.</p>
+            <h1 class="pages-profile-edit-h1-text-319">USER SETTINGS</h1>
+            <p class="pages-profile-edit-p-text-320">Modify your identity within the Global Network.</p>
         </div>
 
         {{-- SETTINGS CARD --}}
-        <div style="background: rgba(22, 27, 34, 0.8); backdrop-filter: blur(10px); border: 1px solid #30363d; border-radius: 16px; padding: 3.5rem; box-shadow: 0 25px 50px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);">
-            <form action="{{ route('profile.update') }}?_method=PUT" method="POST" style="display: flex; flex-direction: column; gap: 2.5rem;">
+        <div class="pages-profile-edit-div-321">
+            <form class="pages-profile-edit-form-flex-322" action="{{ route('profile.update') }}?_method=PUT" method="POST">
                 {{ csrfField() }}
 
                 {{-- IDENTITY SECTION --}}
                 <div>
-                    <h3 style="color: #c9d1d9; font-size: 1.1rem; margin-bottom: 1.5rem; border-bottom: 1px solid #21262d; padding-bottom: 0.8rem; display: flex; align-items: center; gap: 10px;">
-                        <span style="display: inline-block; width: 8px; height: 8px; background: #388bfd; border-radius: 50%; box-shadow: 0 0 10px #388bfd;"></span>
+                    <h3 class="pages-profile-edit-h3-flex-323">
+                        <span class="pages-profile-edit-span-324"></span>
                         Public Identity
                     </h3>
                     
-                    <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
-                        <div style="flex: 1; min-width: 250px;">
-                            <label for="username" style="display: block; color: #8b949e; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px;">Codename (Username)</label>
-                            <input type="text" name="username" id="username" value="{{ auth.user.username }}" required
-                                style="width: 100%; padding: 1rem 1.2rem; background: #0d1117; border: 1px solid #30363d; border-radius: 8px; color: #e6edf3; font-size: 0.95rem; outline: none; transition: all 0.2s ease; box-sizing: border-box;"
+                    <div class="pages-profile-edit-div-flex-325">
+                        <div class="pages-profile-edit-div-326">
+                            <label class="pages-profile-edit-label-text-327" for="username">Codename (Username)</label>
+                            <input class="pages-profile-edit-input-328" type="text" name="username" id="username" value="{{ auth.user.username }}" required
+                                
                                 onfocus="this.style.borderColor='#388bfd'; this.style.boxShadow='0 0 0 3px rgba(56,139,253,0.1)'"
                                 onblur="this.style.borderColor='#30363d'; this.style.boxShadow='none'">
                             @inputError('username')
-                            <p style="color: #f85149; font-size: 0.8rem; margin-top: 8px; display: flex; align-items: center; gap: 5px;">⚠ {{ $messages.join(', ') }}</p>
+                            <p class="pages-profile-edit-p-flex-329">⚠ {{ $messages.join(', ') }}</p>
                             @end
                         </div>
                         
-                        <div style="flex: 1; min-width: 250px;">
-                            <label for="full_name" style="display: block; color: #8b949e; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px;">Designation (Full Name)</label>
-                            <input type="text" name="full_name" id="full_name" value="{{ auth.user.fullName || '' }}"
-                                style="width: 100%; padding: 1rem 1.2rem; background: #0d1117; border: 1px solid #30363d; border-radius: 8px; color: #e6edf3; font-size: 0.95rem; outline: none; transition: all 0.2s ease; box-sizing: border-box;"
+                        <div class="pages-profile-edit-div-326">
+                            <label class="pages-profile-edit-label-text-327" for="full_name">Designation (Full Name)</label>
+                            <input class="pages-profile-edit-input-328" type="text" name="full_name" id="full_name" value="{{ auth.user.fullName || '' }}"
+                                
                                 onfocus="this.style.borderColor='#388bfd'; this.style.boxShadow='0 0 0 3px rgba(56,139,253,0.1)'"
                                 onblur="this.style.borderColor='#30363d'; this.style.boxShadow='none'">
                             @inputError('full_name')
-                            <p style="color: #f85149; font-size: 0.8rem; margin-top: 8px; display: flex; align-items: center; gap: 5px;">⚠ {{ $messages.join(', ') }}</p>
+                            <p class="pages-profile-edit-p-flex-329">⚠ {{ $messages.join(', ') }}</p>
                             @end
                         </div>
                     </div>
@@ -58,59 +58,59 @@
 
                 {{-- GENETIC IDENTIFIER SECTION --}}
                 <div>
-                     <h3 style="color: #c9d1d9; font-size: 1.1rem; margin-bottom: 1.5rem; border-bottom: 1px solid #21262d; padding-bottom: 0.8rem; display: flex; align-items: center; gap: 10px;">
-                        <span style="display: inline-block; width: 8px; height: 8px; background: #238636; border-radius: 50%; box-shadow: 0 0 10px #238636;"></span>
+                     <h3 class="pages-profile-edit-h3-flex-323">
+                        <span class="pages-profile-edit-span-330"></span>
                         Communication Uplink
                     </h3>
-                    <div style="background: rgba(35, 134, 54, 0.05); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(35, 134, 54, 0.2);">
-                        <label for="email" style="display: block; color: #8b949e; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px;">Genetic Identifier (Email)</label>
-                        <input type="email" name="email" id="email" value="{{ auth.user.email }}" required
-                            style="width: 100%; padding: 1rem 1.2rem; background: #0d1117; border: 1px solid #30363d; border-radius: 8px; color: #e6edf3; font-size: 0.95rem; outline: none; transition: all 0.2s ease; box-sizing: border-box;"
+                    <div class="pages-profile-edit-div-331">
+                        <label class="pages-profile-edit-label-text-327" for="email">Genetic Identifier (Email)</label>
+                        <input class="pages-profile-edit-input-328" type="email" name="email" id="email" value="{{ auth.user.email }}" required
+                            
                             onfocus="this.style.borderColor='#238636'; this.style.boxShadow='0 0 0 3px rgba(35,134,54,0.1)'"
                             onblur="this.style.borderColor='#30363d'; this.style.boxShadow='none'">
                         @inputError('email')
-                        <p style="color: #f85149; font-size: 0.8rem; margin-top: 8px; display: flex; align-items: center; gap: 5px;">⚠ {{ $messages.join(', ') }}</p>
+                        <p class="pages-profile-edit-p-flex-329">⚠ {{ $messages.join(', ') }}</p>
                         @end
                     </div>
                 </div>
 
                 {{-- SECURITY SECTION --}}
                 <div>
-                    <h3 style="color: #c9d1d9; font-size: 1.1rem; margin-bottom: 1.5rem; border-bottom: 1px solid #21262d; padding-bottom: 0.8rem; display: flex; align-items: center; gap: 10px;">
-                        <span style="display: inline-block; width: 8px; height: 8px; background: #d29922; border-radius: 50%; box-shadow: 0 0 10px #d29922;"></span>
+                    <h3 class="pages-profile-edit-h3-flex-323">
+                        <span class="pages-profile-edit-span-332"></span>
                         Security Update
                     </h3>
-                    <div style="display: flex; flex-direction: column; gap: 1.2rem;">
+                    <div class="pages-forum-index-div-flex-163">
                         <div>
-                            <label for="current_password" style="display: block; color: #8b949e; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px;">Current Password</label>
-                            <input type="password" name="current_password" id="current_password" placeholder="••••••••••••"
-                                style="width: 100%; padding: 1rem 1.2rem; background: #0d1117; border: 1px solid #30363d; border-radius: 8px; color: #e6edf3; font-size: 0.95rem; outline: none; transition: all 0.2s ease; box-sizing: border-box;"
+                            <label class="pages-profile-edit-label-text-327" for="current_password">Current Password</label>
+                            <input class="pages-profile-edit-input-328" type="password" name="current_password" id="current_password" placeholder="••••••••••••"
+                                
                                 onfocus="this.style.borderColor='#d29922'; this.style.boxShadow='0 0 0 3px rgba(210,153,34,0.1)'"
                                 onblur="this.style.borderColor='#30363d'; this.style.boxShadow='none'">
                         </div>
                         <div>
-                            <label for="password" style="display: block; color: #8b949e; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px;">New Password</label>
-                            <input type="password" name="password" id="password" placeholder="Leave blank to keep current"
-                                style="width: 100%; padding: 1rem 1.2rem; background: #0d1117; border: 1px solid #30363d; border-radius: 8px; color: #e6edf3; font-size: 0.95rem; outline: none; transition: all 0.2s ease; box-sizing: border-box;"
+                            <label class="pages-profile-edit-label-text-327" for="password">New Password</label>
+                            <input class="pages-profile-edit-input-328" type="password" name="password" id="password" placeholder="Leave blank to keep current"
+                                
                                 onfocus="this.style.borderColor='#d29922'; this.style.boxShadow='0 0 0 3px rgba(210,153,34,0.1)'"
                                 onblur="this.style.borderColor='#30363d'; this.style.boxShadow='none'">
                             @inputError('password')
-                            <p style="color: #f85149; font-size: 0.8rem; margin-top: 8px; display: flex; align-items: center; gap: 5px;">⚠ {{ $messages.join(', ') }}</p>
+                            <p class="pages-profile-edit-p-flex-329">⚠ {{ $messages.join(', ') }}</p>
                             @end
                         </div>
                     </div>
                 </div>
 
                 {{-- ACTION BUTTONS --}}
-                <div style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1.2rem;">
-                    <button type="submit"
-                        style="width: 100%; padding: 1.2rem; font-weight: 700; background: linear-gradient(180deg, #2ea043 0%, #238636 100%); color: white; border: 1px solid rgba(240, 246, 252, 0.1); border-radius: 8px; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; transition: all 0.2s ease; box-shadow: 0 4px 15px rgba(35, 134, 54, 0.2);"
+                <div class="pages-profile-edit-div-flex-333">
+                    <button class="pages-profile-edit-button-334" type="submit"
+                        
                         onmouseover="this.style.filter='brightness(1.1)'; this.style.transform='translateY(-1px)'"
                         onmouseout="this.style.filter='brightness(1)'; this.style.transform='translateY(0)'">
                         Update Profile
                     </button>
-                    <a href="{{ route('home') }}"
-                        style="text-align: center; color: #8b949e; text-decoration: none; font-size: 0.85rem; letter-spacing: 1px; padding: 0.8rem; border-radius: 8px; transition: all 0.2s ease; text-transform: uppercase;"
+                    <a class="pages-profile-edit-a-text-335" href="{{ route('home') }}"
+                        
                         onmouseover="this.style.background='rgba(139,148,158,0.1)'; this.style.color='#c9d1d9'"
                         onmouseout="this.style.background='transparent'; this.style.color='#8b949e'">
                         Cancel Update
@@ -120,15 +120,15 @@
         </div>
 
         {{-- DANGER ZONE --}}
-        <div style="margin-top: 3rem; padding: 2.5rem; background: rgba(248, 81, 73, 0.03); border: 1px solid rgba(248, 81, 73, 0.2); border-radius: 16px; text-align: center; position: relative; overflow: hidden;">
-            <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: #f85149;"></div>
+        <div class="pages-profile-edit-div-336">
+            <div class="pages-profile-edit-div-absolute-337"></div>
             
-            <h4 style="color: #f85149; margin: 0 0 12px 0; text-transform: uppercase; letter-spacing: 3px; font-size: 0.9rem; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px;">
+            <h4 class="pages-profile-edit-h4-flex-338">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M8.22 1.754a.25.25 0 00-.44 0L1.698 13.132a.25.25 0 00.22.368h12.164a.25.25 0 00.22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0114.082 15H1.918a1.75 1.75 0 01-1.543-2.575L6.457 1.047zM9 11a1 1 0 11-2 0 1 1 0 012 0zm-.25-5.25a.75.75 0 00-1.5 0v2.5a.75.75 0 001.5 0v-2.5z"></path></svg>
                 Account Deletion
             </h4>
             
-            <p style="color: #8b949e; font-size: 0.85rem; margin-bottom: 1.8rem; line-height: 1.5;">
+            <p class="pages-profile-edit-p-text-339">
                 Warning: This action permanently deletes your account and all associated data.<br>
                 Provide your current password to authorize this deletion.
             </p>
@@ -136,19 +136,19 @@
             <form action="{{ route('profile.destroy') }}?_method=DELETE" method="POST" onsubmit="return confirm('CRITICAL WARNING: Are you sure you wish to DELETE YOUR ACCOUNT? This action cannot be undone.')">
                 {{ csrfField() }}
                 
-                <div style="max-width: 300px; margin: 0 auto 1.5rem auto; text-align: left;">
-                    <label for="delete_password" style="display: block; color: #8b949e; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px;">Current Password</label>
-                    <input type="password" name="current_password" id="delete_password" required placeholder="••••••••••••"
-                        style="width: 100%; padding: 0.8rem 1rem; background: #0d1117; border: 1px solid #30363d; border-radius: 8px; color: #e6edf3; font-size: 0.9rem; outline: none; transition: all 0.2s ease; box-sizing: border-box;"
+                <div class="pages-profile-edit-div-340">
+                    <label class="pages-profile-edit-label-text-327" for="delete_password">Current Password</label>
+                    <input class="pages-profile-edit-input-341" type="password" name="current_password" id="delete_password" required placeholder="••••••••••••"
+                        
                         onfocus="this.style.borderColor='#f85149'; this.style.boxShadow='0 0 0 3px rgba(248,81,73,0.1)'"
                         onblur="this.style.borderColor='#30363d'; this.style.boxShadow='none'">
                      @inputError('current_password')
-                        <p style="color: #f85149; font-size: 0.8rem; margin-top: 8px; display: flex; align-items: center; gap: 5px;">⚠ {{ $messages.join(', ') }}</p>
+                        <p class="pages-profile-edit-p-flex-329">⚠ {{ $messages.join(', ') }}</p>
                     @end
                 </div>
 
-                <button type="submit"
-                    style="background: rgba(248, 81, 73, 0.1); border: 1px solid #f85149; color: #f85149; padding: 0.8rem 2rem; border-radius: 8px; cursor: pointer; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; transition: all 0.2s ease;"
+                <button class="pages-profile-edit-button-342" type="submit"
+                    
                     onmouseover="this.style.background='#f85149'; this.style.color='#ffffff'; this.style.boxShadow='0 0 15px rgba(248,81,73,0.4)'"
                     onmouseout="this.style.background='rgba(248, 81, 73, 0.1)'; this.style.color='#f85149'; this.style.boxShadow='none'">
                     Delete Account

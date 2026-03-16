@@ -1,45 +1,40 @@
 @component('components/layout/app', { title: 'Open Channel | Animus' })
 
-<div style="max-width: 800px; margin: 2rem auto; padding: 0 1rem;">
+<div class="pages-forum-create-div-146">
 
-    <div style="margin-bottom: 2rem;">
-        <h1 style="font-size: 2rem; margin: 0;">ESTABLISH NEW THREAD</h1>
-        <p style="color: var(--text-muted);">Encrypt your message for the Brotherhood.</p>
+    <div class="pages-forum-create-div-147">
+        <h1 class="pages-forum-create-h1-148">ESTABLISH NEW THREAD</h1>
+        <p class="pages-forum-create-p-text-149">Encrypt your message for the Brotherhood.</p>
     </div>
 
-    <form action="{{ route('forum.store') }}" method="POST" class="info-card"
-        style="padding: 2rem; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; display: flex; flex-direction: column; gap: 1.5rem;">
+    <form action="{{ route('forum.store') }}" method="POST" class="pages-forum-create-form-flex-150 info-card">
         {{ csrfField() }}
 
         <div>
-            <label
-                style="display: block; color: var(--text-muted); font-size: 0.75rem; letter-spacing: 2px; margin-bottom: 0.5rem; text-transform: uppercase;">Subject
+            <label class="pages-forum-create-label-text-151">Subject
                 / Title</label>
-            <input type="text" name="title" required placeholder="Enter thread subject..."
-                style="width: 100%; padding: 1rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; color: white;">
+            <input class="pages-forum-create-input-152" type="text" name="title" required placeholder="Enter thread subject...">
 
             {{-- THIS WILL SHOW THE ERROR IF THE TITLE IS TOO SHORT --}}
             @inputError('title')
-            <p style="color: var(--assassin-red); font-size: 0.8rem; margin-top: 0.5rem; font-weight: bold;">⚠️ {{
+            <p class="pages-forum-create-p-text-153">⚠️ {{
                 $messages.join(', ') }}</p>
             @end
         </div>
 
         <div>
-            <label
-                style="display: block; color: var(--text-muted); font-size: 0.75rem; letter-spacing: 2px; margin-bottom: 0.5rem; text-transform: uppercase;">Message
+            <label class="pages-forum-create-label-text-151">Message
                 Body</label>
-            <textarea name="body" rows="6" required placeholder="Type your message here..."
-                style="width: 100%; padding: 1rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; color: white; resize: vertical;"></textarea>
+            <textarea class="pages-forum-create-textarea-154" name="body" rows="6" required placeholder="Type your message here..."></textarea>
 
             {{-- THIS WILL SHOW THE ERROR IF THE BODY IS TOO SHORT --}}
             @inputError('body')
-            <p style="color: var(--assassin-red); font-size: 0.8rem; margin-top: 0.5rem; font-weight: bold;">⚠️ {{
+            <p class="pages-forum-create-p-text-153">⚠️ {{
                 $messages.join(', ') }}</p>
             @end
         </div>
 
-        <button type="submit" class="btn-sync" style="padding: 1rem; font-size: 1rem;">TRANSMIT DATA</button>
+        <button type="submit" class="pages-forum-create-button-155 btn-sync">TRANSMIT DATA</button>
     </form>
 </div>
 
