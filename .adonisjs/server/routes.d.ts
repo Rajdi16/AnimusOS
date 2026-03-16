@@ -27,6 +27,8 @@ export type ScannedRoutes = {
     'books.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'books.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'profile.show': { paramsTuple?: []; params?: {} }
+    'profile.verify_password': { paramsTuple?: []; params?: {} }
+    'profile.verify_password.post': { paramsTuple?: []; params?: {} }
     'profile.edit': { paramsTuple?: []; params?: {} }
     'profile.update': { paramsTuple?: []; params?: {} }
     'profile.destroy': { paramsTuple?: []; params?: {} }
@@ -62,6 +64,7 @@ export type ScannedRoutes = {
     'books.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'books.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'profile.show': { paramsTuple?: []; params?: {} }
+    'profile.verify_password': { paramsTuple?: []; params?: {} }
     'profile.edit': { paramsTuple?: []; params?: {} }
     'auth.register.view': { paramsTuple?: []; params?: {} }
     'session.create': { paramsTuple?: []; params?: {} }
@@ -85,6 +88,7 @@ export type ScannedRoutes = {
     'books.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'books.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'profile.show': { paramsTuple?: []; params?: {} }
+    'profile.verify_password': { paramsTuple?: []; params?: {} }
     'profile.edit': { paramsTuple?: []; params?: {} }
     'auth.register.view': { paramsTuple?: []; params?: {} }
     'session.create': { paramsTuple?: []; params?: {} }
@@ -97,6 +101,7 @@ export type ScannedRoutes = {
     'games.store': { paramsTuple?: []; params?: {} }
     'characters.store': { paramsTuple?: []; params?: {} }
     'books.store': { paramsTuple?: []; params?: {} }
+    'profile.verify_password.post': { paramsTuple?: []; params?: {} }
     'auth.register': { paramsTuple?: []; params?: {} }
     'session.store': { paramsTuple?: []; params?: {} }
     'session.destroy': { paramsTuple?: []; params?: {} }

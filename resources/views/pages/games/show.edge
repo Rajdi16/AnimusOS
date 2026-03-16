@@ -4,7 +4,7 @@
 <div class="banner-rect" style="margin-bottom: 3rem; height: 55vh; min-height: 400px; position: relative;">
 
   {{-- Game Cover Art Background with Live Web Fallback AND Cloaking (no-referrer) --}}
-  <img src="{{ game.imageUrl || 'https://images.hdqwalls.com/download/assassins-creed-animus-12-1920x1080.jpg' }}"
+  <img src="{{ game.bannerImageUrl || game.imageUrl || 'https://images.hdqwalls.com/download/assassins-creed-animus-12-1920x1080.jpg' }}"
     alt="{{ game.title }}" referrerpolicy="no-referrer"
     style="opacity: 0.6; object-fit: cover; width: 100%; height: 100%;">
 
@@ -16,8 +16,7 @@
         style="color: var(--assassin-red); font-size: 0.8rem; letter-spacing: 4px; font-weight: bold; text-transform: uppercase;">
         Memory Sequence Identified
       </span>
-      <h1 class="glitch" data-text="{{ game.title }}"
-        style="font-size: 3.5rem; margin: 0; text-shadow: 0 5px 15px rgba(0,0,0,0.8);">
+      <h1 style="font-size: 3.5rem; margin: 0;">
         {{ game.title }}
       </h1>
     </div>

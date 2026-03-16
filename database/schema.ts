@@ -41,10 +41,12 @@ export class BookSchema extends BaseModel {
 }
 
 export class CharacterSchema extends BaseModel {
-  static $columns = ['affiliation', 'bio', 'createdAt', 'gameId', 'id', 'imageUrl', 'isPlayable', 'name', 'updatedAt'] as const
+  static $columns = ['affiliation', 'bannerImageUrl', 'bio', 'createdAt', 'gameId', 'id', 'imageUrl', 'isPlayable', 'name', 'updatedAt'] as const
   $columns = CharacterSchema.$columns
   @column()
   declare affiliation: string | null
+  @column()
+  declare bannerImageUrl: string | null
   @column()
   declare bio: string | null
   @column.dateTime({ autoCreate: true })
@@ -64,8 +66,10 @@ export class CharacterSchema extends BaseModel {
 }
 
 export class GameSchema extends BaseModel {
-  static $columns = ['createdAt', 'description', 'developer', 'era', 'id', 'imageUrl', 'platforms', 'publisher', 'releaseDate', 'title', 'updatedAt'] as const
+  static $columns = ['bannerImageUrl', 'createdAt', 'description', 'developer', 'era', 'id', 'imageUrl', 'platforms', 'publisher', 'releaseDate', 'title', 'updatedAt'] as const
   $columns = GameSchema.$columns
+  @column()
+  declare bannerImageUrl: string | null
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime | null
   @column()

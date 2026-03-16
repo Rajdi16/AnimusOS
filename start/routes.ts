@@ -24,6 +24,10 @@ router.group(() => {
     // 👇 NEW: The Profile Activity Hub 👇
     router.get('/profile', [ProfilesController, 'show']).as('profile.show')
 
+    // Password verification before edit
+    router.get('/profile/verify', [ProfilesController, 'verifyPasswordView']).as('profile.verify_password')
+    router.post('/profile/verify', [ProfilesController, 'verifyPassword']).as('profile.verify_password.post')
+
     router.get('/profile/edit', [ProfilesController, 'edit']).as('profile.edit')
     router.put('/profile', [ProfilesController, 'update']).as('profile.update')
     router.delete('/profile', [ProfilesController, 'destroy']).as('profile.destroy')

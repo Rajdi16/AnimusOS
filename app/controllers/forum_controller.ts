@@ -57,6 +57,8 @@ export default class ForumController {
             return response.redirect().back()
         }
 
+        // Delete all linked posts before purging the thread
+        await Post.query().where('thread_id', thread.id).delete()
         await thread.delete()
         session.flash('success', 'CHANNEL CLOSED: Thread and all data purged.')
         return response.redirect().toRoute('forum.index')

@@ -24,6 +24,9 @@ export default class Character extends BaseModel {
     @column()
     declare imageUrl: string | null // Optional: URL to the character's image
 
+    @column()
+    declare bannerImageUrl: string | null // Optional: Wide banner image for the show page
+
     // -------------------------
     // RELATIONSHIPS
     // -------------------------

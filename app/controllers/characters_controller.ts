@@ -1,7 +1,6 @@
 import Character from '#models/character'
 import Game from '#models/game'
 import type { HttpContext } from '@adonisjs/core/http'
-import { DateTime } from 'luxon'
 
 export default class CharactersController {
 
@@ -34,7 +33,7 @@ export default class CharactersController {
             return response.unauthorized('Access Denied.')
         }
 
-        const data = request.only(['name', 'gameId', 'affiliation', 'bio', 'isPlayable', 'imageUrl'])
+        const data = request.only(['name', 'gameId', 'affiliation', 'bio', 'isPlayable', 'imageUrl', 'bannerImageUrl'])
         data.isPlayable = !!request.input('isPlayable') // Convert checkbox to boolean
 
         await Character.create(data) // Save to database
@@ -46,26 +45,23 @@ export default class CharactersController {
     public async edit({ params, view, auth, response }: HttpContext) {
         if (auth.user!.role !== 'admin') return response.unauthorized()
 
-        const game = await Game.findOrFail(params.id)
-        return view.render('pages/games/edit', { game })
+        const character = await Character.findOrFail(params.id)
+        const games = await Game.all()
+        return view.render('pages/characters/edit', { character, games })
     }
 
     // 🛡️ ADMIN ONLY: Actually update the character in the database
     public async update({ params, request, response, auth }: HttpContext) {
         if (auth.user!.role !== 'admin') return response.unauthorized()
 
-        const game = await Game.findOrFail(params.id)
-        const data = request.only(['title', 'era', 'description', 'releaseDate', 'imageUrl'])
+        const character = await Character.findOrFail(params.id)
+        const data = request.only(['name', 'gameId', 'affiliation', 'bio', 'isPlayable', 'imageUrl', 'bannerImageUrl'])
+        data.isPlayable = !!request.input('isPlayable')
 
-        // Convert the date string back into a Luxon object
-        if (data.releaseDate) {
-            data.releaseDate = DateTime.fromISO(data.releaseDate)
-        }
+        character.merge(data)
+        await character.save()
 
-        game.merge(data)
-        await game.save()
-
-        return response.redirect().toRoute('games.show', { id: game.id })
+        return response.redirect().toRoute('characters.show', { id: character.id })
     }
     // 🛡️ ADMIN ONLY: Delete the character
     public async destroy({ params, response, auth }: HttpContext) {

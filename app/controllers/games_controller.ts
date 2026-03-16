@@ -39,7 +39,7 @@ export default class GamesController {
     public async store({ request, auth, response }: HttpContext) {
         if (auth.user!.role !== 'admin') return response.unauthorized()
 
-        const data = request.only(['title', 'era', 'description', 'releaseDate', 'imageUrl', 'platforms', 'developer', 'publisher'])
+        const data = request.only(['title', 'era', 'description', 'releaseDate', 'imageUrl', 'bannerImageUrl', 'platforms', 'developer', 'publisher'])
 
         // 🧬 DNA FIX: Convert string to Luxon object
         if (data.releaseDate) {
@@ -66,7 +66,7 @@ export default class GamesController {
     public async update({ params, request, auth, response }: HttpContext) {
         if (auth.user!.role !== 'admin') return response.unauthorized()
 
-        const data = request.only(['title', 'era', 'description', 'releaseDate', 'imageUrl', 'platforms', 'developer', 'publisher'])
+        const data = request.only(['title', 'era', 'description', 'releaseDate', 'imageUrl', 'bannerImageUrl', 'platforms', 'developer', 'publisher'])
         const game = await Game.findOrFail(params.id)
 
         // 🧬 DNA FIX: Convert string to Luxon object
