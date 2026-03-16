@@ -1,0 +1,89 @@
+@component('components/layout/app', { title: 'Chronological Record | Animus Database' })
+
+<div class="dossier-container" style="max-width: 1200px; margin: 0 auto; padding: 2rem 1rem;">
+  
+  <div style="text-align: center; margin-bottom: 2rem;">
+    <h1 style="font-size: 3rem; margin: 0; color: var(--abstergo-white); letter-spacing: 2px;">CHRONOLOGICAL RECORD</h1>
+    <p style="color: var(--assassin-red); font-size: 0.9rem; letter-spacing: 4px; text-transform: uppercase; margin-top: 0.5rem; font-weight: bold;">
+      Synchronized Global Timeline
+    </p>
+
+    {{-- SORT TOGGLES --}}
+    <div style="margin-top: 2rem; display: flex; justify-content: center; gap: 1rem;">
+      <a href="{{ route('games.timeline') }}?sort=release" style="padding: 0.5rem 1rem; border: 1px solid var(--assassin-red); background: {{ sortMode === 'release' ? 'var(--assassin-red)' : 'transparent' }}; color: {{ sortMode === 'release' ? '#000' : 'var(--assassin-red)' }}; text-decoration: none; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; border-radius: 4px; transition: all 0.3s;">By Release Date</a>
+      
+      <a href="{{ route('games.timeline') }}?sort=historical" style="padding: 0.5rem 1rem; border: 1px solid var(--assassin-red); background: {{ sortMode === 'historical' ? 'var(--assassin-red)' : 'transparent' }}; color: {{ sortMode === 'historical' ? '#000' : 'var(--assassin-red)' }}; text-decoration: none; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; border-radius: 4px; transition: all 0.3s;">By Historical Era</a>
+    </div>
+  </div>
+
+  {{-- THE TIMELINE WRAPPER --}}
+  <div style="position: relative; padding: 2rem 0;">
+    
+    {{-- The Central Vertical Line --}}
+    <div style="position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.1); transform: translateX(-50%);"></div>
+
+    @each((game, index) in games)
+      {{-- Determine if left side or right side based on even/odd index --}}
+      @let(isEven = index % 2 === 0)
+      
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4rem; width: 100%; position: relative;">
+        
+        {{-- The Timeline Node (Dot in the center) --}}
+        <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 16px; height: 16px; border-radius: 50%; background: var(--animus-darker); border: 2px solid var(--assassin-red); z-index: 2; box-shadow: 0 0 10px rgba(248,81,73,0.5);"></div>
+
+        {{-- LEFT SIDE CONTENT (Even items) --}}
+        @if(isEven)
+          <div style="width: 45%; text-align: right; padding-right: 2rem;">
+            <p style="color: var(--assassin-red); font-weight: bold; margin: 0 0 0.5rem 0; font-family: monospace; font-size: 1.1rem; letter-spacing: 1px;">
+              @if(sortMode === 'historical' && game.historicalYear !== null)
+                {{ game.historicalYear < 0 ? Math.abs(game.historicalYear) + ' BC' : game.historicalYear + ' AD' }}
+              @else
+                {{ game.releaseDate ? game.releaseDate.toFormat('yyyy') : 'Unknown' }}
+              @endif
+            </p>
+            <h3 style="margin: 0 0 1rem 0; font-size: 1.8rem; color: var(--abstergo-white);">{{ game.title }}</h3>
+            <p style="color: #94a3b8; margin: 0 0 1.5rem 0; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase;">
+              Era: {{ game.era }}
+            </p>
+            
+            <a href="{{ route('games.show', { id: game.id }) }}" style="display: inline-block; text-decoration: none; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='scale(1.02)'; this.style.borderColor='rgba(255,255,255,0.3)'" onmouseout="this.style.transform='scale(1)'; this.style.borderColor='rgba(255,255,255,0.1)'">
+              <img src="{{ game.bannerImageUrl || game.imageUrl || 'https://images.hdqwalls.com/download/assassins-creed-animus-12-1920x1080.jpg' }}" alt="{{ game.title }}" style="width: 100%; max-width: 400px; height: 180px; object-fit: cover; display: block;">
+            </a>
+          </div>
+          {{-- Empty Right Side --}}
+          <div style="width: 45%;"></div>
+        
+        {{-- RIGHT SIDE CONTENT (Odd items) --}}
+        @else
+          {{-- Empty Left Side --}}
+          <div style="width: 45%;"></div>
+          
+          <div style="width: 45%; text-align: left; padding-left: 2rem;">
+            <p style="color: var(--assassin-red); font-weight: bold; margin: 0 0 0.5rem 0; font-family: monospace; font-size: 1.1rem; letter-spacing: 1px;">
+              @if(sortMode === 'historical' && game.historicalYear !== null)
+                {{ game.historicalYear < 0 ? Math.abs(game.historicalYear) + ' BC' : game.historicalYear + ' AD' }}
+              @else
+                {{ game.releaseDate ? game.releaseDate.toFormat('yyyy') : 'Unknown' }}
+              @endif
+            </p>
+            <h3 style="margin: 0 0 1rem 0; font-size: 1.8rem; color: var(--abstergo-white);">{{ game.title }}</h3>
+            <p style="color: #94a3b8; margin: 0 0 1.5rem 0; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase;">
+              Era: {{ game.era }}
+            </p>
+            
+            <a href="{{ route('games.show', { id: game.id }) }}" style="display: inline-block; text-decoration: none; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='scale(1.02)'; this.style.borderColor='rgba(255,255,255,0.3)'" onmouseout="this.style.transform='scale(1)'; this.style.borderColor='rgba(255,255,255,0.1)'">
+              <img src="{{ game.bannerImageUrl || game.imageUrl || 'https://images.hdqwalls.com/download/assassins-creed-animus-12-1920x1080.jpg' }}" alt="{{ game.title }}" style="width: 100%; max-width: 400px; height: 180px; object-fit: cover; display: block;">
+            </a>
+          </div>
+        @endif
+
+      </div>
+    @endeach
+    
+    {{-- Finish Line --}}
+    <div style="position: absolute; left: 50%; bottom: 0; transform: translate(-50%, 50%); width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.2);"></div>
+  </div>
+
+</div>
+
+@end

@@ -15,16 +15,16 @@ const AdminController = () => import('#controllers/admin_controller')
 router.on('/').render('pages/home').as('home')
 
 // 2. DATABASE RESOURCES (Archives)
+router.get('games/timeline', [GamesController, 'timeline']).as('games.timeline')
 router.resource('games', GamesController).as('games')
 router.resource('characters', CharactersController).as('characters')
 router.resource('books', BooksController).as('books')
 
 // 3. USER PROFILE MANAGEMENT
 router.group(() => {
-    // 👇 NEW: The Profile Activity Hub 👇
     router.get('/profile', [ProfilesController, 'show']).as('profile.show')
 
-    // Password verification before edit
+
     router.get('/profile/verify', [ProfilesController, 'verifyPasswordView']).as('profile.verify_password')
     router.post('/profile/verify', [ProfilesController, 'verifyPassword']).as('profile.verify_password.post')
 

@@ -66,7 +66,7 @@ export class CharacterSchema extends BaseModel {
 }
 
 export class GameSchema extends BaseModel {
-  static $columns = ['bannerImageUrl', 'createdAt', 'description', 'developer', 'era', 'id', 'imageUrl', 'platforms', 'publisher', 'releaseDate', 'title', 'updatedAt'] as const
+  static $columns = ['bannerImageUrl', 'createdAt', 'description', 'developer', 'era', 'historicalYear', 'id', 'imageUrl', 'platforms', 'publisher', 'releaseDate', 'title', 'updatedAt'] as const
   $columns = GameSchema.$columns
   @column()
   declare bannerImageUrl: string | null
@@ -78,6 +78,8 @@ export class GameSchema extends BaseModel {
   declare developer: string | null
   @column()
   declare era: string
+  @column()
+  declare historicalYear: number | null
   @column({ isPrimary: true })
   declare id: number
   @column()

@@ -13,7 +13,8 @@ export default class extends BaseSeeder {
         imageUrl: 'https://static.wikia.nocookie.net/assassinscreed/images/6/6a/Accover.jpg/revision/latest?cb=20210519104609',
         platforms: 'PC, PS3, Xbox 360',
         developer: 'Ubisoft Montreal',
-        publisher: 'Ubisoft'
+        publisher: 'Ubisoft',
+        historicalYear: 1191
       },
       {
         title: "Assassin's Creed II",
@@ -23,7 +24,8 @@ export default class extends BaseSeeder {
         imageUrl: 'https://static.wikia.nocookie.net/assassinscreed/images/0/09/AC2coverHighRes.jpg/revision/latest?cb=20120706023159',
         platforms: 'PC, PS3, Xbox 360',
         developer: 'Ubisoft Montreal',
-        publisher: 'Ubisoft'
+        publisher: 'Ubisoft',
+        historicalYear: 1476
       },
       {
         title: "Assassin's Creed: Brotherhood",
@@ -33,7 +35,8 @@ export default class extends BaseSeeder {
         imageUrl: 'https://static.wikia.nocookie.net/assassinscreed/images/2/2a/Assassins_Creed_brotherhood_cover.jpg/revision/latest?cb=20210519124648',
         platforms: 'PC, PS3, Xbox 360',
         developer: 'Ubisoft Montreal',
-        publisher: 'Ubisoft'
+        publisher: 'Ubisoft',
+        historicalYear: 1499
       },
       {
         title: "Assassin's Creed: Revelations",
@@ -43,7 +46,8 @@ export default class extends BaseSeeder {
         imageUrl: 'https://static.wikia.nocookie.net/assassinscreed/images/5/51/ACR_Boxart.jpg/revision/latest?cb=20110703195808',
         platforms: 'PC, PS3, Xbox 360',
         developer: 'Ubisoft Montreal',
-        publisher: 'Ubisoft'
+        publisher: 'Ubisoft',
+        historicalYear: 1511
       },
       {
         title: "Assassin's Creed III",
@@ -53,7 +57,8 @@ export default class extends BaseSeeder {
         imageUrl: 'https://static.wikia.nocookie.net/assassinscreed/images/e/ec/Assassin%27s_Creed_III_Cover.jpg/revision/latest?cb=20120812182759',
         platforms: 'PC, PS3, Xbox 360, Wii U',
         developer: 'Ubisoft Montreal',
-        publisher: 'Ubisoft'
+        publisher: 'Ubisoft',
+        historicalYear: 1754
       },
       {
         title: "Assassin's Creed IV: Black Flag",
@@ -63,7 +68,8 @@ export default class extends BaseSeeder {
         imageUrl: 'https://static.wikia.nocookie.net/assassinscreed/images/6/6d/Assassin%27s_Creed_IV_Black_Flag.jpg/revision/latest?cb=20220912072218',
         platforms: 'PC, PS3, PS4, Xbox 360, Xbox One, Wii U',
         developer: 'Ubisoft Montreal',
-        publisher: 'Ubisoft'
+        publisher: 'Ubisoft',
+        historicalYear: 1715
       },
       {
         title: "Assassin's Creed Rogue",
@@ -73,7 +79,8 @@ export default class extends BaseSeeder {
         imageUrl: 'https://static.wikia.nocookie.net/assassinscreed/images/e/e5/Assassin%27s_Creed_Rogue_-_Cover_Art.jpeg/revision/latest?cb=20140809155555',
         platforms: 'PC, PS3, Xbox 360',
         developer: 'Ubisoft Sofia',
-        publisher: 'Ubisoft'
+        publisher: 'Ubisoft',
+        historicalYear: 1752
       },
       {
         title: "Assassin's Creed Unity",
@@ -83,7 +90,8 @@ export default class extends BaseSeeder {
         imageUrl: 'https://static.wikia.nocookie.net/assassinscreed/images/0/0b/Assassin%27s_Creed_Unity_Cover.jpg/revision/latest?cb=20220912072010',
         platforms: 'PC, PS4, Xbox One',
         developer: 'Ubisoft Montreal',
-        publisher: 'Ubisoft'
+        publisher: 'Ubisoft',
+        historicalYear: 1789
       },
       {
         title: "Assassin's Creed Syndicate",
@@ -93,7 +101,8 @@ export default class extends BaseSeeder {
         imageUrl: 'https://static.wikia.nocookie.net/assassinscreed/images/c/c2/ACS_Box_art_icon.jpg/revision/latest?cb=20150512162954',
         platforms: 'PC, PS4, Xbox One',
         developer: 'Ubisoft Quebec',
-        publisher: 'Ubisoft'
+        publisher: 'Ubisoft',
+        historicalYear: 1868
       },
       {
         title: "Assassin's Creed Origins",
@@ -103,7 +112,8 @@ export default class extends BaseSeeder {
         imageUrl: 'https://static.wikia.nocookie.net/assassinscreed/images/2/2f/ACOrigins_cover.jpg/revision/latest?cb=20200127122455',
         platforms: 'PC, PS4, Xbox One',
         developer: 'Ubisoft Montreal',
-        publisher: 'Ubisoft'
+        publisher: 'Ubisoft',
+        historicalYear: -49
       },
       {
         title: "Assassin's Creed Odyssey",
@@ -113,7 +123,8 @@ export default class extends BaseSeeder {
         imageUrl: 'https://static.wikia.nocookie.net/assassinscreed/images/5/5d/ACOD_Kassandra_Box_Art.jpg/revision/latest?cb=20231029162433',
         platforms: 'PC, PS4, Xbox One, Nintendo Switch',
         developer: 'Ubisoft Quebec',
-        publisher: 'Ubisoft'
+        publisher: 'Ubisoft',
+        historicalYear: -431
       },
       {
         title: "Assassin's Creed Valhalla",
@@ -123,7 +134,8 @@ export default class extends BaseSeeder {
         imageUrl: 'https://static.wikia.nocookie.net/assassinscreed/images/6/65/AC_Valhalla_cover.jpg/revision/latest/scale-to-width-down/1000?cb=20200430195147',
         platforms: 'PC, PS4, PS5, Xbox One, Xbox Series X/S',
         developer: 'Ubisoft Montreal',
-        publisher: 'Ubisoft'
+        publisher: 'Ubisoft',
+        historicalYear: 872
       },
       {
         title: "Assassin's Creed Mirage",
@@ -133,7 +145,8 @@ export default class extends BaseSeeder {
         imageUrl: 'https://static.wikia.nocookie.net/assassinscreed/images/3/3a/AC_Mirage_cover.png/revision/latest?cb=20220920212825',
         platforms: 'PC, PS4, PS5, Xbox One, Xbox Series X/S',
         developer: 'Ubisoft Bordeaux',
-        publisher: 'Ubisoft'
+        publisher: 'Ubisoft',
+        historicalYear: 861
       },
       {
         title: "Assassin's Creed Shadows",
@@ -143,15 +156,19 @@ export default class extends BaseSeeder {
         imageUrl: 'https://static.wikia.nocookie.net/assassinscreed/images/2/29/AC_Shadows_Cover.png/revision/latest?cb=20250725151217',
         platforms: 'PC, PS5, Xbox Series X/S',
         developer: 'Ubisoft Montreal',
-        publisher: 'Ubisoft'
+        publisher: 'Ubisoft',
+        historicalYear: 1579
       },
     ]
-    await Game.createMany(
-      games.map((game) => ({
-        ...game,
-        releaseDate: DateTime.fromISO(game.releaseDate),
-      }))
-    )
+    for (const gameData of games) {
+      await Game.updateOrCreate(
+        { title: gameData.title },
+        {
+          ...gameData,
+          releaseDate: DateTime.fromISO(gameData.releaseDate),
+        }
+      )
+    }
 
   }
 }

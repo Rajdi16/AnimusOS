@@ -26,6 +26,11 @@
             <input class="pages-books-create-select-78" type="date" id="releaseDate" name="releaseDate"
                 value="{{ game.releaseDate ? game.releaseDate.toFormat('yyyy-MM-dd') : '' }}">
         </div>
+
+        <div class="form-group">
+            <label for="historicalYear">Historical Era Year (e.g., -431 for 431 BC)</label>
+            <input type="number" id="historicalYear" name="historicalYear" value="{{ game.historicalYear || '' }}" placeholder="e.g. 1191">
+        </div>
         
         <div class="form-group">
             <label for="bannerImageUrl">Banner Image URL</label>

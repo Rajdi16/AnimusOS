@@ -7,7 +7,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     {{-- 🧬 SIDEBAR & LAYOUT ANIMATION STYLES --}}
-    
+
 </head>
 
 <body class="components-layout-app-body-1">
@@ -27,7 +27,6 @@
 
                 {{-- 🎛️ THE TOGGLE BUTTON --}}
                 <button class="components-layout-app-button-4" id="sidebar-toggle"
-                    
                     onmouseover="this.style.color='white'" onmouseout="this.style.color='#8b949e'">
                     ☰
                 </button>
@@ -35,45 +34,132 @@
 
             {{-- Search Tool --}}
             <div class="components-layout-app-div-5 search-container">
-                <input class="components-layout-app-input-6" type="text" id="animus-search"
-                    
-                    placeholder="⌕ Search...">
+                <div style="position: relative;">
+                    <span
+                        style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #484f58; font-size: 0.8rem;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </span>
+                    <input class="components-layout-app-input-6" type="text" id="animus-search"
+                        style="padding-left: 35px;"
+                        placeholder="Search Dossiers...">
+                </div>
             </div>
 
             {{-- NAVIGATION LINKS --}}
             <div class="components-layout-app-div-flex-7 sidebar-nav">
 
                 <a href="{{ route('home') }}" class="sidebar-link" title="Hub Overview">
-                    <span class="nav-icon">⌂</span> <span class="nav-text">Hub Overview</span>
+                    <span class="nav-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
+                        </svg>
+                    </span>
+                    <span class="nav-text">Hub Overview</span>
                 </a>
 
                 @if(auth.isAuthenticated)
                 <a href="{{ route('profile.show') }}" class="sidebar-link" title="My Dossier">
-                    <span class="nav-icon">👤</span> <span class="nav-text">My Dossier</span>
+                    <span class="nav-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 12a10 10 0 0 1 18 0"></path>
+                            <path d="M5 12a7 7 0 1 1 14 0"></path>
+                            <path d="M8 12a4 4 0 1 1 8 0"></path>
+                            <path d="M12 12v.01"></path>
+                            <path d="M12 15s-1-2-1-3"></path>
+                            <path d="M12 15s1-2 1-3"></path>
+                        </svg>
+                    </span>
+                    <span class="nav-text">My Dossier</span>
                 </a>
                 @endif
 
                 <a href="{{ route('characters.index') }}" class="sidebar-link" title="Genetic Profiles">
-                    <span class="nav-icon">🧬</span> <span class="nav-text">Genetic Profiles</span>
+                    <span class="nav-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 7L11 9L8 12L11 15L9 17"></path>
+                            <path d="M15 7L13 9L16 12L13 15L15 17"></path>
+                            <path d="m8 5c0 14 8 14 8 0"></path>
+                            <path d="m8 19c0-14 8-14 8 0"></path>
+                        </svg>
+                    </span>
+                    <span class="nav-text">Genetic Profiles</span>
                 </a>
 
                 <a href="{{ route('games.index') }}" class="sidebar-link" title="Memory Blocks">
-                    <span class="nav-icon">🎮</span> <span class="nav-text">Memory Blocks</span>
+                    <span class="nav-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                            <path d="M3 5V19A9 3 0 0 0 21 19V5"></path>
+                            <path d="M3 12A9 3 0 0 0 21 12"></path>
+                        </svg>
+                    </span>
+                    <span class="nav-text">Memory Blocks</span>
+                </a>
+
+                <a href="{{ route('games.timeline') }}" class="sidebar-link" title="Chronological Record">
+                    <span class="nav-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 2h14"></path>
+                            <path d="M5 22h14"></path>
+                            <path d="M6 2v1c0 5 8 7 8 11v3c0 5-8 7-8 11V22"></path>
+                            <path d="M18 2v1c0 5-8 7-8 11v3c0 5 8 7 8 11V22"></path>
+                        </svg>
+                    </span>
+                    <span class="nav-text">Chronological Record</span>
                 </a>
 
                 <a href="{{ route('books.index') }}" class="sidebar-link" title="The Archives">
-                    <span class="nav-icon">📖</span> <span class="nav-text">The Archives</span>
+                    <span class="nav-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m16 6 4 14"></path>
+                            <path d="M12 6v14"></path>
+                            <path d="M8 8v12"></path>
+                            <path d="M4 4v16"></path>
+                        </svg>
+                    </span>
+                    <span class="nav-text">The Archives</span>
                 </a>
 
                 <a href="{{ route('forum.index') }}" class="sidebar-link" title="Global Network">
-                    <span class="nav-icon">📡</span> <span class="nav-text">Global Network</span>
+                    <span class="nav-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="16" y="16" width="6" height="6" rx="1"></rect>
+                            <rect x="2" y="16" width="6" height="6" rx="1"></rect>
+                            <rect x="9" y="2" width="6" height="6" rx="1"></rect>
+                            <path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"></path>
+                            <path d="M12 12V8"></path>
+                        </svg>
+                    </span>
+                    <span class="nav-text">Global Network</span>
                 </a>
 
                 @if(auth.user?.role === 'admin')
                 <div class="components-layout-app-div-8"></div>
                 <a href="{{ route('admin.dashboard') }}" class="components-layout-app-a-text-9 sidebar-link"
-                     title="System Hub [Admin]">
-                    <span class="nav-icon">🛡️</span> <span class="nav-text">SYSTEM HUB</span>
+                    title="System Hub [Admin]">
+                    <span class="nav-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                    </span>
+                    <span class="nav-text">SYSTEM HUB</span>
                 </a>
                 @endif
             </div>
@@ -106,7 +192,7 @@
                 {{-- AUTH LINKS --}}
                 <div class="components-layout-app-div-flex-19 auth-links">
                     @if(auth.isAuthenticated && auth.user)
-                    <a class="components-layout-app-a-20" href="{{ route('profile.show') }}"  title="My Dossier">
+                    <a class="components-layout-app-a-20" href="{{ route('profile.show') }}" title="My Dossier">
                         @!component('components/avatar', {
                         initials: auth.user?.username?.substring(0, 2).toUpperCase() || 'AC',
                         size: 32,
@@ -136,7 +222,17 @@
             @endif
 
             {{-- THE MAIN CONTENT --}}
-            <main class="components-layout-app-main-27 content-area">
+            <main class="components-layout-app-main-27 content-area" style="position: relative;">
+                {{-- ANIMALUS SEARCH OVERLAY: NO MATCHES --}}
+                <div id="animus-no-results"
+                    style="display: none; padding: 4rem; text-align: center; color: var(--text-muted);">
+                    <div style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.3;">📂</div>
+                    <h2 style="color: var(--assassin-red); letter-spacing: 2px;">NO SEQUENCES FOUND</h2>
+                    <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; margin-top: 10px;">
+                        The Animus was unable to locate matching historical entries in this sector.
+                    </p>
+                </div>
+
                 {{{ await $slots.main() }}}
 
                 <footer>
@@ -163,16 +259,37 @@
                 });
             }
 
-            // 2. LIVE SEARCH LOGIC
+            // 2. UNIVERSAL LIVE SEARCH PROTOCOL
             const searchInput = document.getElementById('animus-search');
+            const noResults = document.getElementById('animus-no-results');
+            const mainContent = document.querySelector('.content-area > *:not(#animus-no-results)');
+
             if (searchInput) {
-                searchInput.addEventListener('keyup', (e) => {
-                    const term = e.target.value.toLowerCase();
-                    const cards = document.querySelectorAll('.game-poster-card');
+                searchInput.addEventListener('input', (e) => {
+                    const term = e.target.value.toLowerCase().trim();
+                    const cards = document.querySelectorAll('.game-poster-card, .info-card, .forum-post-card, .character-card');
+                    let matchCount = 0;
+
                     cards.forEach(card => {
-                        const textContent = card.innerText.toLowerCase();
-                        card.style.display = textContent.includes(term) ? 'flex' : 'none';
+                        const text = (card.innerText || card.textContent).toLowerCase();
+                        if (text.includes(term)) {
+                            card.style.display = ''; // Restore to default CSS display
+                            matchCount++;
+                        } else {
+                            card.style.display = 'none';
+                        }
                     });
+
+                    // Handle "No Results" visibility
+                    if (noResults) {
+                        const isNotFound = matchCount === 0 && term.length > 0;
+                        noResults.style.display = isNotFound ? 'block' : 'none';
+                        
+                        // Hide main content slot if nothing found to make overlay clearer
+                        if (mainContent) {
+                            mainContent.style.opacity = isNotFound ? '0' : '1';
+                        }
+                    }
                 });
             }
         });

@@ -22,6 +22,9 @@ export default class Game extends BaseModel {
   @column()
   declare bannerImageUrl: string | null
 
+  @column()
+  declare historicalYear: number | null
+
   @column.date({ columnName: 'release_date' })
   declare releaseDate: DateTime | null
 

@@ -12,6 +12,26 @@ export default class GamesController {
     }
 
     /**
+     * 🟢 PUBLIC: Display games in a chronological timeline
+     */
+    public async timeline({ request, view }: HttpContext) {
+        const sortMode = request.input('sort', 'release')
+
+        // Fetch games ordered by either historical year or release date
+        const query = Game.query()
+        if (sortMode === 'historical') {
+            // Sort NULLs to the bottom, then sort correctly by era
+            query.orderByRaw('CASE WHEN historical_year IS NULL THEN 1 ELSE 0 END ASC, historical_year ASC')
+        } else {
+            query.orderBy('release_date', 'asc')
+        }
+        
+        const games = await query
+        
+        return view.render('pages/games/timeline', { games, sortMode })
+    }
+
+    /**
      * 🟢 PUBLIC: Display a single game's details
      */
     public async show({ params, view }: HttpContext) {
@@ -39,11 +59,15 @@ export default class GamesController {
     public async store({ request, auth, response }: HttpContext) {
         if (auth.user!.role !== 'admin') return response.unauthorized()
 
-        const data = request.only(['title', 'era', 'description', 'releaseDate', 'imageUrl', 'bannerImageUrl', 'platforms', 'developer', 'publisher'])
+        const data = request.only(['title', 'era', 'description', 'releaseDate', 'imageUrl', 'bannerImageUrl', 'historicalYear', 'platforms', 'developer', 'publisher'])
 
         // 🧬 DNA FIX: Convert string to Luxon object
         if (data.releaseDate) {
             data.releaseDate = DateTime.fromISO(data.releaseDate)
+        }
+        
+        if (data.historicalYear === '') {
+            data.historicalYear = null
         }
 
         const game = await Game.create(data)
@@ -66,12 +90,16 @@ export default class GamesController {
     public async update({ params, request, auth, response }: HttpContext) {
         if (auth.user!.role !== 'admin') return response.unauthorized()
 
-        const data = request.only(['title', 'era', 'description', 'releaseDate', 'imageUrl', 'bannerImageUrl', 'platforms', 'developer', 'publisher'])
+        const data = request.only(['title', 'era', 'description', 'releaseDate', 'imageUrl', 'bannerImageUrl', 'historicalYear', 'platforms', 'developer', 'publisher'])
         const game = await Game.findOrFail(params.id)
 
         // 🧬 DNA FIX: Convert string to Luxon object
         if (data.releaseDate) {
             data.releaseDate = DateTime.fromISO(data.releaseDate)
+        }
+        
+        if (data.historicalYear === '') {
+            data.historicalYear = null
         }
 
         game.merge(data)

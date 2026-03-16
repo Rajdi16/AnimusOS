@@ -1,77 +1,77 @@
 @component('components/layout/app', { title: book.title + ' | Codex Entry' })
 
-{{-- 1. CINEMATIC HERO BANNER --}}
-<div class="pages-books-show-div-109 banner-rect">
-  {{-- Book Cover Background with Cloaking --}}
-  <img class="pages-books-show-img-110" src="{{ book.coverImageUrl || 'https://images.hdqwalls.com/download/assassins-creed-animus-12-1920x1080.jpg' }}"
-    alt="{{ book.title }}" referrerpolicy="no-referrer">
+<div class="dossier-container" style="display: flex; gap: 4rem; padding-top: 3rem; align-items: flex-start;">
 
-  {{-- Title Overlay --}}
-  <div class="pages-books-show-div-flex-111">
-    <div>
-      <span class="pages-books-show-span-text-112">
-        Literary Fragment Identified
-      </span>
-      <h1 class="pages-books-show-h1-113">
-        {{ book.title }}
-      </h1>
-    </div>
-    <div class="pages-books-show-div-114">
-      <p class="pages-books-show-p-text-115">AUTHOR</p>
-      <p class="pages-books-show-p-text-116">
-        {{ book.author.toUpperCase() }}
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="pages-books-show-div-117 dossier-container">
-
-  <div class="pages-books-show-div-flex-118">
-
-    {{-- Left: Summary --}}
-    <div class="pages-books-show-div-119">
-      <h3 class="pages-books-show-h3-text-120">
-        CODEX SUMMARY
-      </h3>
-      <p class="pages-books-show-p-text-121">
-        {{ book.summary || 'Summary data not synchronized.' }}
-      </p>
+    {{-- 📖 THE BOOK COVER (Placed to be seen better) --}}
+    <div style="flex: 0 0 380px;">
+        <img src="{{ book.coverImageUrl || 'https://images.hdqwalls.com/download/assassins-creed-animus-12-1920x1080.jpg' }}"
+            alt="{{ book.title }}"
+            style="width: 100%; border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.7); border: 1px solid rgba(255,255,255,0.1);"
+            referrerpolicy="no-referrer">
     </div>
 
-    {{-- Right: Publication Stats --}}
-    <div class="pages-books-show-div-122">
+    {{-- 🏛️ THE DOSSIER DATA --}}
+    <div style="flex: 1;">
+        <header style="margin-bottom: 2.5rem;">
+            <span
+                style="color: var(--assassin-red); font-size: 0.75rem; letter-spacing: 3px; font-weight: bold;">LITERARY
+                FRAGMENT IDENTIFIED</span>
+            <h1 style="font-size: 3.5rem; color: #fff; margin: 0.5rem 0; line-height: 1;">{{ book.title }}</h1>
+            <p style="color: #8b949e; font-size: 1rem;">ARCHIVAL DATA BY <span
+                    style="color: #fff; font-weight: bold;">{{ book.author.toUpperCase() }}</span></p>
+        </header>
 
-      <p class="pages-books-show-p-text-123">RELEASE YEAR</p>
-      <p class="pages-books-show-p-text-124">{{
-        book.publishedYear }}</p>
+        <div
+            style="background: rgba(22, 27, 34, 0.5); border: 1px solid rgba(255,255,255,0.05); padding: 2.5rem; border-radius: 16px;">
+            <div style="margin-bottom: 2rem;">
+                <h3 style="color: #8b949e; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;">CODEX
+                    SUMMARY</h3>
+                <p style="color: #c9d1d9; line-height: 1.8; font-size: 1.1rem; margin-top: 10px;">{{ book.summary ||
+                    'Summary data not synchronized.' }}</p>
+            </div>
 
-      <p class="pages-books-show-p-text-123">PUBLISHER</p>
-      <p class="pages-books-show-p-text-125">{{ book.publisher }}</p>
+            <div
+                style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 2rem;">
+                <div>
+                    <label style="display: block; font-size: 0.7rem; color: #8b949e; margin-bottom: 5px;">RELEASE
+                        YEAR</label>
+                    <span style="color: #fff; font-weight: bold; font-family: monospace;">{{ book.publishedYear
+                        }}</span>
+                </div>
+                <div>
+                    <label
+                        style="display: block; font-size: 0.7rem; color: #8b949e; margin-bottom: 5px;">PUBLISHER</label>
+                    <span style="color: #fff; font-weight: bold; font-family: monospace;">{{ book.publisher }}</span>
+                </div>
+                <div>
+                    <label style="display: block; font-size: 0.7rem; color: #8b949e; margin-bottom: 5px;">PAGE
+                        COUNT</label>
+                    <span style="color: #fff; font-weight: bold; font-family: monospace;">{{ book.numberOfPages }}
+                        PAGES</span>
+                </div>
+                <div>
+                    <label style="display: block; font-size: 0.7rem; color: #8b949e; margin-bottom: 5px;">ISBN</label>
+                    <span style="color: #fff; font-weight: bold; font-family: monospace;">{{ book.isbn }}</span>
+                </div>
+            </div>
+        </div>
 
-      <p class="pages-books-show-p-text-123">PAGE COUNT</p>
-      <p class="pages-books-show-p-text-125">{{ book.numberOfPages }} Pages</p>
+        <footer style="margin-top: 3rem; display: flex; justify-content: space-between; align-items: center;">
+            <a href="/books" class="nav-btn">← ARCHIVE</a>
 
-      <p class="pages-books-show-p-text-123">ISBN</p>
-      <p class="pages-books-show-p-text-126">{{ book.isbn }}</p>
+            @if(auth.isAuthenticated && auth.user.role === 'admin')
+            <div style="display: flex; gap: 1rem;">
+                <a href="/books/{{ book.id }}/edit" class="nav-btn">EDIT</a>
+                <form action="/books/{{ book.id }}?_method=DELETE" method="POST"
+                    onsubmit="return confirm('Erase record?')">
+                    {{ csrfField() }}
+                    <button type="submit" class="nav-btn nav-btn-danger">PURGE</button>
+                </form>
+            </div>
+            @endif
+        </footer>
     </div>
-  </div>
 
-  {{-- 3. NAVIGATION --}}
-  <footer class="pages-books-show-footer-flex-127">
-    <a href="/books" class="pages-books-show-a-128 nav-btn">←
-      ARCHIVE</a>
-
-    @if(auth.isAuthenticated && auth.user.role === 'admin')
-    <div class="pages-admin-dashboard-div-flex-33">
-      <a href="/books/{{ book.id }}/edit" class="nav-btn">EDIT</a>
-      <form action="/books/{{ book.id }}?_method=DELETE" method="POST" onsubmit="return confirm('Erase record?')">
-        {{ csrfField() }}
-        <button type="submit" class="nav-btn nav-btn-danger">PURGE</button>
-      </form>
-    </div>
-    @endif
-  </footer>
 </div>
 
 @end

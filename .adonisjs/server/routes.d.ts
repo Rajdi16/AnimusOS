@@ -5,6 +5,7 @@ type ParamValue = string | number | bigint | boolean
 export type ScannedRoutes = {
   ALL: {
     'home': { paramsTuple?: []; params?: {} }
+    'games.timeline': { paramsTuple?: []; params?: {} }
     'games.index': { paramsTuple?: []; params?: {} }
     'games.create': { paramsTuple?: []; params?: {} }
     'games.store': { paramsTuple?: []; params?: {} }
@@ -51,6 +52,7 @@ export type ScannedRoutes = {
   }
   GET: {
     'home': { paramsTuple?: []; params?: {} }
+    'games.timeline': { paramsTuple?: []; params?: {} }
     'games.index': { paramsTuple?: []; params?: {} }
     'games.create': { paramsTuple?: []; params?: {} }
     'games.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -75,6 +77,7 @@ export type ScannedRoutes = {
   }
   HEAD: {
     'home': { paramsTuple?: []; params?: {} }
+    'games.timeline': { paramsTuple?: []; params?: {} }
     'games.index': { paramsTuple?: []; params?: {} }
     'games.create': { paramsTuple?: []; params?: {} }
     'games.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
