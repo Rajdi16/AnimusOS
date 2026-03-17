@@ -8,24 +8,17 @@ import hash from '@adonisjs/core/services/hash'
 
 export default class User extends BaseModel {
 
-  /**
-   * THE VERIFICATION PROTOCOL:
-   * Finds the user by email, then securely compares the passwords.
-   */
   static async verifyCredentials(email: string, passwordPlain: string) {
-    // 1. Find the user by their email
     const user = await User.findBy('email', email)
     if (!user) {
-      throw new Error('Invalid credentials') // User not found
+      throw new Error('Invalid credentials')
     }
 
-    // 2. Verify the hashed password against the plain text one
     const isPasswordValid = await hash.verify(user.password, passwordPlain)
     if (!isPasswordValid) {
-      throw new Error('Invalid credentials') // Wrong password
+      throw new Error('Invalid credentials')
     }
 
-    // 3. Return the user if everything matches
     return user
   }
 

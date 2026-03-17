@@ -6,7 +6,6 @@
         Updating profile for: <span class="pages-auth-register-strong-text-71">{{ character.name }}</span>
     </p>
 
-    {{-- 🛡️ Note the ?_method=PUT - This tells Adonis to perform an Update, not a Create --}}
     <form action="{{ route('characters.update', { id: character.id }) }}?_method=PUT" method="POST">
         {{ csrfField() }}
 
@@ -36,10 +35,11 @@
                 @endeach
             </select>
         </div>
-        
+
         <div class="form-group">
             <label for="bannerImageUrl">Banner Image URL</label>
-            <input type="url" id="bannerImageUrl" name="bannerImageUrl" value="{{ character.bannerImageUrl || '' }}" placeholder="Direct link to wide banner image (Landscape)">
+            <input type="url" id="bannerImageUrl" name="bannerImageUrl" value="{{ character.bannerImageUrl || '' }}"
+                placeholder="Direct link to wide banner image (Landscape)">
             <small class="pages-books-create-small-text-79">
                 Optional: Used only for the character's detail view background.
             </small>
@@ -51,7 +51,7 @@
         </div>
 
         <div class="pages-books-create-div-flex-81 form-group">
-            <input class="pages-books-create-input-82" type="checkbox" id="isPlayable" name="isPlayable" value="1"  {{
+            <input class="pages-books-create-input-82" type="checkbox" id="isPlayable" name="isPlayable" value="1" {{
                 character.isPlayable ? 'checked' : '' }}>
             <label class="pages-books-create-label-83" for="isPlayable">Main Playable Protagonist?</label>
         </div>

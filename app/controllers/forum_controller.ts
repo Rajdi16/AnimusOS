@@ -5,13 +5,10 @@ import vine from '@vinejs/vine'
 
 export default class ForumController {
 
-    // 1. LIST ALL CHANNELS
     public async index({ view }: HttpContext) {
         const threads = await Thread.query().preload('user').orderBy('createdAt', 'desc')
         return view.render('pages/forum/index', { threads })
     }
-
-    // 2. LOAD SPECIFIC CHANNEL & TRANSMISSIONS
     public async show({ params, view }: HttpContext) {
         const thread = await Thread.findOrFail(params.id)
         await thread.load('user')
@@ -21,12 +18,9 @@ export default class ForumController {
         return view.render('pages/forum/show', { thread })
     }
 
-    // 3. INITIALIZE NEW CHANNEL FORM
     public async create({ view }: HttpContext) {
         return view.render('pages/forum/create')
     }
-
-    // 4. ESTABLISH NEW THREAD
     public async store({ request, response, auth, session }: HttpContext) {
         const data = await request.validateUsing(
             vine.compile(
@@ -44,11 +38,9 @@ export default class ForumController {
         return response.redirect().toRoute('forum.index')
     }
 
-    // 5. TERMINATE ENTIRE THREAD (Admin or Owner)
     public async destroy({ params, response, auth, session }: HttpContext) {
         const thread = await Thread.findOrFail(params.id)
 
-        // Clearance Check: Is Admin or Thread Creator?
         const isAdmin = auth.user!.role === 'admin'
         const isOwner = String(auth.user!.id) === String(thread.userId)
 
@@ -57,14 +49,12 @@ export default class ForumController {
             return response.redirect().back()
         }
 
-        // Delete all linked posts before purging the thread
         await Post.query().where('thread_id', thread.id).delete()
         await thread.delete()
         session.flash('success', 'CHANNEL CLOSED: Thread and all data purged.')
         return response.redirect().toRoute('forum.index')
     }
 
-    // 6. INJECT NEW REPLY
     public async storePost({ params, request, response, auth, session }: HttpContext) {
         const data = await request.validateUsing(
             vine.compile(vine.object({ body: vine.string().trim().minLength(2) }))
@@ -81,11 +71,9 @@ export default class ForumController {
         return response.redirect().back()
     }
 
-    // 7. SCRUB INDIVIDUAL POST (Admin or Owner)
     public async destroyPost({ params, response, auth, session }: HttpContext) {
         const post = await Post.findOrFail(params.id)
 
-        // Clearance Check: Is Admin or Post Creator?
         const isAdmin = auth.user!.role === 'admin'
         const isOwner = String(auth.user!.id) === String(post.userId)
 

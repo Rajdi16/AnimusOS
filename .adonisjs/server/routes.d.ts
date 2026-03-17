@@ -5,6 +5,8 @@ type ParamValue = string | number | bigint | boolean
 export type ScannedRoutes = {
   ALL: {
     'home': { paramsTuple?: []; params?: {} }
+    'articles.index': { paramsTuple?: []; params?: {} }
+    'articles.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'games.timeline': { paramsTuple?: []; params?: {} }
     'games.index': { paramsTuple?: []; params?: {} }
     'games.create': { paramsTuple?: []; params?: {} }
@@ -52,6 +54,8 @@ export type ScannedRoutes = {
   }
   GET: {
     'home': { paramsTuple?: []; params?: {} }
+    'articles.index': { paramsTuple?: []; params?: {} }
+    'articles.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'games.timeline': { paramsTuple?: []; params?: {} }
     'games.index': { paramsTuple?: []; params?: {} }
     'games.create': { paramsTuple?: []; params?: {} }
@@ -77,6 +81,8 @@ export type ScannedRoutes = {
   }
   HEAD: {
     'home': { paramsTuple?: []; params?: {} }
+    'articles.index': { paramsTuple?: []; params?: {} }
+    'articles.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'games.timeline': { paramsTuple?: []; params?: {} }
     'games.index': { paramsTuple?: []; params?: {} }
     'games.create': { paramsTuple?: []; params?: {} }

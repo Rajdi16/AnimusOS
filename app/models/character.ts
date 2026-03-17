@@ -1,7 +1,7 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column, belongsTo } from '@adonisjs/lucid/orm'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
-import Game from '#models/game' // Import the Game model!
+import Game from '#models/game'
 
 export default class Character extends BaseModel {
     @column({ isPrimary: true })
@@ -11,35 +11,30 @@ export default class Character extends BaseModel {
     declare name: string
 
     @column()
-    declare gameId: number // The ID of the game they belong to
+    declare gameId: number
 
     @column()
-    declare affiliation: string // e.g., 'Assassin', 'Templar', 'Isu'
+    declare affiliation: string
 
     @column()
-    declare bio: string // A short backstory for the character
+    declare bio: string
 
     @column()
-    declare isPlayable: boolean // true for Ezio, false for Leonardo da Vinci
+    declare isPlayable: boolean
     @column()
-    declare imageUrl: string | null // Optional: URL to the character's image
+    declare imageUrl: string | null
 
     @column()
-    declare bannerImageUrl: string | null // Optional: Wide banner image for the show page
+    declare bannerImageUrl: string | null
 
-    // -------------------------
-    // RELATIONSHIPS
-    // -------------------------
-
-    // This is the Relationship! It links this Character directly to a Game.
     @belongsTo(() => Game)
     declare game: BelongsTo<typeof Game>
 
-    // -------------------------
+
 
     @column.dateTime({ autoCreate: true })
     declare createdAt: DateTime
 
     @column.dateTime({ autoCreate: true, autoUpdate: true })
-    declare updatedAt: DateTime // Fixed the cut-off word!
+    declare updatedAt: DateTime
 }

@@ -1,0 +1,30 @@
+@component('components/layout/app', { title: 'Abstergo Intel - All Transmissions' })
+
+<div class="pages-home-div-253">
+    <div class="home-section-header" style="margin-top: 2rem;">
+        <h2 class="home-section-title">ALL INTEL & TRANSMISSIONS</h2>
+        <div class="home-section-line"></div>
+    </div>
+
+    <!-- We can reuse the home-grid-articles CSS class for the index page to maintain consistency -->
+    <div class="home-grid-articles" style="margin-bottom: 4rem;">
+        @each(article in articles)
+            <article class="home-article-card">
+                <div class="article-image-wrapper">
+                    <img src="{{ article.imageUrl }}" alt="{{ article.title }}" onerror="this.src='https://placehold.co/800x400/1a1a1a/00d4aa?text=PROJECT+LEGACY'" />
+                    @if(article.badge)
+                        <div class="article-badge {{ article.badgeColor || '' }}">{{ article.badge }}</div>
+                    @endif
+                </div>
+                <div class="article-content">
+                    <span class="article-date">FILE LOG: {{ article.publishedAt.toFormat('yyyy.MM.dd') }}</span>
+                    <h3 class="article-title">{{ article.title }}</h3>
+                    <p class="article-excerpt">{{ article.excerpt }}</p>
+                    <a href="{{ route('articles.show', { id: article.id }) }}" class="article-read-more">DECRYPT FILE <span class="read-more-arrow">&rarr;</span></a>
+                </div>
+            </article>
+        @endeach
+    </div>
+</div>
+
+@end

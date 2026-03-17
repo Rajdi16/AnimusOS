@@ -1,139 +1,155 @@
 @component('components/layout/app', { title: 'Animus Central Hub' })
 
-{{-- 1. HERO BANNER WITH OVERLAY TEXT --}}
-<section class="pages-home-section-252 banner-rect">
-    <img src="/images/ac-banner.jpg" alt="Banner" />
+{{-- 1. HERO BANNER --}}
+<section class="home-hero-container">
+    <div class="home-hero-overlay"></div>
+    <img class="home-hero-image" src="/images/ac-banner.jpg" alt="Abstergo Banner" />
+    <div class="home-hero-content">
+        <h1 class="home-hero-title">ANIMUS OS</h1>
+        <p class="home-hero-subtitle">"Where other men blindly follow the truth, Remember... Nothing is true."</p>
+    </div>
 </section>
 
 <div class="pages-home-div-253">
 
-    {{-- 2. THE MAXIM (QUOTE BLOCK) --}}
-    <div class="pages-home-div-254">
-        <h2 class="pages-home-h2-text-255">
-            "Where other men blindly follow the truth, Remember..."
-        </h2>
-        <h3 class="pages-home-h3-text-256">
-            Nothing is true.
-        </h3>
-        <h2 class="pages-home-h2-text-257">
-            "Where other men are limited by morality or law, Remember..."
-        </h2>
-        <h3 class="pages-home-h3-text-256">
-            Everything is permitted.
-        </h3>
-        <div class="pages-home-div-258"></div>
-    </div>
-
-    {{-- 3. QUICK ACCESS GRID --}}
-    <h2 class="pages-home-h2-text-259">
-        Database Access Modules</h2>
-
-    <div class="pages-home-div-grid-260">
-        <a href="{{ route('characters.index') }}" class="pages-home-a-261 info-card">
-            <div class="pages-home-div-262">🧬</div>
-            <h3 class="pages-home-h3-text-263">Genetic Profiles</h3>
-            <p class="pages-home-p-text-264">Explore the Assassins and Templars of
-                the past.</p>
-        </a>
-        <a href="{{ route('games.index') }}" class="pages-home-a-261 info-card">
-            <div class="pages-home-div-262">🎮</div>
-            <h3 class="pages-home-h3-text-263">Memory Blocks</h3>
-            <p class="pages-home-p-text-264">Relive the canonical gaming experiences.
-            </p>
-        </a>
-        <a href="{{ route('books.index') }}" class="pages-home-a-261 info-card">
-            <div class="pages-home-div-262">📖</div>
-            <h3 class="pages-home-h3-text-263">The Archives</h3>
-            <p class="pages-home-p-text-264">Discover the expanded lore through
-                official novels.</p>
-        </a>
-        <a href="{{ route('forum.index') }}" class="pages-home-a-261 info-card">
-            <div class="pages-home-div-262">📡</div>
-            <h3 class="pages-home-h3-text-263">Global Network</h3>
-            <p class="pages-home-p-text-264">Connect with other Initiates and share
-                intel.</p>
-        </a>
-    </div>
-
-    {{-- 4. FACTION DOSSIERS --}}
-    <h2 class="pages-home-h2-text-259">
-        Faction Intelligence</h2>
-
-    <div class="pages-home-div-grid-265">
-
-        {{-- Brotherhood Card --}}
-        <div class="pages-home-div-266 info-card">
-            <h3 class="pages-home-h3-text-267">The Assassin Brotherhood</h3>
-            <p class="pages-home-p-text-268">
-                Operating in the shadows to serve the light. The Brotherhood fights to preserve free will against those
-                who would subjugate humanity. Their methods are absolute, their loyalty unquestionable.
-            </p>
-            <a class="pages-home-a-text-269" href="{{ route('characters.index') }}">VIEW
-                ASSASSINS &rarr;</a>
-            <div class="pages-home-div-absolute-270">
-                🦅</div>
-        </div>
-
-        {{-- Templar Card --}}
-        <div class="pages-home-div-271 info-card">
-            <h3 class="pages-home-h3-text-267">The Templar Order</h3>
-            <p class="pages-home-p-text-268">
-                May the Father of Understanding guide us. The Order believes that true peace can only be achieved
-                through order, control, and the guidance of humanity by a capable few.
-            </p>
-            <a class="pages-home-a-text-272" href="{{ route('characters.index') }}">VIEW TEMPLARS
-                &rarr;</a>
-            <div class="pages-home-div-absolute-270">✠
+    <section class="project-info-section">
+        <div class="project-info-container">
+            <h2 class="section-title glitch" data-text="PROJECT PROTOCOL: ANIMUS OS">PROJECT PROTOCOL: ANIMUS OS</h2>
+            <div class="project-info-content">
+                <p>
+                    <span class="animus-glow">ANIMUS OS</span> is a fan-based web interface dedicated to the Assassin's
+                    Creed universe.
+                    This platform serves as a central hub for enthusiasts to synchronize with the latest historical and
+                    modern-day developments.
+                </p>
+                <p>
+                    <span class="status-marker">INTEL SOURCE:</span> All critical news transmissions and media assets
+                    are sourced directly from <a href="https://www.ubisoft.com" target="_blank"
+                        class="intel-link">Ubisoft</a>.
+                </p>
+                <div class="project-feedback-box">
+                    <span class="feedback-icon">!</span>
+                    <p>This project is a living simulation. System improvements and community suggestions are highly
+                        encouraged to maintain peak synchronization levels.</p>
+                </div>
             </div>
         </div>
-
+    </section>
+    {{-- 3. FEATURED SIMULATIONS (Games) --}}
+    <div class="home-section-header" style="margin-top: 4rem;">
+        <h2 class="home-section-title">FEATURED SIMULATIONS</h2>
+        <div class="home-section-line"></div>
     </div>
 
-    {{-- 5. FEATURED CONTENT & LORE --}}
-    <div class="pages-home-div-grid-273">
-
-        {{-- LATEST MEMORY (Featured Game) --}}
-        <div class="pages-home-div-flex-274">
-            <span class="pages-home-span-text-275">Featured
-                Memory Simulation</span>
-            <h2 class="pages-home-h2-text-276">Assassin's Creed Shadows</h2>
-            <p class="pages-home-p-text-277">
-                Step into Sengoku-era Japan. Experience the intertwined destinies of Naoe, an adept shinobi Assassin
-                from Iga Province, and Yasuke, the powerful African samurai of historical legend.
-            </p>
-            <a href="{{ route('games.index') }}" class="pages-home-a-278 btn-sync">INITIALIZE
-                SIMULATION &rarr;</a>
-        </div>
-
-        {{-- ISU LORE --}}
-        <div class="pages-home-div-279">
-            <span class="pages-home-span-text-280">Restricted
-                Intel: Class 1</span>
-            <h3 class="pages-home-h3-text-281">The First Civilization</h3>
-            <p class="pages-home-p-text-282">
-                Known as the Isu, They Who Came Before engineered humanity and forged the Pieces of Eden. Their ancient
-                artifacts still shape the course of modern history.
-            </p>
-            <p class="pages-home-p-text-283">"We built you in our image. We built you
-                to survive." - Minerva</p>
-        </div>
-
+    <div class="home-featured-games-grid">
+        @each(game in featuredGames)
+        <a href="{{ route('games.show', { id: game.id }) }}" class="game-showcase-card">
+            <img src="{{ game.imageUrl }}" alt="{{ game.title }}"
+                onerror="this.src='https://placehold.co/800x600/1a1a1a/00d4aa?text=SIMULATION'" />
+            <div class="game-showcase-overlay">
+                <h3>{{ game.title }}</h3>
+                <p>{{ game.description || 'Accessing memory sequences...' }}</p>
+                <span class="btn-sync">SYNC MEMORY</span>
+            </div>
+        </a>
+        @endeach
     </div>
 
-    {{-- 6. CALL TO ACTION (Recruitment) --}}
+    {{-- 4. STUDIO / ABSTERGO INFO SECTION --}}
+    <div class="home-section-header" style="margin-top: 4rem;">
+        <h2 class="home-section-title">ABSTERGO ENTERTAINMENT</h2>
+        <div class="home-section-line"></div>
+    </div>
+
+    <div class="home-studio-info">
+        <div class="studio-text">
+            <h3>Shaping the Future from the Past</h3>
+            <p>Welcome to <strong>Abstergo Entertainment</strong>, a leading subsidiary of Abstergo Industries. Our
+                state-of-the-art Animus technology allows us to sequence genetic memories, bringing history to life like
+                never before.</p>
+            <p>We believe that understanding our past is the key to engineering a prosperous, orderly future. While our
+                competitors build virtual realities, we unlock absolute history.</p>
+            <ul class="studio-stats">
+                <li><span>Active Initiates:</span> Global Network</li>
+                <li><span>Data Core:</span> 99.9% Synchronized</li>
+                <li><span>Objective:</span> Order and Progress</li>
+            </ul>
+        </div>
+        <div class="studio-logo-container">
+            <div class="abstergo-logo-large">
+                <span class="logo-tri">◬</span>
+                <h4>ABSTERGO</h4>
+                <p>INDUSTRIES</p>
+            </div>
+        </div>
+    </div>
+
+    {{-- 4b. UBISOFT CORPORATE SECTION --}}
+    <div class="home-section-header" style="margin-top: 4rem;">
+        <h2 class="home-section-title">UBISOFT: THE CREATIVE FORCE</h2>
+        <div class="home-section-line"></div>
+    </div>
+
+    <div class="ubisoft-corporate-section">
+        <div class="ubisoft-content">
+            <h3>Architects of History</h3>
+            <p>As the stewards of the <strong>Assassin's Creed</strong> franchise, Ubisoft bridges the gap between historical reality and digital simulation. Founded on a passion for storytelling and innovation, Ubisoft's global studios meticulously craft the worlds we explore within the Animus.</p>
+            <p>From the bustling streets of the Italian Renaissance to the mystical landscapes of Feudal Japan, their commitment to historical authenticity and player immersion drives the evolution of the Creed.</p>
+            <div class="ubisoft-action">
+                <a href="https://www.ubisoft.com" target="_blank" class="ubisoft-btn">ACCESS UBISOFT MAIN FRAME</a>
+            </div>
+        </div>
+        <div class="ubisoft-visual">
+            <div class="ubisoft-logo-sphere">
+                <div class="sphere-inner"></div>
+                <div class="sphere-outer"></div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Ubisoft_logo.svg" alt="Ubisoft Logo" class="ubisoft-logo" />
+            </div>
+        </div>
+    </div>
+
+    {{-- 5. THE NEW ARTICLES / LATEST INTEL SECTION --}}
+    <div class="home-section-header" style="margin-top: 4rem;">
+        <h2 class="home-section-title">LATEST INTEL & TRANSMISSIONS</h2>
+        <div class="home-section-line"></div>
+    </div>
+
+    <div class="home-grid-articles">
+        @each((article, index) in articles)
+        <article class="home-article-card {{ index === 0 ? 'large' : '' }}">
+            <div class="article-image-wrapper">
+                <img src="{{ article.imageUrl }}" alt="{{ article.title }}"
+                    onerror="this.src='https://placehold.co/800x400/1a1a1a/00d4aa?text=PROJECT+LEGACY'" />
+                @if(article.badge)
+                <div class="article-badge {{ article.badgeColor || '' }}">{{ article.badge }}</div>
+                @endif
+            </div>
+            <div class="article-content">
+                <span class="article-date">FILE LOG: {{ article.publishedAt.toFormat('yyyy.MM.dd') }}</span>
+                <h3 class="article-title">{{ article.title }}</h3>
+                <p class="article-excerpt">{{ article.excerpt }}</p>
+                <a href="{{ route('articles.show', { id: article.id }) }}" class="article-read-more">DECRYPT FILE <span
+                        class="read-more-arrow">&rarr;</span></a>
+            </div>
+        </article>
+        @endeach
+    </div>
+
+    {{-- 6. LOGIN / RECRUITMENT CTA --}}
     @if(!auth.isAuthenticated)
-    <div class="pages-home-div-284">
-        <h2 class="pages-home-h2-285">JOIN THE NETWORK</h2>
-        <p class="pages-home-p-text-286">
-            Gain clearance to post in the Global Network, sync your favorite games, and unlock classified Abstergo
-            documents.
-        </p>
-        <div class="pages-forum-index-div-flex-181">
-            <a href="{{ route('auth.register.view') }}" class="pages-home-a-287 btn-sync">INITIATE REGISTRATION</a>
-            <a href="{{ route('session.create') }}" class="pages-home-a-288 nav-btn">LOGIN</a>
+    <div class="home-recruitment-banner">
+        <div class="recruitment-content">
+            <h2>ABSTERGO RECRUITS</h2>
+            <p>Gain clearance to access restricted files, sync memories, and communicate on the Global Network.</p>
+        </div>
+        <div class="recruitment-actions">
+            <a href="{{ route('auth.register.view') }}" class="btn-sync">INITIATE REGISTRATION</a>
+            <a href="{{ route('session.create') }}" class="nav-btn">SYSTEM LOGIN</a>
         </div>
     </div>
     @endif
+    {{-- 7. PROJECT INFORMATION SECTION --}}
+
 
 </div>
 

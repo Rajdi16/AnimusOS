@@ -6,10 +6,6 @@ import Game from '#models/game'
 import Character from '#models/character'
 
 export default class AdminController {
-    /**
-     * 🖥️ DASHBOARD VIEW
-     * Fetches all network metrics and recent initiates.
-     */
     public async index({ view, auth, response }: HttpContext) {
         if (auth.user?.role !== 'admin') return response.redirect().toRoute('home')
 
@@ -30,24 +26,16 @@ export default class AdminController {
         })
     }
 
-    /**
-     * 👤 USER MANAGEMENT: EDIT FORM
-     */
     public async editUser({ params, view }: HttpContext) {
         const user = await User.findOrFail(params.id)
         return view.render('pages/profiles/edit', { user, isAdminEdit: true })
     }
 
-    /**
-     * 👤 USER MANAGEMENT: UPDATE DATA
-     */
     public async updateUser({ params, request, response, session }: HttpContext) {
         const user = await User.findOrFail(params.id)
 
-        // Admins can change Email and Role
         const data = request.only(['email', 'role'])
 
-        // Only update password if a new one was provided
         const newPassword = request.input('password')
         if (newPassword && newPassword.length > 0) {
             user.password = newPassword
@@ -60,13 +48,10 @@ export default class AdminController {
         return response.redirect().toRoute('admin.dashboard')
     }
 
-    /**
-     * 🚫 USER MANAGEMENT: BAN/PURGE (The [BAN] Button)
-     */
+
     public async destroyUser({ params, response, session }: HttpContext) {
         const user = await User.findOrFail(params.id)
 
-        // Prevent Admins from deleting themselves!
         if (user.id === (await User.query().where('role', 'admin').first())?.id) {
             session.flash('error', 'CRITICAL ERROR: Cannot purge a Grand Master profile.')
             return response.redirect().back()
@@ -77,9 +62,6 @@ export default class AdminController {
         return response.redirect().back()
     }
 
-    /**
-     * 🎮 ARCHIVE MANAGEMENT: PURGE RECORDS
-     */
     public async destroyGame({ params, response, session }: HttpContext) {
         const game = await Game.findOrFail(params.id)
         await game.delete()

@@ -5,11 +5,13 @@
 
 export const controllers = {
   Admin: () => import('#controllers/admin_controller'),
+  Articles: () => import('#controllers/articles_controller'),
   Auth: () => import('#controllers/auth_controller'),
   Books: () => import('#controllers/books_controller'),
   Characters: () => import('#controllers/characters_controller'),
   Forum: () => import('#controllers/forum_controller'),
   Games: () => import('#controllers/games_controller'),
+  Home: () => import('#controllers/home_controller'),
   Profiles: () => import('#controllers/profiles_controller'),
   Session: () => import('#controllers/session_controller'),
 }

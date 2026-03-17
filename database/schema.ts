@@ -7,6 +7,31 @@
 import { BaseModel, column } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 
+export class ArticleSchema extends BaseModel {
+  static $columns = ['badge', 'badgeColor', 'content', 'createdAt', 'excerpt', 'id', 'imageUrl', 'publishedAt', 'title', 'updatedAt'] as const
+  $columns = ArticleSchema.$columns
+  @column()
+  declare badge: string | null
+  @column()
+  declare badgeColor: string | null
+  @column()
+  declare content: string | null
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column()
+  declare excerpt: string | null
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare imageUrl: string | null
+  @column.dateTime()
+  declare publishedAt: DateTime | null
+  @column()
+  declare title: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
 export class BookSchema extends BaseModel {
   static $columns = ['author', 'coverImageUrl', 'createdAt', 'genre', 'id', 'isAvailable', 'isbn', 'language', 'numberOfPages', 'publishedYear', 'publisher', 'summary', 'title', 'updatedAt'] as const
   $columns = BookSchema.$columns
