@@ -23,7 +23,26 @@
         </p>
         
         <!-- The full content of the article -->
-        <div style="white-space: pre-wrap;">{{ article.content }}</div>
+        <div style="white-space: pre-wrap; margin-bottom: 3rem;">{{ article.content }}</div>
+
+        @if(article.game)
+        <div class="system-sync-card">
+            <div class="sync-card-overlay" style="background-image: url('{{ article.game.bannerImageUrl || article.game.imageUrl }}');"></div>
+            <div class="sync-card-content">
+                <div class="sync-header">
+                    <span class="sync-status">GENETIC LINK DETECTED</span>
+                    <h4 class="sync-title">{{ article.game.title }}</h4>
+                </div>
+                <div class="sync-actions">
+                    <span class="sync-meta">SOURCE: ANIMUS ARCHIVES // SEQ-{{ article.game.id.toString().padStart(4, '0') }}</span>
+                    <a href="{{ route('games.show', { id: article.game.id }) }}" class="sync-btn">
+                        <span class="btn-text">INITIALIZE SYNCHRONIZATION</span>
+                        <span class="btn-scan"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        @endif
     </div>
     
     <div style="margin-top: 4rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; text-align: center;">

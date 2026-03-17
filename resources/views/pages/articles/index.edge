@@ -18,6 +18,9 @@
                 </div>
                 <div class="article-content">
                     <span class="article-date">FILE LOG: {{ article.publishedAt.toFormat('yyyy.MM.dd') }}</span>
+                    @if(article.game)
+                        <span class="article-date" style="color: #00d4aa; margin-left: 1rem;">// SYSTEM: {{ article.game.title }}</span>
+                    @endif
                     <h3 class="article-title">{{ article.title }}</h3>
                     <p class="article-excerpt">{{ article.excerpt }}</p>
                     <a href="{{ route('articles.show', { id: article.id }) }}" class="article-read-more">DECRYPT FILE <span class="read-more-arrow">&rarr;</span></a>

@@ -8,7 +8,7 @@ import { BaseModel, column } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 
 export class ArticleSchema extends BaseModel {
-  static $columns = ['badge', 'badgeColor', 'content', 'createdAt', 'excerpt', 'id', 'imageUrl', 'publishedAt', 'title', 'updatedAt'] as const
+  static $columns = ['badge', 'badgeColor', 'content', 'createdAt', 'excerpt', 'gameId', 'id', 'imageUrl', 'publishedAt', 'title', 'updatedAt'] as const
   $columns = ArticleSchema.$columns
   @column()
   declare badge: string | null
@@ -20,6 +20,8 @@ export class ArticleSchema extends BaseModel {
   declare createdAt: DateTime | null
   @column()
   declare excerpt: string | null
+  @column()
+  declare gameId: number | null
   @column({ isPrimary: true })
   declare id: number
   @column()

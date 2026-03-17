@@ -1,11 +1,15 @@
 import { BaseSeeder } from '@adonisjs/lucid/seeders'
 import Article from '#models/article'
+import Game from '#models/game'
 import db from '@adonisjs/lucid/services/db'
 import { DateTime } from 'luxon'
 
 export default class extends BaseSeeder {
   async run() {
     await db.from('articles').delete()
+
+    const shadows = await Game.findBy('title', "Assassin's Creed Shadows")
+    const unity = await Game.findBy('title', "Assassin's Creed Unity")
 
     await Article.createMany([
       {
@@ -15,7 +19,8 @@ export default class extends BaseSeeder {
         imageUrl: "/images/ac-shadows.jpg",
         badge: "EXPANSION",
         badgeColor: "danger",
-        publishedAt: DateTime.fromISO('2026-03-10T10:00:00.000Z')
+        publishedAt: DateTime.fromISO('2026-03-10T10:00:00.000Z'),
+        gameId: shadows?.id
       },
       {
         title: "Assassin's Creed: Into 2026 Roadmap",
@@ -24,7 +29,8 @@ export default class extends BaseSeeder {
         imageUrl: "/images/ac-banner.jpg",
         badge: "ROADMAP",
         badgeColor: "archived",
-        publishedAt: DateTime.fromISO('2026-03-15T09:00:00.000Z')
+        publishedAt: DateTime.fromISO('2026-03-15T09:00:00.000Z'),
+        gameId: shadows?.id
       },
       {
         title: "Assassin's Creed Unity: 60 FPS Protocol Engaged",
@@ -33,7 +39,8 @@ export default class extends BaseSeeder {
         imageUrl: "/images/mirage.jpg",
         badge: "SYSTEM UPDATE",
         badgeColor: "",
-        publishedAt: DateTime.fromISO('2026-03-05T14:00:00.000Z')
+        publishedAt: DateTime.fromISO('2026-03-05T14:00:00.000Z'),
+        gameId: unity?.id
       },
       {
         title: "Netflix Transmission: Series Casting Confirmed",
