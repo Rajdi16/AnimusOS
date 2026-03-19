@@ -1,12 +1,12 @@
 /* resources/css/app.css */
 
 :root {
-  --animus-dark: #1a1a1a;
-  --animus-darker: #000000;
-  --assassin-red: #00d4aa;
-  --assassin-red-hover: #00ff88;
-  --abstergo-white: #ffffff;
-  --text-muted: #888888;
+  --animus-dark: #121820;
+  --animus-darker: #0d1117;
+  --assassin-red: #388bfd;
+  --assassin-red-hover: #58a6ff;
+  --abstergo-white: #e6edf3;
+  --text-muted: #8b949e;
 }
 
 /* --- CUSTOM ANIMUS SCROLLBAR --- */
@@ -31,7 +31,7 @@
   box-shadow: 0 0 10px var(--assassin-red);
 }
 
-/* --- CORE LAYOUT & ANIMUS BACKGROUND --- */
+/* --- CORE LAYOUT & BACKGROUND --- */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: var(--animus-darker);
@@ -39,24 +39,6 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.6;
-
-  /* The Abstergo Grid Blueprint */
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
-  animation: grid-pan 20s linear infinite;
-}
-
-/* The Grid Animation Engine */
-@keyframes grid-pan {
-  0% {
-    background-position: 0 0;
-  }
-
-  100% {
-    background-position: 40px 40px;
-  }
 }
 
 /* --- THE SLEEK BUTTONS --- */
@@ -221,50 +203,6 @@ textarea:focus {
   height: 100%;
   object-fit: cover;
   object-position: center top;
-}
-
-/* --- THE ANIMUS GLITCH ANIMATION --- */
-.glitch {
-  position: relative;
-}
-
-.glitch::before {
-  left: 2px;
-  text-shadow: -2px 0 var(--assassin-red);
-  clip: rect(24px, 550px, 90px, 0);
-  animation: glitch-anim 3s infinite linear alternate-reverse;
-}
-
-.glitch::after {
-  left: -2px;
-  text-shadow: -2px 0 var(--assassin-red), 2px 2px var(--abstergo-white);
-  animation: glitch-anim 2s infinite linear alternate-reverse;
-}
-
-@keyframes glitch-anim {
-  0% {
-    clip: rect(42px, 9999px, 44px, 0);
-  }
-
-  20% {
-    clip: rect(63px, 9999px, 27px, 0);
-  }
-
-  40% {
-    clip: rect(86px, 9999px, 73px, 0);
-  }
-
-  60% {
-    clip: rect(12px, 9999px, 59px, 0);
-  }
-
-  80% {
-    clip: rect(34px, 9999px, 55px, 0);
-  }
-
-  100% {
-    clip: rect(13px, 9999px, 99px, 0);
-  }
 }
 
 /* --- DOSSIER CARDS HOVER PROTOCOL --- */
@@ -4223,6 +4161,7 @@ details>summary::-webkit-details-marker {
     margin-bottom: 2rem;
   }
 }
+
 /* --- SYSTEM SYNCHRONIZATION CARD --- */
 .system-sync-card {
   position: relative;
@@ -4321,29 +4260,41 @@ details>summary::-webkit-details-marker {
 }
 
 @keyframes scan-btn {
-  0% { left: -100%; }
-  50% { left: 100%; }
-  100% { left: 100%; }
+  0% {
+    left: -100%;
+  }
+
+  50% {
+    left: 100%;
+  }
+
+  100% {
+    left: 100%;
+  }
 }
 
 @media (max-width: 768px) {
   .system-sync-card {
     padding: 2rem;
   }
+
   .sync-card-overlay {
     width: 100%;
     opacity: 0.15;
   }
+
   .sync-actions {
     flex-direction: column;
     align-items: flex-start;
     gap: 1.5rem;
   }
+
   .sync-btn {
     width: 100%;
     text-align: center;
   }
 }
+
 .sync-btn {
   background: #ff4757 !important;
   box-shadow: 0 0 15px rgba(255, 71, 87, 0.4) !important;
@@ -4352,4 +4303,161 @@ details>summary::-webkit-details-marker {
 .sync-btn:hover {
   box-shadow: 0 0 30px rgba(255, 71, 87, 0.6) !important;
   background: #ff6b81 !important;
+}
+
+/* --- DOSSIER PAGE STYLES --- */
+.dossier-container {
+  display: flex;
+  gap: 4rem;
+  padding-top: 3rem;
+  align-items: flex-start;
+}
+
+.dossier-cover {
+  flex: 0 0 380px;
+}
+
+.dossier-cover-img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dossier-content {
+  flex: 1;
+}
+
+.dossier-header {
+  margin-bottom: 2.5rem;
+}
+
+.dossier-badge {
+  color: var(--assassin-red);
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.dossier-title {
+  font-size: 3.5rem;
+  color: #fff;
+  margin: 0.5rem 0;
+  line-height: 1;
+}
+
+.dossier-subtitle {
+  color: #8b949e;
+  font-size: 1rem;
+}
+
+.dossier-subtitle-highlight {
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.dossier-data-box {
+  background: rgba(22, 27, 34, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 2.5rem;
+  border-radius: 16px;
+}
+
+.dossier-section {
+  margin-bottom: 2rem;
+}
+
+.dossier-section-title {
+  color: #8b949e;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.dossier-summary {
+  color: #c9d1d9;
+  line-height: 1.8;
+  font-size: 1.1rem;
+  margin-top: 10px;
+}
+
+.dossier-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 2rem;
+}
+
+.dossier-label {
+  display: block;
+  font-size: 0.7rem;
+  color: #8b949e;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.dossier-value {
+  color: #fff;
+  font-weight: bold;
+  font-family: monospace;
+}
+
+.dossier-memory-link {
+  margin-top: 3rem;
+  background: rgba(0, 212, 170, 0.05);
+  border: 1px solid rgba(0, 212, 170, 0.2);
+  padding: 2rem;
+  border-radius: 12px;
+  border-left: 4px solid var(--assassin-red);
+}
+
+.dossier-memory-title {
+  color: #00d4aa;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.dossier-memory-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dossier-memory-game {
+  color: white;
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.dossier-memory-era {
+  color: #8b949e;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.nav-btn-sync {
+  background: rgba(0, 212, 170, 0.1);
+  border-color: rgba(0, 212, 170, 0.3);
+  color: #00d4aa;
+}
+
+.nav-btn-sync:hover {
+  background: rgba(0, 212, 170, 0.2);
+}
+
+.dossier-footer {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dossier-actions {
+  display: flex;
+  gap: 1rem;
 }

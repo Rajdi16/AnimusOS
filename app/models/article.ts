@@ -1,11 +1,9 @@
-import { ArticleSchema } from '#database/schema'
-import { column, belongsTo } from '@adonisjs/lucid/orm'
+import { BaseModel, column, belongsTo } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 import Game from '#models/game'
 
-
-export default class Article extends ArticleSchema {
+export default class Article extends BaseModel {
 
     @column()
     declare id: number

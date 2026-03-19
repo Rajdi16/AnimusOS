@@ -26,6 +26,7 @@ export default class GamesController {
         const game = await Game.query()
             .where('id', params.id)
             .preload('characters')
+            .preload('books')
             .firstOrFail()
 
         return view.render('pages/games/show', { game })

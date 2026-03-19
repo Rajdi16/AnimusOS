@@ -1,4 +1,6 @@
-import { BaseModel, column } from '@adonisjs/lucid/orm'
+import { BaseModel, column, belongsTo } from '@adonisjs/lucid/orm'
+import type { BelongsTo } from '@adonisjs/lucid/types/relations'
+import Game from '#models/game'
 
 
 export default class Book extends BaseModel {
@@ -37,5 +39,11 @@ export default class Book extends BaseModel {
 
     @column()
     declare publisher: string
+
+    @column()
+    declare gameId: number | null
+
+    @belongsTo(() => Game)
+    declare game: BelongsTo<typeof Game>
 
 }

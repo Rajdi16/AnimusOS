@@ -7,7 +7,7 @@ export default class BooksController {
         return view.render('pages/books/index', { books })
     }
     public async show({ params, view }: HttpContext) {
-        const book = await Book.findOrFail(params.id)
+        const book = await Book.query().where('id', params.id).preload('game').firstOrFail()
         return view.render('pages/books/show', { book })
     }
     public async create({ view }: HttpContext) {

@@ -3,6 +3,7 @@ import type { HasMany } from '@adonisjs/lucid/types/relations'
 import { BaseModel, column, hasMany } from '@adonisjs/lucid/orm'
 import Character from '#models/character'
 import Article from '#models/article'
+import Book from '#models/book'
 
 export default class Game extends BaseModel {
   @column({ isPrimary: true })
@@ -43,6 +44,9 @@ export default class Game extends BaseModel {
 
   @hasMany(() => Article)
   declare articles: HasMany<typeof Article>
+
+  @hasMany(() => Book)
+  declare books: HasMany<typeof Book>
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

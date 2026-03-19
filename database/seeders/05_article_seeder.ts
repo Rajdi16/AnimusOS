@@ -13,6 +13,15 @@ export default class extends BaseSeeder {
 
     await Article.createMany([
       {
+        title: "Animus Data Feed: Upcoming 2026 Memory Sequences",
+        excerpt: "Ubisoft outlines the future of the Brotherhood, including Project Hexe, the experimental Invictus multiplayer, and the highly anticipated Black Flag Remake.",
+        content: "The Assassin's Creed franchise is entering a new era in 2026. Ubisoft has confirmed that 'Codename Hexe' is currently in deep development, promising a darker, narrative-driven experience set during the 17th-century witch trials. Meanwhile, 'Invictus', a standalone multiplayer title developed by 'For Honor' veterans, aims to redefine competitive synchronizations within the Animus. Finally, reports have corroborated that 'Assassin's Creed IV: Black Flag - Resynced', a full engine remake of the acclaimed pirate adventure, is nearing the final stages of its upgraded simulation.",
+        imageUrl: "https://images.hdqwalls.com/download/assassins-creed-animus-12-1920x1080.jpg",
+        badge: "FRANCHISE UPDATE",
+        badgeColor: "success",
+        publishedAt: DateTime.fromISO('2026-03-19T10:00:00.000Z'),
+      },
+      {
         title: "Assassin’s Creed Shadows: Claws of Awaji Expansion",
         excerpt: "Ubisoft launches the first major expansion for Shadows, featuring a new island region, enemies, and deep-dive content for Naoe.",
         content: "The 'Claws of Awaji' expansion for Assassin's Creed Shadows is now available. This major content update introduces a brand new island region to explore, offering over 10 hours of additional gameplay. Players will face new challenges, encounter unique enemies, and unlock powerful gear and abilities for Naoe. The expansion also features a new narrative arc that delves deeper into the shadows of feudal Japan.",
